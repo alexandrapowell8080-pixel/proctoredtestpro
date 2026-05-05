@@ -14,12 +14,26 @@
     
     <link rel="canonical" href="{{ $pageData['canonical'] ?? url('/') }}">
     
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    {{-- SEO: Prioritize dynamic @yield, fallback to $pageData, then default --}}
+  <title>@yield('seo_title', $pageData['title'] ?? config('app.name', 'ProctoredTestPro'))</title>
+    <meta name="description" content="@yield('seo_description', $pageData['metaDescription'] ?? '')">
+    <meta name="keywords" content="@yield('seo_keywords', $pageData['keywords'] ?? '')">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="ProctoredTestPro">
+
+    <link rel="canonical" href="{{ $pageData['canonical'] ?? url('/') }}">
+  
+    {{-- OpenGraph --}}
     <meta property="og:title" content="{{ $pageData['title'] ?? '' }}">
     <meta property="og:description" content="{{ $pageData['metaDescription'] ?? '' }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ $pageData['canonical'] ?? url('/') }}">
     <meta property="og:image" content="{{ $pageData['ogImage'] ?? '' }}">
     
+
+    {{-- Twitter --}}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $pageData['title'] ?? '' }}">
     <meta name="twitter:description" content="{{ $pageData['metaDescription'] ?? '' }}">
@@ -33,6 +47,64 @@
     
     <script type="application/ld+json">
     {
+
+    {{-- Optional Extra Meta --}}
+    @yield('extra_meta')
+
+    {{-- Favicons --}}
+    <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
+    <link href="{{ asset('img/logo.png') }}" rel="icon" type="image/png">
+
+    {{-- Google Fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    {{-- Styles --}}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="{{ asset('css/global-header.css') }}" rel="stylesheet">
+
+    {{-- Tailwind CDN for local / Vite for production --}}
+    @if(config('app.env') === 'local')
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyan: { 400: '#22d3ee', 500: '#06b6d4', 600: '#0891b2', 700: '#0e7490' }
+                    }
+                }
+            }
+        }
+    </script>
+    @else
+    {{-- Production: Compile with Vite --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @endif
+
+    {{-- Custom Utility Styles --}}
+    <style>
+        .faq-link:hover {
+            border-left-color: #06b6d4;
+            color: #22d3ee;
+        }
+
+        .prose a {
+            color: #0891b2;
+            text-decoration: none;
+        }
+
+        .prose a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    {{-- Schema.org JSON-LD --}}
+    <script type="application/ld+json">
+        {
         "@@context": "https://schema.org",
         "@@type": "WebSite",
         "name": "ProctoredTestPro",
@@ -48,6 +120,9 @@
     
     <script type="application/ld+json">
     {
+
+    <script type="application/ld+json">
+        {
         "@@context": "https://schema.org",
         "@@type": "BreadcrumbList",
         "itemListElement": [{
@@ -61,6 +136,9 @@
     
     <script type="application/ld+json">
     {
+
+    <script type="application/ld+json">
+        {
         "@@context": "https://schema.org",
         "@@type": "Organization",
         "name": "ProctoredTestPro",
@@ -81,4 +159,24 @@
     
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
+
+<body class="bg-white text-gray-900 antialiased">
+
+    {{-- Optional: Header/Nav --}}
+    @includeWhen(view()->exists('partials.header'), 'partials.header')
+
+    {{-- Main Content --}}
+    <main class="min-h-screen">
+        @yield('content')
+    </main>
+
+    {{-- Optional: Footer --}}
+    @includeWhen(view()->exists('partials.footer'), 'partials.footer')
+
+    {{-- Scripts --}}
+    <script src="{{ asset('js/app.js') }}"></script>
+    @stack('scripts')
+
+</body>
+
 </html>
