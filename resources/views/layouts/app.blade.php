@@ -1,33 +1,52 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>{{ $pageData['title'] ?? 'ProctoredTestPro' }}</title>
+    
+    <meta name="description" content="{{ $pageData['metaDescription'] ?? '' }}">
+    <meta name="keywords" content="{{ $pageData['keywords'] ?? '' }}">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="ProctoredTestPro">
+    
+    <link rel="canonical" href="{{ $pageData['canonical'] ?? url('/') }}">
+    
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- SEO: Prioritize dynamic @yield, fallback to $pageData, then default --}}
-    <title>@yield('seo_title', $pageData['title'] ?? config('app.name', 'ProctoredTestPro'))</title>
+  <title>@yield('seo_title', $pageData['title'] ?? config('app.name', 'ProctoredTestPro'))</title>
     <meta name="description" content="@yield('seo_description', $pageData['metaDescription'] ?? '')">
     <meta name="keywords" content="@yield('seo_keywords', $pageData['keywords'] ?? '')">
     <meta name="robots" content="index, follow">
     <meta name="author" content="ProctoredTestPro">
 
     <link rel="canonical" href="{{ $pageData['canonical'] ?? url('/') }}">
-
+  
     {{-- OpenGraph --}}
     <meta property="og:title" content="{{ $pageData['title'] ?? '' }}">
     <meta property="og:description" content="{{ $pageData['metaDescription'] ?? '' }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ $pageData['canonical'] ?? url('/') }}">
     <meta property="og:image" content="{{ $pageData['ogImage'] ?? '' }}">
+    
 
     {{-- Twitter --}}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $pageData['title'] ?? '' }}">
     <meta name="twitter:description" content="{{ $pageData['metaDescription'] ?? '' }}">
     <meta name="twitter:image" content="{{ $pageData['ogImage'] ?? '' }}">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    
+    <script type="application/ld+json">
+    {
 
     {{-- Optional Extra Meta --}}
     @yield('extra_meta')
@@ -98,6 +117,9 @@
         }
     }
     </script>
+    
+    <script type="application/ld+json">
+    {
 
     <script type="application/ld+json">
         {
@@ -111,6 +133,9 @@
         }]
     }
     </script>
+    
+    <script type="application/ld+json">
+    {
 
     <script type="application/ld+json">
         {
@@ -129,6 +154,11 @@
     }
     </script>
 </head>
+<body>
+    @yield('content')
+    
+    <script src="{{ asset('js/app.js') }}"></script>
+</body>
 
 <body class="bg-white text-gray-900 antialiased">
 

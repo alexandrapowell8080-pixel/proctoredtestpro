@@ -54,7 +54,7 @@
                             <circle cx="12" cy="12" r="10"></circle>
                             <polyline points="12 6 12 12 16 14"></polyline>
                         </svg>
-                        <span>24/7 Support</span>
+                        <span>24/7 Support:+1 (551) 261-5124</span>
                     </div>
                 </div>
             </div>
