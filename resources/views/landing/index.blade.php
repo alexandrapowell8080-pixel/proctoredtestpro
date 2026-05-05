@@ -138,24 +138,24 @@
                                 <meta name="robots" content="noindex, nofollow">
                                 
                                 <div class="form-row">
-                                    <input type="email" class="form-input" placeholder="Email" required>
+                                    <input type="email" id="email-hero" name="email" class="form-input" placeholder="Email" required autocomplete="email">
                                     <div class="phone-input">
-                                        <select class="country-select">
+                                        <select class="country-select" id="country-hero" name="country_code">
                                             <option value="ke" selected>KE(+254)</option>
                                             <option value="us">US(+1)</option>
                                             <option value="uk">UK(+44)</option>
                                             <option value="in">IN(+91)</option>
                                             <option value="ng">NG(+234)</option>
                                         </select>
-                                        <input type="tel" class="form-input" placeholder="Phone no." required>
+                                        <input type="tel" id="phone-hero" name="phone" class="form-input" placeholder="Phone no." required autocomplete="tel">
                                     </div>
                                 </div>
                                 
                                 <div class="form-row">
-                                    <input type="text" class="form-input" placeholder="Subject/Course Code" required>
+                                    <input type="text" id="subject-hero" name="subject" class="form-input" placeholder="Subject/Course Code" required autocomplete="off">
                                     <div class="datetime-row">
-                                        <input type="date" class="form-input" required>
-                                        <select class="time-select">
+                                        <input type="date" id="date-hero" name="exam_date" class="form-input" required autocomplete="off">
+                                        <select class="time-select" id="time-hero" name="exam_time">
                                             <option value="12:00 AM">12:00 AM</option>
                                             <option value="6:00 AM">6:00 AM</option>
                                             <option value="12:00 PM">12:00 PM</option>
@@ -166,7 +166,7 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <textarea class="form-textarea" placeholder="Description (Write/Attach)" rows="4"></textarea>
+                                    <textarea id="description-hero" name="description" class="form-textarea" placeholder="Description (Write/Attach)" rows="4" autocomplete="off"></textarea>
                                     <button type="button" class="attach-btn">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="M13.234 20.252 21 12.3"></path>
@@ -196,7 +196,7 @@
                                 </div>
                                 
                                 <div class="form-checkbox">
-                                    <input type="checkbox" id="terms" required checked>
+                                    <input type="checkbox" id="terms" name="terms" required checked>
                                     <label for="terms">I accept the T&C, agree to receive offers & updates</label>
                                 </div>
                                 
@@ -757,24 +757,24 @@
                                 <meta name="robots" content="noindex, nofollow">
                                 
                                 <div class="form-row">
-                                    <input type="email" class="form-input" placeholder="Email" required>
+                                    <input type="email" id="email-quote" name="email" class="form-input" placeholder="Email" required autocomplete="email">
                                     <div class="phone-input">
-                                        <select class="country-select">
+                                        <select class="country-select" id="country-quote" name="country_code">
                                             <option value="ke" selected>KE(+254)</option>
                                             <option value="us">US(+1)</option>
                                             <option value="uk">UK(+44)</option>
                                             <option value="in">IN(+91)</option>
                                             <option value="ng">NG(+234)</option>
                                         </select>
-                                        <input type="tel" class="form-input" placeholder="Phone no." required>
+                                        <input type="tel" id="phone-quote" name="phone" class="form-input" placeholder="Phone no." required autocomplete="tel">
                                     </div>
                                 </div>
                                 
                                 <div class="form-row">
-                                    <input type="text" class="form-input" placeholder="Subject/Course Code" required>
+                                    <input type="text" id="subject-quote" name="subject" class="form-input" placeholder="Subject/Course Code" required autocomplete="off">
                                     <div class="datetime-row">
-                                        <input type="date" class="form-input" required>
-                                        <select class="time-select">
+                                        <input type="date" id="date-quote" name="exam_date" class="form-input" required autocomplete="off">
+                                        <select class="time-select" id="time-quote" name="exam_time">
                                             <option value="12:00 AM">12:00 AM</option>
                                             <option value="6:00 AM">6:00 AM</option>
                                             <option value="12:00 PM">12:00 PM</option>
@@ -785,7 +785,7 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <textarea class="form-textarea" placeholder="Description (Write/Attach)" rows="4"></textarea>
+                                    <textarea id="description-quote" name="description" class="form-textarea" placeholder="Description (Write/Attach)" rows="4" autocomplete="off"></textarea>
                                     <button type="button" class="attach-btn">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="M13.234 20.252 21 12.3"></path>
@@ -815,7 +815,7 @@
                                 </div>
                                 
                                 <div class="form-checkbox">
-                                    <input type="checkbox" id="terms-alt" required checked>
+                                    <input type="checkbox" id="terms-alt" name="terms" required checked>
                                     <label for="terms-alt">I accept the T&C, agree to receive offers & updates</label>
                                 </div>
                                 
