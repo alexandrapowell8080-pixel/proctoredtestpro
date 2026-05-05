@@ -10,6 +10,7 @@
             <video autoplay loop playsinline muted class="hero-video" poster="">
                 <source src="https://media.base44.com/videos/public/69f9b1df2c5090f8250e77fc/f67b11296_generated_video.mp4" type="video/mp4">
             </video>
+            <div class="hero-overlay"></div>
         </div>
         
         <div class="container">
@@ -75,21 +76,11 @@
                         </div>
                         <div class="rating">
                             <div class="stars">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
-                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
                             </div>
                             <p class="rating-text">Trusted by <strong>15,000+</strong> students</p>
                         </div>
@@ -129,15 +120,15 @@
                             </div>
                             
                             <div class="form-tabs">
-                                <button class="tab-btn active" type="button">
+                                <button class="tab-btn active" type="button" data-tab="proctored">
                                     <span class="tab-indicator"></span>
                                     <span class="tab-text">Proctored Tests</span>
                                 </button>
-                                <button class="tab-btn" type="button">
+                                <button class="tab-btn" type="button" data-tab="classes">
                                     <span class="tab-indicator"></span>
                                     <span class="tab-text">Online Classes</span>
                                 </button>
-                                <button class="tab-btn" type="button">
+                                <button class="tab-btn" type="button" data-tab="assignments">
                                     <span class="tab-indicator"></span>
                                     <span class="tab-text">Assignments</span>
                                 </button>
@@ -162,16 +153,6 @@
                                 
                                 <div class="form-row">
                                     <input type="text" class="form-input" placeholder="Subject/Course Code" required>
-                                    <select class="form-select" required>
-                                        <option value="" disabled selected>Proctoring Platform</option>
-                                        <option value="proctoru">ProctorU</option>
-                                        <option value="examity">Examity</option>
-                                        <option value="proctorio">Proctorio</option>
-                                        <option value="respondus">Respondus</option>
-                                        <option value="honorlock">Honorlock</option>
-                                        <option value="pearson">Pearson VUE</option>
-                                        <option value="other">Other</option>
-                                    </select>
                                     <div class="datetime-row">
                                         <input type="date" class="form-input" required>
                                         <select class="time-select">
@@ -193,6 +174,25 @@
                                         </svg>
                                         Attach file
                                     </button>
+                                </div>
+                                
+                                <div class="page-counter">
+                                    <span class="page-label">Pages</span>
+                                    <div class="page-controls">
+                                        <button type="button" class="page-btn page-minus">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14"></path>
+                                            </svg>
+                                        </button>
+                                        <span class="page-count">1</span>
+                                        <button type="button" class="page-btn page-plus">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14"></path>
+                                                <path d="M12 5v14"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <span class="page-words">250 words</span>
                                 </div>
                                 
                                 <div class="form-checkbox">
@@ -373,11 +373,6 @@
         </div>
     </section>
     
-    <div class="decorative-blobs">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-    </div>
-    
     <section class="reviews-section" id="reviews">
         <div class="container">
             <div class="section-header">
@@ -412,7 +407,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
                     </div>
-                    <p class="review-text">"I used Proctoredtestpor to prepare for my chemistry final. The mock questions and tutor review helped me walk in confident."</p>
+                    <p class="review-text">"I used Proctoredtestpro to prepare for my chemistry final. The mock questions and tutor review helped me walk in confident."</p>
                     <div class="review-author">
                         <div class="author-avatar">A</div>
                         <div class="author-info">
@@ -469,51 +464,94 @@
         </div>
     </section>
     
-    <section class="coverage-section">
+    <section class="coverage-section" id="coverage">
+        <div class="coverage-dot-pattern"></div>
         <div class="container">
             <div class="section-header">
-                <span class="section-label">Full Coverage</span>
-                <h2 class="section-title">We Cover It All</h2>
-                <p class="section-description">No matter the platform, subject, or level — we've got you covered.</p>
+                <h2 class="section-title text-white">We Cover <span class="text-secondary">It All</span></h2>
             </div>
             
-            <div class="coverage-grid">
-                <div class="coverage-card">
-                    <div class="coverage-icon">
+            <div class="coverage-tabs">
+                <button class="coverage-tab" data-coverage="proctoring">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="20" height="14" x="2" y="3" rx="2"></rect>
+                        <line x1="8" x2="16" y1="21" y2="21"></line>
+                        <line x1="12" x2="12" y1="17" y2="21"></line>
+                    </svg>
+                    Every Proctoring System
+                </button>
+                <button class="coverage-tab" data-coverage="discipline">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path>
+                        <path d="M22 10v6"></path>
+                        <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>
+                    </svg>
+                    Every Academic Discipline
+                </button>
+                <button class="coverage-tab active" data-coverage="level">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+                        <path d="M18 17V9"></path>
+                        <path d="M13 17V5"></path>
+                        <path d="M8 17v-3"></path>
+                    </svg>
+                    Every Level
+                </button>
+                <button class="coverage-tab" data-coverage="global">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                        <path d="M2 12h20"></path>
+                    </svg>
+                    Global Reach
+                </button>
+            </div>
+            
+            <div class="coverage-content">
+                <div class="coverage-panel" data-panel="proctoring" hidden>
+                    <div class="coverage-panel-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect width="20" height="14" x="2" y="3" rx="2"></rect>
                             <line x1="8" x2="16" y1="21" y2="21"></line>
                             <line x1="12" x2="12" y1="17" y2="21"></line>
                         </svg>
                     </div>
-                    <h3 class="coverage-title">Every Proctoring System</h3>
-                    <ul class="coverage-list">
-                        <li><span class="bullet"></span>AI-based (Proctorio, Respondus)</li>
-                        <li><span class="bullet"></span>Live proctors (ProctorU, Examity)</li>
-                        <li><span class="bullet"></span>Lockdown browsers</li>
-                        <li><span class="bullet"></span>Hybrid platforms</li>
-                    </ul>
+                    <h3 class="coverage-panel-title text-white">Every Proctoring System</h3>
+                    <p class="coverage-panel-text text-white-muted">AI-based (Proctorio, Respondus), Live proctors (ProctorU, Examity), Lockdown browsers, and Hybrid platforms.</p>
+                    <div class="coverage-tags">
+                        <span class="coverage-tag-item">ProctorU</span>
+                        <span class="coverage-tag-item">Examity</span>
+                        <span class="coverage-tag-item">Proctorio</span>
+                        <span class="coverage-tag-item">Respondus</span>
+                        <span class="coverage-tag-item">Honorlock</span>
+                        <span class="coverage-tag-item">Pearson VUE</span>
+                    </div>
                 </div>
                 
-                <div class="coverage-card">
-                    <div class="coverage-icon">
+                <div class="coverage-panel" data-panel="discipline" hidden>
+                    <div class="coverage-panel-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path>
                             <path d="M22 10v6"></path>
                             <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>
                         </svg>
                     </div>
-                    <h3 class="coverage-title">Every Academic Discipline</h3>
-                    <ul class="coverage-list">
-                        <li><span class="bullet"></span>STEM (Math, Physics, Coding, Engineering)</li>
-                        <li><span class="bullet"></span>Humanities (Literature, History, Philosophy)</li>
-                        <li><span class="bullet"></span>Business (Accounting, Finance, Economics)</li>
-                        <li><span class="bullet"></span>Healthcare (Nursing, Medical Boards)</li>
-                    </ul>
+                    <h3 class="coverage-panel-title text-white">Every Academic Discipline</h3>
+                    <p class="coverage-panel-text text-white-muted">STEM, Humanities, Business, Healthcare, and beyond.</p>
+                    <div class="coverage-tags">
+                        <span class="coverage-tag-item">Math</span>
+                        <span class="coverage-tag-item">Physics</span>
+                        <span class="coverage-tag-item">Chemistry</span>
+                        <span class="coverage-tag-item">Biology</span>
+                        <span class="coverage-tag-item">Literature</span>
+                        <span class="coverage-tag-item">CS</span>
+                        <span class="coverage-tag-item">Business</span>
+                        <span class="coverage-tag-item">Law</span>
+                    </div>
                 </div>
                 
-                <div class="coverage-card">
-                    <div class="coverage-icon">
+                <div class="coverage-panel active" data-panel="level">
+                    <div class="coverage-panel-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
                             <path d="M18 17V9"></path>
@@ -521,30 +559,36 @@
                             <path d="M8 17v-3"></path>
                         </svg>
                     </div>
-                    <h3 class="coverage-title">Every Level</h3>
-                    <ul class="coverage-list">
-                        <li><span class="bullet"></span>High school</li>
-                        <li><span class="bullet"></span>College & University</li>
-                        <li><span class="bullet"></span>Graduate programs</li>
-                        <li><span class="bullet"></span>Professional certifications (CPA, CFA, Bar, NCLEX, USMLE)</li>
-                    </ul>
+                    <h3 class="coverage-panel-title text-white">Every Level</h3>
+                    <p class="coverage-panel-text text-white-muted">High school, college, graduate programs, professional certifications (CPA, CFA, Bar Exam, NCLEX, USMLE, and others).</p>
+                    <div class="coverage-tags">
+                        <span class="coverage-tag-item">High School</span>
+                        <span class="coverage-tag-item">College</span>
+                        <span class="coverage-tag-item">Graduate</span>
+                        <span class="coverage-tag-item">CPA</span>
+                        <span class="coverage-tag-item">CFA</span>
+                        <span class="coverage-tag-item">Bar Exam</span>
+                        <span class="coverage-tag-item">NCLEX</span>
+                        <span class="coverage-tag-item">USMLE</span>
+                    </div>
                 </div>
                 
-                <div class="coverage-card">
-                    <div class="coverage-icon">
+                <div class="coverage-panel" data-panel="global" hidden>
+                    <div class="coverage-panel-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10"></circle>
                             <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
                             <path d="M2 12h20"></path>
                         </svg>
                     </div>
-                    <h3 class="coverage-title">Global Reach</h3>
-                    <ul class="coverage-list">
-                        <li><span class="bullet"></span>Students worldwide</li>
-                        <li><span class="bullet"></span>Regional requirements</li>
-                        <li><span class="bullet"></span>Institutional compliance</li>
-                        <li><span class="bullet"></span>Multi-language support</li>
-                    </ul>
+                    <h3 class="coverage-panel-title text-white">Global Reach</h3>
+                    <p class="coverage-panel-text text-white-muted">Students worldwide, regional requirements, institutional compliance, and multi-language support.</p>
+                    <div class="coverage-tags">
+                        <span class="coverage-tag-item">Worldwide</span>
+                        <span class="coverage-tag-item">Regional</span>
+                        <span class="coverage-tag-item">Institutional</span>
+                        <span class="coverage-tag-item">Multi-language</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -663,65 +707,122 @@
                 </div>
                 
                 <div class="quote-form-wrapper">
-                    <form class="quote-form" method="POST" action="/quote" noindex>
-                        <meta name="robots" content="noindex, nofollow">
+                    <div class="form-card">
+                        <div class="form-glow"></div>
+                        <div class="form-header-accent"></div>
                         
-                        <div class="form-row">
-                            <input type="email" class="form-input" placeholder="Email" required>
-                            <div class="phone-input">
-                                <select class="country-select">
-                                    <option value="ke" selected>KE(+254)</option>
-                                    <option value="us">US(+1)</option>
-                                    <option value="uk">UK(+44)</option>
-                                    <option value="in">IN(+91)</option>
-                                    <option value="ng">NG(+234)</option>
-                                </select>
-                                <input type="tel" class="form-input" placeholder="Phone no." required>
+                        <div class="form-content">
+                            <h3 class="form-title">AI-Free Assignment Help from Real Experts</h3>
+                            
+                            <div class="form-badges">
+                                <span class="form-badge">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="m9 12 2 2 4-4"></path>
+                                    </svg>
+                                    Guaranteed Grade or Refund
+                                </span>
+                                <span class="form-badge">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="m9 12 2 2 4-4"></path>
+                                    </svg>
+                                    No AI
+                                </span>
+                                <span class="form-badge">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="m9 12 2 2 4-4"></path>
+                                    </svg>
+                                    24/7 Support
+                                </span>
                             </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <input type="text" class="form-input" placeholder="Subject/Course Code" required>
-                            <select class="form-select" required>
-                                <option value="" disabled selected>Proctoring Platform</option>
-                                <option value="proctoru">ProctorU</option>
-                                <option value="examity">Examity</option>
-                                <option value="proctorio">Proctorio</option>
-                                <option value="respondus">Respondus</option>
-                                <option value="honorlock">Honorlock</option>
-                                <option value="pearson">Pearson VUE</option>
-                                <option value="other">Other</option>
-                            </select>
-                            <div class="datetime-row">
-                                <input type="date" class="form-input" required>
-                                <select class="time-select">
-                                    <option value="12:00 AM">12:00 AM</option>
-                                    <option value="6:00 AM">6:00 AM</option>
-                                    <option value="12:00 PM">12:00 PM</option>
-                                    <option value="6:00 PM">6:00 PM</option>
-                                    <option value="11:59 PM">11:59 PM</option>
-                                </select>
+                            
+                            <div class="form-tabs">
+                                <button class="tab-btn" type="button" data-tab="proctored">
+                                    <span class="tab-indicator"></span>
+                                    <span class="tab-text">Proctored Tests</span>
+                                </button>
+                                <button class="tab-btn" type="button" data-tab="classes">
+                                    <span class="tab-indicator"></span>
+                                    <span class="tab-text">Online Classes</span>
+                                </button>
+                                <button class="tab-btn active" type="button" data-tab="assignments">
+                                    <span class="tab-indicator"></span>
+                                    <span class="tab-text">Assignments</span>
+                                </button>
                             </div>
+                            
+                            <form class="quote-form" method="POST" action="/quote" noindex>
+                                <meta name="robots" content="noindex, nofollow">
+                                
+                                <div class="form-row">
+                                    <input type="email" class="form-input" placeholder="Email" required>
+                                    <div class="phone-input">
+                                        <select class="country-select">
+                                            <option value="ke" selected>KE(+254)</option>
+                                            <option value="us">US(+1)</option>
+                                            <option value="uk">UK(+44)</option>
+                                            <option value="in">IN(+91)</option>
+                                            <option value="ng">NG(+234)</option>
+                                        </select>
+                                        <input type="tel" class="form-input" placeholder="Phone no." required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <input type="text" class="form-input" placeholder="Subject/Course Code" required>
+                                    <div class="datetime-row">
+                                        <input type="date" class="form-input" required>
+                                        <select class="time-select">
+                                            <option value="12:00 AM">12:00 AM</option>
+                                            <option value="6:00 AM">6:00 AM</option>
+                                            <option value="12:00 PM">12:00 PM</option>
+                                            <option value="6:00 PM">6:00 PM</option>
+                                            <option value="11:59 PM">11:59 PM</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <textarea class="form-textarea" placeholder="Description (Write/Attach)" rows="4"></textarea>
+                                    <button type="button" class="attach-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M13.234 20.252 21 12.3"></path>
+                                            <path d="m16 6-8.414 8.586a2 2 0 0 0 0 2.828 2 2 0 0 0 2.828 0l8.414-8.586a4 4 0 0 0 0-5.656 4 4 0 0 0-5.656 0l-8.415 8.585a6 6 0 1 0 8.486 8.486"></path>
+                                        </svg>
+                                        Attach file
+                                    </button>
+                                </div>
+                                
+                                <div class="page-counter">
+                                    <span class="page-label">Pages</span>
+                                    <div class="page-controls">
+                                        <button type="button" class="page-btn page-minus">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14"></path>
+                                            </svg>
+                                        </button>
+                                        <span class="page-count">1</span>
+                                        <button type="button" class="page-btn page-plus">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14"></path>
+                                                <path d="M12 5v14"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <span class="page-words">250 words</span>
+                                </div>
+                                
+                                <div class="form-checkbox">
+                                    <input type="checkbox" id="terms-alt" required checked>
+                                    <label for="terms-alt">I accept the T&C, agree to receive offers & updates</label>
+                                </div>
+                                
+                                <button type="submit" class="btn-submit">Do My Assignment</button>
+                            </form>
                         </div>
-                        
-                        <div class="form-group">
-                            <textarea class="form-textarea" placeholder="Description (Write/Attach)" rows="4"></textarea>
-                            <button type="button" class="attach-btn">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M13.234 20.252 21 12.3"></path>
-                                    <path d="m16 6-8.414 8.586a2 2 0 0 0 0 2.828 2 2 0 0 0 2.828 0l8.414-8.586a4 4 0 0 0 0-5.656 4 4 0 0 0-5.656 0l-8.415 8.585a6 6 0 1 0 8.486 8.486"></path>
-                                </svg>
-                                Attach file
-                            </button>
-                        </div>
-                        
-                        <div class="form-checkbox">
-                            <input type="checkbox" id="terms-alt" required checked>
-                            <label for="terms-alt">I accept the T&C, agree to receive offers & updates</label>
-                        </div>
-                        
-                        <button type="submit" class="btn-submit">Ace My Exam</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
