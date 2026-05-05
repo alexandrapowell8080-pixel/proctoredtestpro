@@ -1,10 +1,10 @@
-{{-- @extends('layouts.app') --}}
+@extends('layouts.app')
 
 @section('seo_title', 'FAQ Manager - Admin')
 
 @section('content')
-<div class="min-h-screen bg-gray-50 py-10">
-    <div class="max-w-6xl mx-auto px-4">
+<div class="min-h-screen bg-gray-50 py-10 pt-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {{-- Header --}}
         <div class="mb-8">
@@ -13,7 +13,7 @@
         </div>
 
         {{-- Stats Cards --}}
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
             <div class="bg-white p-6 rounded-xl border-l-4 border-black shadow-sm">
                 <div class="text-sm text-gray-500 mb-1">Total Keywords</div>
                 <div class="text-3xl font-bold text-black">{{ $stats['total'] }}</div>
@@ -31,14 +31,14 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
             {{-- Upload Form --}}
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-fit">
                 <div class="bg-black px-6 py-4">
                     <h2 class="text-white font-semibold text-lg">📤 Bulk Upload Keywords</h2>
                 </div>
 
                 <div class="p-6">
                     @if(session('success'))
-                    <div class="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <div class="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg break-words">
                         <p class="text-green-800 font-medium">✅ Import Successful!</p>
                         <p class="text-green-700 text-sm mt-1">
                             Imported: <strong>{{ session('imported') }}</strong> |
@@ -53,13 +53,13 @@
                     @endif
 
                     @if(session('queued'))
-                    <div class="mb-4 p-4 bg-cyan-50 border border-cyan-200 rounded-lg">
+                    <div class="mb-4 p-4 bg-cyan-50 border border-cyan-200 rounded-lg break-words">
                         <p class="text-cyan-800">{{ session('message') }}</p>
                     </div>
                     @endif
 
                     @if($errors->any())
-                    <div class="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <div class="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg break-words">
                         <ul class="text-red-700 text-sm list-disc list-inside">
                             @foreach($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -72,19 +72,19 @@
                         class="space-y-4">
                         @csrf
 
-                        {{-- ✅ ADDED COURSE SELECTION (ONLY CHANGE) --}}
+                        {{-- Category Selection --}}
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">
-                                Select Course
+                                Select Category
                             </label>
 
-                            <select name="course_id" required
-                                class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
-                                <option value="">-- Choose Course --</option>
+                            <select name="category_id" required
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 bg-white">
+                                <option value="">-- Choose Category --</option>
 
-                                @foreach($courses as $course)
-                                <option value="{{ $course->id }}">
-                                    {{ $course->coursename }}
+                                @foreach($categories as $category)
+                                <option value="{{ $category->id }}">
+                                    {{ $category->name }}
                                 </option>
                                 @endforeach
                             </select>
@@ -97,7 +97,7 @@
                             <div class="flex items-center justify-center w-full">
                                 <label
                                     class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition">
-                                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                    <div class="flex flex-col items-center justify-center pt-5 pb-6 text-center px-4">
                                         <svg class="w-8 h-8 mb-2 text-gray-400" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -120,13 +120,14 @@
                     </form>
 
                     {{-- Trigger Generation --}}
-                    <form action="{{ route('admin.faqs.generate') }}" method="POST" class="mt-4">
+                    <form action="{{ route('admin.faqs.generate') }}" method="POST"
+                        class="mt-6 pt-6 border-t border-gray-100">
                         @csrf
-                        <div class="flex gap-3">
+                        <div class="flex flex-wrap sm:flex-nowrap gap-3">
                             <input type="number" name="limit" value="5" min="1" max="20"
-                                class="w-24 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
+                                class="w-full sm:w-24 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500">
                             <button type="submit"
-                                class="flex-1 bg-cyan-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-cyan-700 transition">
+                                class="w-full sm:flex-1 bg-cyan-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-cyan-700 transition whitespace-nowrap">
                                 🤖 Trigger AI Generation
                             </button>
                         </div>
@@ -136,7 +137,7 @@
             </div>
 
             {{-- Recent Keywords List --}}
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-fit">
                 <div class="bg-black px-6 py-4 flex justify-between items-center">
                     <h2 class="text-white font-semibold text-lg">📋 Recent Keywords</h2>
                     <span class="text-xs text-gray-300">Last 10</span>
@@ -144,7 +145,8 @@
 
                 <div class="divide-y divide-gray-200">
                     @forelse($stats['recent'] as $faq)
-                    <div class="p-4 flex items-center justify-between hover:bg-gray-50 transition">
+                    <div
+                        class="p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:bg-gray-50 transition gap-2">
                         <div class="flex-1 min-w-0">
                             <p class="text-sm font-medium text-black truncate">{{ $faq->keyword }}</p>
                             <p class="text-xs text-gray-500 mt-1">
@@ -159,10 +161,10 @@
 
                         @if(!$faq->content)
                         <form action="{{ route('admin.faqs.destroy', $faq->id) }}" method="POST"
-                            onsubmit="return confirm('Delete this keyword?')">
+                            onsubmit="return confirm('Delete this keyword?')" class="sm:ml-4 shrink-0">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-500 hover:text-red-700 text-sm ml-4">
+                            <button type="submit" class="text-red-500 hover:text-red-700 text-sm font-medium">
                                 Delete
                             </button>
                         </form>
@@ -183,7 +185,7 @@
             <h3 class="text-cyan-900 font-semibold mb-2">📖 How to use:</h3>
             <ol class="list-decimal list-inside text-sm text-cyan-800 space-y-1">
                 <li>Prepare a CSV or TXT file with one keyword per line (e.g., "laravel hosting", "php tutorials")</li>
-                <li>Upload the file using the form above</li>
+                <li>Select the relevant category and upload the file using the form above</li>
                 <li>Keywords will be saved with <code>null</code> content</li>
                 <li>Cron job automatically generates AI content (or click "Trigger AI Generation")</li>
                 <li>Published FAQs appear on <a href="{{ route('faqs.index') }}" class="underline font-medium">/faqs</a>
