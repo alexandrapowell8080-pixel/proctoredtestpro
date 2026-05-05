@@ -9,6 +9,18 @@ class Blog extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'category_id',
+        'title',
+        'image_url',
+        'description',
+        'content',
+        'slug',
+        'keywords',
+        'meta_keywords',
+        'status',
+    ];
+
     const DRAFT = 'draft';
     const PUBLISH = 'published';
 }
