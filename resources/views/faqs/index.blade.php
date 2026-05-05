@@ -1,114 +1,125 @@
-@extends('layouts.layer')
+@extends('layouts.app')
 
 @section('seo_title', 'Frequently Asked Questions')
 @section('seo_description', 'Find answers to common questions in our comprehensive FAQ section.')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 py-10">
-    <h1 class="text-3xl font-bold text-black mb-8 border-b-2 border-cyan-500 pb-2">
+{{-- Fixed wrapper: added max-w-7xl, mx-auto for centering, and px-4/lg:px-8 for guaranteed side gaps --}}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-12 min-h-screen">
+    <h1
+        class="text-3xl md:text-4xl font-extrabold text-[hsl(var(--foreground))] mb-8 border-b-2 border-[hsl(var(--accent))] pb-3 inline-block">
         Frequently Asked Questions
     </h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
 
         {{-- FAQs --}}
-        <main class="md:col-span-3">
+        <main class="lg:col-span-3">
             <div class="grid gap-4">
                 @forelse($faqs as $faq)
-                    <a href="{{ route('faqs.show', $faq->slug) }}"
-                       class="block p-5 bg-white border border-gray-200 rounded-lg hover:border-cyan-400 hover:shadow-md transition group">
+                <a href="{{ route('faqs.show', $faq->slug) }}"
+                    class="block p-5 md:p-6 bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl hover:border-[hsl(var(--accent))] hover:-translate-y-1 hover:shadow-lg transition-all duration-300 group">
 
-                        <h2 class="text-xl font-semibold text-cyan-700 group-hover:text-cyan-600 mb-1">
-                            {{ $faq->title }}
-                        </h2>
+                    <h2
+                        class="text-lg md:text-xl font-bold text-[hsl(var(--foreground))] group-hover:text-[hsl(var(--accent))] mb-2 transition-colors break-words">
+                        {{ $faq->title }}
+                    </h2>
 
-                        <p class="text-gray-600 text-sm">
-                            {{ Str::limit($faq->description, 140) }}
-                        </p>
-                    </a>
+                    <p class="text-[hsl(var(--muted-foreground))] text-sm md:text-base leading-relaxed break-words">
+                        {{ Str::limit($faq->description, 140) }}
+                    </p>
+                </a>
                 @empty
-                    <p class="text-gray-500 italic">No FAQs found for this category.</p>
+                <div class="p-8 text-center border border-dashed border-[hsl(var(--border))] rounded-xl">
+                    <p class="text-[hsl(var(--muted-foreground))] italic">No FAQs found for this category.</p>
+                </div>
                 @endforelse
             </div>
 
             {{-- Pagination --}}
             @if ($faqs->hasPages())
-                <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4">
-            
-                    {{-- Previous --}}
-                    @if ($faqs->onFirstPage())
-                        <span class="px-5 py-2 rounded-lg bg-gray-100 text-gray-400">
-                            Previous
-                        </span>
-                    @else
-                        <a href="{{ $school 
-                            ? route('faqs.school', [$school->slug, $faqs->currentPage() - 1]) 
+            <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+
+                {{-- Previous --}}
+                @if ($faqs->onFirstPage())
+                <span
+                    class="px-5 py-2.5 rounded-full bg-[hsl(var(--secondary))] text-[hsl(var(--muted-foreground))] text-sm font-semibold opacity-70 cursor-not-allowed">
+                    Previous
+                </span>
+                @else
+                <a href="{{ $currentCategory !== null 
+                            ? route('faqs.category', [$currentCategory->slug, $faqs->currentPage() - 1]) 
                             : route('faqs.page', $faqs->currentPage() - 1) 
-                        }}"
-                           class="px-5 py-2 rounded-lg bg-cyan-600 text-white hover:bg-cyan-700 transition">
-                            Previous
-                        </a>
-                    @endif
-            
-                    {{-- Page Numbers --}}
-                    <div class="flex items-center gap-2 flex-wrap justify-center">
-                        @foreach (range(1, $faqs->lastPage()) as $page)
-                            @if ($page == $faqs->currentPage())
-                                <span class="px-4 py-2 rounded-lg bg-black text-white font-semibold">
-                                    {{ $page }}
-                                </span>
-                            @else
-                                <a href="{{ $school 
-                                    ? route('faqs.school', [$school->slug, $page]) 
+                        }}" class="btn btn-primary text-sm">
+                    Previous
+                </a>
+                @endif
+
+                {{-- Page Numbers --}}
+                <div class="flex items-center gap-2 flex-wrap justify-center">
+                    @foreach (range(1, $faqs->lastPage()) as $page)
+                    @if ($page == $faqs->currentPage())
+                    <span
+                        class="w-10 h-10 flex items-center justify-center rounded-full bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] font-bold shadow-md">
+                        {{ $page }}
+                    </span>
+                    @else
+                    <a href="{{ $currentCategory !== null 
+                                    ? route('faqs.category', [$currentCategory->slug, $page]) 
                                     : route('faqs.page', $page) 
                                 }}"
-                                   class="px-4 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:border-cyan-500 hover:text-cyan-600 transition">
-                                    {{ $page }}
-                                </a>
-                            @endif
-                        @endforeach
-                    </div>
-            
-                    {{-- Next --}}
-                    @if ($faqs->hasMorePages())
-                        <a href="{{ $school 
-                            ? route('faqs.school', [$school->slug, $faqs->currentPage() + 1]) 
-                            : route('faqs.page', $faqs->currentPage() + 1) 
-                        }}"
-                           class="px-5 py-2 rounded-lg bg-cyan-600 text-white hover:bg-cyan-700 transition">
-                            Next
-                        </a>
-                    @else
-                        <span class="px-5 py-2 rounded-lg bg-gray-100 text-gray-400">
-                            Next
-                        </span>
+                        class="w-10 h-10 flex items-center justify-center rounded-full bg-transparent border border-[hsl(var(--border))] text-[hsl(var(--foreground))] hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))] transition-colors font-medium">
+                        {{ $page }}
+                    </a>
                     @endif
-            
+                    @endforeach
                 </div>
+
+                {{-- Next --}}
+                @if ($faqs->hasMorePages())
+                <a href="{{ $currentCategory !== null  
+                            ? route('faqs.category', [$currentCategory->slug, $faqs->currentPage() + 1]) 
+                            : route('faqs.page', $faqs->currentPage() + 1) 
+                        }}" class="btn btn-primary text-sm">
+                    Next
+                </a>
+                @else
+                <span
+                    class="px-5 py-2.5 rounded-full bg-[hsl(var(--secondary))] text-[hsl(var(--muted-foreground))] text-sm font-semibold opacity-70 cursor-not-allowed">
+                    Next
+                </span>
+                @endif
+
+            </div>
             @endif
         </main>
 
-        {{-- Sidebar --}}
-        <aside class="md:col-span-1">
-            <div class="bg-white border border-gray-200 rounded-lg p-4 sticky top-24">
-                <h3 class="text-lg font-bold mb-4">Categories</h3>
+        {{-- Sidebar (No Background Color) --}}
+        <aside class="lg:col-span-1">
+            <div class="sticky top-28 p-2">
+                <h3
+                    class="text-xl font-bold mb-4 text-[hsl(var(--foreground))] border-b border-[hsl(var(--border))] pb-2">
+                    Categories</h3>
 
-                <a href="{{ route('faqs.index') }}"
-                   class="block w-full text-left px-4 py-2 rounded-lg mb-2
-                   {{ !$school ? 'bg-cyan-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-cyan-50 hover:text-cyan-700' }}">
-                    All FAQs
-                </a>
+                <div class="flex flex-col gap-1">
+                    <a href="{{ route('faqs.index') }}"
+                        class="block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium transition-all
+                        {{ $currentCategory === null ? 'bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] shadow-md' : 'text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--accent)/0.1)] hover:text-[hsl(var(--accent))]' }}">
+                        All FAQs
+                    </a>
 
-                @foreach($schools as $s)
-                    <a href="{{ route('faqs.school', [$s->slug]) }}"
-                       class="block w-full text-left px-4 py-2 rounded-lg mb-2
-                       {{ $school && $school->id === $s->id ? 'bg-cyan-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-cyan-50 hover:text-cyan-700' }}">
-                        <span>{{ $s->schoolname }}</span>
-                        <span class="text-xs px-2 py-1 rounded-full bg-white/70 text-gray-700">
-                            {{ $s->faqs_count }}
+                    @foreach($categories as $cat)
+                    <a href="{{ route('faqs.category', [$cat->slug]) }}"
+                        class="flex justify-between items-center w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium transition-all
+                            {{ $currentCategory && $currentCategory->id === $cat->id ? 'bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] shadow-md' : 'text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--accent)/0.1)] hover:text-[hsl(var(--accent))]' }}">
+                        <span class="truncate pr-2">{{ $cat->name }}</span>
+                        <span
+                            class="text-xs px-2 py-0.5 rounded-full font-bold {{ $currentCategory && $currentCategory->id === $cat->id ? 'bg-white/20 text-white' : 'bg-[hsl(var(--secondary))] text-[hsl(var(--muted-foreground))]' }}">
+                            {{ $cat->faqs_count }}
                         </span>
                     </a>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </aside>
 
