@@ -374,7 +374,7 @@
     </section>
     
     <section class="reviews-section" id="reviews">
-        <div class="container">
+        <div class="container1">
             <div class="section-header">
                 <span class="section-label">Testimonials</span>
                 <h2 class="section-title text-white">Real Students. Real Progress.</h2>

@@ -158,14 +158,68 @@
             updateSlider();
         }
         
-        // Form submission
-        document.querySelectorAll('form[noindex]').forEach(form => {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                console.log('📤 Form submitted (prevented for demo)');
-                alert('Form submission would be handled here. Add your backend endpoint.');
-            });
+  
+document.querySelectorAll('form[noindex]').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        console.log('📤 Form submitted - sending to WhatsApp');
+        
+      
+        const formData = new FormData(this);
+        const data = {};
+        
+        
+        this.querySelectorAll('input, select, textarea').forEach(field => {
+            if (field.name && field.value) {
+                data[field.name] = field.value;
+            }
         });
+        
+       
+        const terms = document.getElementById('terms')?.checked || document.getElementById('terms-alt')?.checked;
+        data.terms = terms ? 'Yes' : 'No';
+        
+       
+        const pageCount = this.querySelector('.page-count')?.textContent || '1';
+        data.pages = pageCount;
+        
+     
+        const message = `
+🎓 *New Exam Request*
+
+📧 *Email:* ${data.email || 'N/A'}
+📱 *Phone:* ${data.country_code || ''} ${data.phone || ''}
+📚 *Subject:* ${data.subject || 'N/A'}
+💻 *Platform:* ${data.platform || 'N/A'}
+📅 *Exam Date:* ${data.exam_date || 'N/A'}
+⏰ *Exam Time:* ${data.exam_time || 'N/A'}
+📝 *Description:* ${data.description || 'N/A'}
+📄 *Pages:* ${data.pages || '1'} (≈${parseInt(data.pages) * 250 || 250} words)
+✅ *T&C Accepted:* ${data.terms}
+
+🔹 *Service:* ${this.closest('.form-card')?.querySelector('.tab-btn.active')?.textContent?.trim() || 'Proctored Tests'}
+        `.trim();
+      
+        const encodedMessage = encodeURIComponent(message);
+   
+        const whatsappNumber = '15512615124';
+      
+        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+        
+        const newWindow = window.open(whatsappURL, '_blank');
+        
+        if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+         
+            alert('📱 Please allow popups to open WhatsApp, or click below:');
+            window.location.href = whatsappURL;
+        } else {
+        
+            alert('✅ Opening WhatsApp... Please send the message to complete your request.');
+        }
+      
+    });
+});
         
         console.log('✨ All features initialized');
     }

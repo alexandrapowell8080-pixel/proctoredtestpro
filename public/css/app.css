@@ -52,10 +52,17 @@ body {
     overflow-x: hidden;
 }
 
+.container1 {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+      background: hsl(var(--primary));
+}
 .container {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 1rem;
+    
 }
 
 /* ==================== HEADER ==================== */
@@ -1035,7 +1042,6 @@ body {
 /* ==================== REVIEWS SECTION ==================== */
 .reviews-section {
     padding: 6rem 0;
-    background: hsl(var(--muted-foreground));
     position: relative;
     overflow: hidden;
 }
