@@ -7,10 +7,9 @@
 <main class="main-content">
     <section class="hero-section" id="hero">
         <div class="hero-video-container">
-            <video autoplay loop playsinline class="hero-video" poster="">
+            <video autoplay loop playsinline muted class="hero-video" poster="">
                 <source src="https://media.base44.com/videos/public/69f9b1df2c5090f8250e77fc/f67b11296_generated_video.mp4" type="video/mp4">
             </video>
-            <div class="hero-overlay"></div>
         </div>
         
         <div class="container">
@@ -283,6 +282,92 @@
                     </div>
                     <h3 class="feature-title">Lightning-Fast Support</h3>
                     <p class="feature-text">Need help ASAP? Our team delivers tailored solutions within hours, with 24/7 availability to meet your deadlines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works-section">
+        <div class="decorative-blobs">
+            <div class="blob blob-how-1"></div>
+            <div class="blob blob-how-2"></div>
+        </div>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                        <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                        <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                        <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                    </svg>
+                    HOW IT WORKS
+                </span>
+                <h2 class="section-title text-white">How We Guarantee <span class="highlight-white">Your Success</span></h2>
+                <p class="section-description text-white-muted">Three simple steps to ace any proctored exam effortlessly.</p>
+            </div>
+            
+            <div class="how-it-works-grid">
+                <div class="how-step">
+                    <div class="step-connector"></div>
+                    <div class="step-content">
+                        <div class="step-icon-wrapper">
+                            <div class="step-icon step-icon-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+                                    <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+                                    <path d="M10 9H8"></path>
+                                    <path d="M16 13H8"></path>
+                                    <path d="M16 17H8"></path>
+                                </svg>
+                            </div>
+                            <div class="step-number">01</div>
+                        </div>
+                        <h3 class="step-title text-white">Tell Us About Your Exam</h3>
+                        <p class="step-description text-white-muted">Complete our secure form with your exam details, proctoring system, subject, and any special requirements.</p>
+                    </div>
+                </div>
+                
+                <div class="how-step">
+                    <div class="step-connector"></div>
+                    <div class="step-content">
+                        <div class="step-icon-wrapper">
+                            <div class="step-icon step-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"></path>
+                                    <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"></path>
+                                    <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"></path>
+                                    <path d="M17.599 6.5a3 3 0 0 0 .399-1.375"></path>
+                                    <path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"></path>
+                                    <path d="M3.477 10.896a4 4 0 0 1 .585-.396"></path>
+                                    <path d="M19.938 10.5a4 4 0 0 1 .585.396"></path>
+                                    <path d="M6 18a4 4 0 0 1-1.967-.516"></path>
+                                    <path d="M19.967 17.484A4 4 0 0 1 18 18"></path>
+                                </svg>
+                            </div>
+                            <div class="step-number">02</div>
+                        </div>
+                        <h3 class="step-title text-white">Get a Personalized Plan</h3>
+                        <p class="step-description text-white-muted">Our experts analyze your needs and craft a custom strategy with a transparent quote within 12 hours.</p>
+                    </div>
+                </div>
+                
+                <div class="how-step">
+                    <div class="step-content">
+                        <div class="step-icon-wrapper">
+                            <div class="step-icon step-icon-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                                    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                                    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                                    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                                </svg>
+                            </div>
+                            <div class="step-number">03</div>
+                        </div>
+                        <h3 class="step-title text-white">Ace Your Exam with Ease</h3>
+                        <p class="step-description text-white-muted">Partner with our team to execute a flawless plan, bypassing proctoring hurdles and securing results.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -578,73 +663,64 @@
                 </div>
                 
                 <div class="quote-form-wrapper">
-                    <form class="quote-form-alt" method="POST" action="/quote" noindex>
+                    <form class="quote-form" method="POST" action="/quote" noindex>
                         <meta name="robots" content="noindex, nofollow">
-                        <h3 class="form-alt-title">Request Your Free Quote</h3>
-                        <p class="form-alt-subtitle">Fill in your details and we'll craft a custom plan for you.</p>
+                        
+                        <div class="form-row">
+                            <input type="email" class="form-input" placeholder="Email" required>
+                            <div class="phone-input">
+                                <select class="country-select">
+                                    <option value="ke" selected>KE(+254)</option>
+                                    <option value="us">US(+1)</option>
+                                    <option value="uk">UK(+44)</option>
+                                    <option value="in">IN(+91)</option>
+                                    <option value="ng">NG(+234)</option>
+                                </select>
+                                <input type="tel" class="form-input" placeholder="Phone no." required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <input type="text" class="form-input" placeholder="Subject/Course Code" required>
+                            <select class="form-select" required>
+                                <option value="" disabled selected>Proctoring Platform</option>
+                                <option value="proctoru">ProctorU</option>
+                                <option value="examity">Examity</option>
+                                <option value="proctorio">Proctorio</option>
+                                <option value="respondus">Respondus</option>
+                                <option value="honorlock">Honorlock</option>
+                                <option value="pearson">Pearson VUE</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="datetime-row">
+                                <input type="date" class="form-input" required>
+                                <select class="time-select">
+                                    <option value="12:00 AM">12:00 AM</option>
+                                    <option value="6:00 AM">6:00 AM</option>
+                                    <option value="12:00 PM">12:00 PM</option>
+                                    <option value="6:00 PM">6:00 PM</option>
+                                    <option value="11:59 PM">11:59 PM</option>
+                                </select>
+                            </div>
+                        </div>
                         
                         <div class="form-group">
-                            <label class="form-label">Service Type *</label>
-                            <select class="form-select-alt" required>
-                                <option value="" disabled selected>Select a service</option>
-                                <option value="proctored_exams">Proctored Exams</option>
-                                <option value="online_classes">Online Classes</option>
-                                <option value="assignment_assistance">Assignment Assistance</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-row-alt">
-                            <div class="form-group">
-                                <label class="form-label">Full Name *</label>
-                                <input type="text" class="form-input-alt" placeholder="Your name" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Email *</label>
-                                <input type="email" class="form-input-alt" placeholder="your@email.com" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Preferred Contact Method</label>
-                            <select class="form-select-alt">
-                                <option value="email">Email</option>
-                                <option value="whatsapp">WhatsApp</option>
-                                <option value="telegram">Telegram</option>
-                                <option value="discord">Discord</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-checkbox-alt">
-                            <input type="checkbox" id="consent-alt" required>
-                            <label for="consent-alt">I agree to the Privacy Policy and consent to Proctored Test Pro processing my information to provide the requested service.</label>
-                        </div>
-                        
-                        <button type="submit" class="btn-submit-alt">Get My Personalized Quote</button>
-                        
-                        <p class="form-note">We respond within 2 hours. 100% confidential.</p>
-                        
-                        <div class="form-trust">
-                            <div class="trust-item">
+                            <textarea class="form-textarea" placeholder="Description (Write/Attach)" rows="4"></textarea>
+                            <button type="button" class="attach-btn">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                                    <path d="M13.234 20.252 21 12.3"></path>
+                                    <path d="m16 6-8.414 8.586a2 2 0 0 0 0 2.828 2 2 0 0 0 2.828 0l8.414-8.586a4 4 0 0 0 0-5.656 4 4 0 0 0-5.656 0l-8.415 8.585a6 6 0 1 0 8.486 8.486"></path>
                                 </svg>
-                                <span>SSL Secure</span>
-                            </div>
-                            <div class="trust-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                <span>24/7 Support</span>
-                            </div>
-                            <div class="trust-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path>
-                                    <circle cx="12" cy="8" r="6"></circle>
-                                </svg>
-                                <span>A+ Guarantee</span>
-                            </div>
+                                Attach file
+                            </button>
                         </div>
+                        
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="terms-alt" required checked>
+                            <label for="terms-alt">I accept the T&C, agree to receive offers & updates</label>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">Ace My Exam</button>
                     </form>
                 </div>
             </div>
