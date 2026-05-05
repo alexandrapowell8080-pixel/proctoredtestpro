@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layer')
 
 @section('seo_title', 'Frequently Asked Questions')
 @section('seo_description', 'Find answers to common questions in our comprehensive FAQ section.')

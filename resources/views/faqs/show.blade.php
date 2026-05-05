@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layer')
 
 @section('seo_title', $faq->title)
 @section('seo_description', $faq->description)

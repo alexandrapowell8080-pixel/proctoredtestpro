@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FaqAdminController;
 use App\Http\Controllers\FaqController;
 
+<<<<<<< HEAD
 Route::get('/', function () {
     return view('welcome');
 });
@@ -38,3 +40,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::delete('/{id}', [FaqAdminController::class, 'destroy'])->name('destroy');
         });
     });
+=======
+Route::get('/', [LandingController::class, 'index'])->name('home');
+>>>>>>> main
