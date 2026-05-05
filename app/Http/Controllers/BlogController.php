@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -15,8 +16,9 @@ class BlogController extends Controller
      * @return View
      */
     public function index():View{
-        $blogs = Blog::where('status',Blog::PUBLISH)->paginate(10);
-        return view('blog.list',compact('blogs'));
+        $blogs = Blog::with(['category:id,name'])->where('status',Blog::PUBLISH)->paginate(10);
+        $categories = Category::all();
+        return view('blog.list',compact('blogs','categories'));
     }
 
     /**
@@ -29,6 +31,7 @@ class BlogController extends Controller
         if(!$blog){
             abort('404','Blog not found');
         }
-        return view('blog.show',compact('blog'));
+        $related_blogs = Blog::where('category_id',$blog->category_id)->whereNot('id',$blog->id)->take(5)->get();
+        return view('blog.show',compact('blog','related_blogs'));
     }
 }
