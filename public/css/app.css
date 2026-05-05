@@ -33,7 +33,6 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 175 52% 38%;
 }
-
 * {
     margin: 0;
     padding: 0;
@@ -64,7 +63,8 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 1;
+    min-height: fit-content;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid hsl(var(--border));
