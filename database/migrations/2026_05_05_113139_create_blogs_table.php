@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('image_url');
             $table->string('description');
-            $table->string('content');
+            $table->text('content');
             $table->string('slug');
             $table->string('keywords');
             $table->string('meta_keywords');

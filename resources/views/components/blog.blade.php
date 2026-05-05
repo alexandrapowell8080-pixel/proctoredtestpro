@@ -49,7 +49,7 @@
 
 <body>
     @include('partials.header')
-    <main class="max-h-screen overflow-auto mt-20">
+    <main class="mt-20">
         {{ $slot }} 
     </main>
    
