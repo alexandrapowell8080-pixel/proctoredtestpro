@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\FaqAdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\QuoteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class, 'index'])->name('home');
@@ -28,6 +29,8 @@ Route::get('/faq/{faq:slug}', [FaqController::class, 'show'])->name('faqs.show')
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog');
 
+Route::post('/quote', [QuoteController::class, 'store'])->name('quote.store');
+
 // ==================== ADMIN ROUTES ====================
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -43,9 +46,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/generate', [FaqAdminController::class, 'generate'])->name('generate');
     });
 
-    // Admin Blog Management
+    Route::get('/blogs', [BlogController::class, 'list'])->name('index'); // Admin Blog Management
     Route::prefix('blog')->name('blog.')->group(function () {
-        Route::get('/', [BlogController::class, 'list'])->name('index');
         Route::get('/create', [BlogController::class, 'create'])->name('create');
         Route::post('/create', [BlogController::class, 'store'])->name('store');
         Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('edit');
