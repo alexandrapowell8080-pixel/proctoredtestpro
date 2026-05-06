@@ -19,9 +19,22 @@ class BlogController extends Controller
     /**
      * List all Blogs
      */
-    public function index(): View
+    public function index(Request $request): View|RedirectResponse
     {
-        $blogs = Blog::with(['category:id,name'])->where('status', Blog::PUBLISH)->paginate(10);
+        if ($request->filled('category')) {
+            $category = Category::where('name', $request->category)->first('id');
+            if (! $category) {
+               return redirect()->back()->with('category_error', 'No Blogs are associated with '.str_replace('-',' ',$request->category));
+            }
+            $blogs = Blog::with(['category:id,name'])->where('category_id', $category->id)->where('status', Blog::PUBLISH)->paginate(10);
+ 
+            if (! $blogs) {
+                dd('hello');
+            }
+        } else {
+            $blogs = Blog::with(['category:id,name'])->where('status', Blog::PUBLISH)->paginate(10);
+        }
+
         $categories = Category::all();
 
         return view('blog.list', compact('blogs', 'categories'));
@@ -49,9 +62,9 @@ class BlogController extends Controller
         return view('admin.blog.list', compact('blogs', 'categories'));
     }
 
-    public function edit(Request $request): View
+    public function edit(Request $request,string $id): View
     {
-        $blog = Blog::findOrFail($request->input('id'));
+        $blog = Blog::findOrFail($id);
         $categories = Category::all();
 
         return view('admin.blog.edit', compact('blog', 'categories'));
@@ -113,7 +126,7 @@ class BlogController extends Controller
         ]);
 
         // 6. Redirect back with success message
-        return redirect()->route('admin.blogs')->with('success', 'Post updated successfully!');
+        return redirect()->route('admin.index')->with('success', 'Post updated successfully!');
     }
 
     public function create()
@@ -210,12 +223,12 @@ class BlogController extends Controller
             $blog->delete();
 
             // 4. Redirect back with a success message
-            return redirect()->route('admin.blogs')
+            return redirect()->route('admin.index')
                 ->with('success', 'Blog post and associated image deleted successfully.');
 
         } catch (\Exception $e) {
             // Handle any potential errors during deletion
-            return redirect()->route('admin.blogs')
+            return redirect()->route('admin.index')
                 ->with('error', 'An error occurred while trying to delete the post.');
         }
     }
@@ -244,9 +257,10 @@ class BlogController extends Controller
 
     public function keywords(Request $request)
     {
-        $request->validate([
-            'file' => 'required|mimes:csv,txt|max:2048',
-        ]);
+        //
+        // $request->validate([
+        //     'file' => 'required|mimes:csv,txt|max:2048',
+        // ]);
 
         $file = $request->file('file');
         $handle = fopen($file->getRealPath(), 'r');
@@ -277,6 +291,8 @@ class BlogController extends Controller
                             'title' => $keywordName,
                             'slug' => Str::slug($keywordName).'-'.rand(1000, 9999),
                             'keywords' => $keywordName,
+                            'meta_keywords' => $keywordName,
+                            'description' => $keywordName,
                             'status' => Blog::DRAFT,
                             'content' => 'Bulk generated from CSV.',
                             'category_id' => $category->id,
@@ -296,7 +312,7 @@ class BlogController extends Controller
                 $msg .= " ($skippedCount duplicates skipped).";
             }
 
-            return redirect()->back()->with('success', $msg);
+            return redirect()->back()->with('CSV_success', $msg);
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -304,7 +320,7 @@ class BlogController extends Controller
                 fclose($handle);
             }
 
-            return redirect()->back()->with('error', 'Import failed: '.$e->getMessage());
+            return redirect()->back()->with('CSV_error', 'Import failed: '.$e->getMessage());
         }
     }
 }

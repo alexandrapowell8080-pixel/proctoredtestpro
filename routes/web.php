@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class, 'index'])->name('home');
 
-Route::view('/faq', 'pages.faq')->name('faq');
+Route::get('/faq/{faq:slug}', [FaqController::class, 'show'])->name('faqs.show');
 
 // FAQ Dynamic Routes
 Route::get('/faqs', [FaqController::class, 'index'])->name('faqs.index');
@@ -18,8 +18,9 @@ Route::get('/faqs/page/{page}', [FaqController::class, 'index'])
     ->whereNumber('page')
     ->name('faqs.page');
 
-Route::get('/faqs/category/{categorySlug}/{page?}', [FaqController::class, 'index'])
-    ->where('categorySlug', '[A-Za-z0-9\-]+')
+// Removed /category/ and added a regex constraint so it doesn't conflict with the /faqs/page/{page} route
+Route::get('/faqs/{categorySlug}/{page?}', [FaqController::class, 'index'])
+    ->where('categorySlug', '^(?!page$)[A-Za-z0-9\-]+')
     ->whereNumber('page')
     ->name('faqs.category');
 
@@ -45,9 +46,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/import', [FaqAdminController::class, 'import'])->name('import');
         Route::post('/generate', [FaqAdminController::class, 'generate'])->name('generate');
     });
+  
+    Route::get('/blogs', [BlogController::class, 'list'])->name('index');
 
     Route::get('/blogs', [BlogController::class, 'list'])->name('index'); // Admin Blog Management
     Route::prefix('blog')->name('blog.')->group(function () {
+    // Admin Blog Management
+    Route::get('/blogs', [BlogController::class, 'list'])->name('index');
+    Route::prefix('blog')->name('blog.')->group(function () {        
         Route::get('/create', [BlogController::class, 'create'])->name('create');
         Route::post('/create', [BlogController::class, 'store'])->name('store');
         Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('edit');

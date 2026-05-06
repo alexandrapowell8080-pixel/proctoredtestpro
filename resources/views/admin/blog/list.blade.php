@@ -1,4 +1,35 @@
 <x-blog>
+     @if (session('CSV_error'))
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Sorry!',
+                text: "{{ session('CSV_error') }}",
+                confirmButtonColor: '#FF8080'
+            });
+        </script>
+    @endif
+     @if (session('CSV_success'))
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: "{{ session('CSV_success') }}",
+            });
+        </script>
+    @endif
+    @if (session('success'))
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: "{{ session('success') }}",
+            });
+        </script>
+    @endif
     <!-- Main Wrapper -->
     <div class="min-h-screen bg-[hsl(var(--background))] text-[hsl(var(--foreground))] font-sans p-4 md:p-8">
         <div class="max-w-7xl mx-auto">
@@ -228,7 +259,7 @@
                                 enctype="multipart/form-data" class="hidden space-y-4">
                                 @csrf
                                 <!-- Category for Bulk -->
-                                <div>
+                                {{-- <div>
                                     <label
                                         class="block text-xs font-semibold mb-2 text-[hsl(var(--muted-foreground))] uppercase">Assign
                                         to Category</label>
@@ -239,12 +270,13 @@
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> --}}
 
                                 <div>
                                     <label
                                         class="block text-xs font-semibold mb-2 text-[hsl(var(--muted-foreground))] uppercase">Upload
                                         CSV File</label>
+                                        <span class="text-xs">Two colums: category name and keyword name</span>
                                     <div
                                         class="relative border-2 border-dashed border-[hsl(var(--border))] rounded-md p-4 text-center hover:bg-[hsl(var(--muted))] transition-colors cursor-pointer">
                                         <input type="file" name="file" accept=".csv" required

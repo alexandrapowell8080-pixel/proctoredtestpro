@@ -127,6 +127,7 @@
 </head>
 
 <body class="bg-white text-gray-900 antialiased">
+    
 
     @includeWhen(view()->exists('partials.header'), 'partials.header')
 
@@ -136,6 +137,8 @@
 
    
     @includeWhen(view()->exists('partials.footer'), 'partials.footer')
+
+    {{-- Global Scripts --}}
 
     {{-- Scripts --}}
     <script src="{{ asset('js/app.js') }}"></script>

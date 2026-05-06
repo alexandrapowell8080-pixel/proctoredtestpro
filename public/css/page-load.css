@@ -1,0 +1,29 @@
+#page-preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    background-color: hsl(200 18% 96%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        opacity 0.5s ease-out,
+        visibility 0.5s ease-out;
+}
+.preloader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid hsl(175 52% 38% / 0.3);
+    border-radius: 50%;
+    border-top-color: hsl(175 52% 38%);
+    animation: spin 1s ease-in-out infinite;
+}
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

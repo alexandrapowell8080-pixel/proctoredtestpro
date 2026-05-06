@@ -93,15 +93,55 @@
                 <!-- Related Blogs Card -->
                 <div
                     class="bg-[hsl(var(--card))] rounded-[var(--radius)] border border-[hsl(var(--border))] p-5 shadow-sm">
-                    <h3 class="font-bold text-[hsl(var(--primary))] mb-4 border-b border-[hsl(var(--border))] pb-2">
-                        Related Blogs</h3>
-                    <div class="space-y-4">
-                        @foreach ($related_blogs as $related_blog)
-                            <a href="{{ route('blog', ['slug' => $related_blog->slug]) }}">
-                                <div class="max-h-20 pr-2 mb-5 bg-[hsl(var(--muted))] rounded-md font-bold">
-                                    {{ $related_blog->title }}</div>
+                    <h3
+                        class="font-bold text-[hsl(var(--primary))] mb-5 border-b border-[hsl(var(--border))] pb-3 flex items-center gap-2">
+                        <!-- Section Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[hsl(var(--primary))]"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                        </svg>
+                        Related Blogs
+                    </h3>
+
+                    <div class="space-y-3">
+                        @forelse ($related_blogs as $related_blog)
+                            <a href="{{ route('blog', ['slug' => $related_blog->slug]) }}"
+                                class="group flex items-start gap-3 p-2 rounded-md hover:bg-[hsl(var(--muted))] transition-all duration-200">
+
+                                <!-- Tiny Thumbnail / Placeholder Icon -->
+                                <div
+                                    class="w-12 h-12 flex-shrink-0 rounded bg-[hsl(var(--muted-foreground)/0.1)] overflow-hidden border border-[hsl(var(--border))]">
+                                    <img src="{{ $related_blog->image_url }}" alt="{{ $related_blog->title }}"
+                                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                                </div>
+
+                                <!-- Title and Arrow -->
+                                <div class="flex-1 min-w-0">
+                                    <h4
+                                        class="text-sm font-semibold leading-tight text-[hsl(var(--foreground))] group-hover:text-[hsl(var(--primary))] line-clamp-2 transition-colors">
+                                        {{ $related_blog->title }}
+                                    </h4>
+                                    <span
+                                        class="text-[10px] text-[hsl(var(--muted-foreground))] uppercase tracking-wider font-medium">
+                                        Read Story
+                                    </span>
+                                </div>
+
+                                <!-- Inline Action Icon -->
+                                <div
+                                    class="self-center text-[hsl(var(--muted-foreground))] group-hover:text-[hsl(var(--primary))] group-hover:translate-x-1 transition-all">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </div>
                             </a>
-                        @endforeach
+                        @empty
+                            <p class="text-xs text-[hsl(var(--muted-foreground))] italic text-center py-4">No related
+                                posts found.</p>
+                        @endforelse
                     </div>
                 </div>
 
