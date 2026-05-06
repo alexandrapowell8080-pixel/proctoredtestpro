@@ -23,4 +23,4 @@ class Category extends Model
         return $this->hasMany(Faq::class);
     }
 }
-}
+

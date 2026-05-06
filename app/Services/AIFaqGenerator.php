@@ -19,12 +19,17 @@ Do not include markdown formatting or extra text. Output valid JSON only.
 PROMPT;
 
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . config('services.openai.api_key'),
+            // Switched to deepseek config
+            'Authorization' => 'Bearer ' . config('services.deepseek.api_key'),
             'Content-Type'  => 'application/json',
-        ])->post('https://api.openai.com/v1/chat/completions', [
-            'model' => 'gpt-4o',
-            'messages' => [['role' => 'user', 'content' => $prompt]],
-            'response_format' => ['type' => 'json_object'],
+        ])->post('https://api.deepseek.com/chat/completions', [ 
+            'model' => 'deepseek-v4-flash', // Updated Model
+            'messages' => [
+                
+                ['role' => 'system', 'content' => 'You are an SEO FAQ generator. Always output raw JSON.'],
+                ['role' => 'user', 'content' => $prompt]
+            ],
+            'response_format' => ['type' => 'json_object'], 
             'temperature' => 0.6,
         ]);
 
