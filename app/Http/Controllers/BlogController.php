@@ -91,8 +91,6 @@ class BlogController extends Controller
         if ($request->title !== $blog->title) {
             $baseSlug = Str::slug($request->title);
             $slug = $baseSlug;
-
-            // Ensure unique slug (excluding the current record)
             $count = 1;
             while (Blog::where('slug', $slug)->where('id', '!=', $id)->exists()) {
                 $slug = $baseSlug.'-'.rand(1000, 9999);
@@ -104,8 +102,8 @@ class BlogController extends Controller
             'category_id' => $request->category_id,
             'title' => $request->title,
             'image_url' => $imageUrl,
-            'description' => $request->meta_description, // Mapping meta_description to description column
-            'content' => $request->content,
+            'description' => $request->meta_description, 
+            'content' => $request->input('content'),
             'slug' => $slug,
             'keywords' => $request->keywords,
             'meta_keywords' => $request->meta_keywords ?? $request->keywords,
@@ -156,7 +154,7 @@ class BlogController extends Controller
             'title' => $request->title,
             'image_url' => $image_url['url'],
             'description' => $request->meta_description,
-            'content' => $request->content,
+            'content' => $request->input('content'),
             'slug' => $slug,
             'keywords' => $request->keywords,
             'meta_keywords' => $request->meta_keywords,

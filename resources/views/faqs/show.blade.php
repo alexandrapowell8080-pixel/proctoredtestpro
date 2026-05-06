@@ -1,8 +1,62 @@
 @extends('layouts.app')
 
 @section('seo_title', $faq->title)
-@section('seo_description', $faq->description)
-@section('seo_keywords', implode(', ', $faq->meta_keywords ?? []))
+@section('seo_description', $faq->description ?? \Illuminate\Support\Str::limit(strip_tags($faq->content), 150))
+@section('seo_keywords', is_array($faq->meta_keywords) ? implode(', ', $faq->meta_keywords) : ($faq->meta_keywords ??
+''))
+@section('seo_canonical', route('faqs.show', $faq->slug))
+
+@section('dynamic_schemas')
+<script type="application/ld+json">
+    {
+    "@@context": "https://schema.org",
+    "@@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "{{ \Illuminate\Support\Str::finish(url('/'), '/') }}"
+        },
+        {
+            "@@type": "ListItem",
+            "position": 2,
+            "name": "FAQs",
+            "item": "{{ \Illuminate\Support\Str::finish(route('faqs.index'), '/') }}"
+        }
+        @if($faq->category)
+        ,{
+            "@@type": "ListItem",
+            "position": 3,
+            "name": {!! json_encode($faq->category->name) !!},
+            "item": "{{ \Illuminate\Support\Str::finish(route('faqs.category', $faq->category->slug), '/') }}"
+        }
+        @endif
+        ,{
+            "@@type": "ListItem",
+            "position": {{ $faq->category ? 4 : 3 }},
+            "name": {!! json_encode($faq->title) !!},
+            "item": "{{ \Illuminate\Support\Str::finish(route('faqs.show', $faq->slug), '/') }}"
+        }
+    ]
+}
+</script>
+
+<script type="application/ld+json">
+    {
+    "@@context": "https://schema.org",
+    "@@type": "FAQPage",
+    "mainEntity": [{
+        "@@type": "Question",
+        "name": {!! json_encode($faq->title) !!},
+        "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": {!! json_encode(strip_tags($faq->content)) !!}
+        }
+    }]
+}
+</script>
+@endsection
 
 @section('content')
 {{-- Hero Header Section --}}

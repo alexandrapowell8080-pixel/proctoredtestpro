@@ -13,18 +13,24 @@
     <meta name="robots" content="index, follow">
     <meta name="author" content="ProctoredTestPro">
 
-    <link rel="canonical" href="{{ $pageData['canonical'] ?? url('/') }}">
+    @php
+    // Dynamically resolve the canonical URL and strictly enforce the trailing slash
+    $defaultCanonical = $pageData['canonical'] ?? url('/');
+    $canonicalUrl = trim($__env->yieldContent('seo_canonical', $defaultCanonical));
+    $canonicalUrl = \Illuminate\Support\Str::finish($canonicalUrl, '/');
+    @endphp
+    <link rel="canonical" href="{{ $canonicalUrl }}">
 
-    <meta property="og:title" content="{{ $pageData['title'] ?? '' }}">
-    <meta property="og:description" content="{{ $pageData['metaDescription'] ?? '' }}">
+    <meta property="og:title" content="@yield('seo_title', $pageData['title'] ?? '')">
+    <meta property="og:description" content="@yield('seo_description', $pageData['metaDescription'] ?? '')">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ $pageData['canonical'] ?? url('/') }}">
+    <meta property="og:url" content="{{ $canonicalUrl }}">
     <meta property="og:image" content="{{ $pageData['ogImage'] ?? '' }}">
 
     {{-- Twitter --}}
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $pageData['title'] ?? '' }}">
-    <meta name="twitter:description" content="{{ $pageData['metaDescription'] ?? '' }}">
+    <meta name="twitter:title" content="@yield('seo_title', $pageData['title'] ?? '')">
+    <meta name="twitter:description" content="@yield('seo_description', $pageData['metaDescription'] ?? '')">
     <meta name="twitter:image" content="{{ $pageData['ogImage'] ?? '' }}">
 
     @yield('extra_meta')
@@ -39,7 +45,6 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
         rel="stylesheet">
 
-   
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="{{ asset('css/global-header.css') }}" rel="stylesheet">
 
@@ -57,7 +62,6 @@
         }
     </script>
     @else
-   
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
 
@@ -78,14 +82,13 @@
         }
     </style>
 
-  
     <script type="application/ld+json">
         {
         "@@context": "https://schema.org",
         "@@type": "WebSite",
         "name": "ProctoredTestPro",
-        "url": "{{ url('/') }}",
-        "description": "{{ $pageData['metaDescription'] ?? '' }}",
+        "url": "{{ \Illuminate\Support\Str::finish(url('/'), '/') }}",
+        "description": {!! json_encode($pageData['metaDescription'] ?? '') !!},
         "potentialAction": {
             "@@type": "SearchAction",
             "target": "{{ url('/search?q={search_term_string}') }}",
@@ -94,25 +97,30 @@
     }
     </script>
 
+    {{-- JSON-LD Dynamic Schemas (Breadcrumbs & FAQ Schema injection point) --}}
+    @hasSection('dynamic_schemas')
+    @yield('dynamic_schemas')
+    @else
     <script type="application/ld+json">
         {
-        "@@context": "https://schema.org",
-        "@@type": "BreadcrumbList",
-        "itemListElement": [{
-            "@@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "{{ url('/') }}"
-        }]
-    }
+            "@@context": "https://schema.org",
+            "@@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "{{ \Illuminate\Support\Str::finish(url('/'), '/') }}"
+            }]
+        }
     </script>
+    @endif
 
     <script type="application/ld+json">
         {
         "@@context": "https://schema.org",
         "@@type": "Organization",
         "name": "ProctoredTestPro",
-        "url": "{{ url('/') }}",
+        "url": "{{ \Illuminate\Support\Str::finish(url('/'), '/') }}",
         "logo": "{{ $pageData['ogImage'] ?? '' }}",
         "contactPoint": {
             "@@type": "ContactPoint",
@@ -126,7 +134,6 @@
 </head>
 
 <body class="bg-white text-gray-900 antialiased">
-    
 
     @includeWhen(view()->exists('partials.header'), 'partials.header')
 
@@ -134,10 +141,7 @@
         @yield('content')
     </main>
 
-   
     @includeWhen(view()->exists('partials.footer'), 'partials.footer')
-
-    {{-- Global Scripts --}}
 
     {{-- Scripts --}}
     <script src="{{ asset('js/app.js') }}"></script>

@@ -9,8 +9,6 @@ use App\Models\Faq;
 use App\Services\AIFaqGenerator;
 use Illuminate\Support\Str;
 
-// #[Signature('app:generate-faq-content')]
-// #[Description('Command description')]
 class GenerateFaqContent extends Command
 {
     protected $signature = 'faqs:generate {--limit=5 : Max FAQs to process per run}';
