@@ -2,7 +2,7 @@
     <div class="container">
         <div class="header-inner">
             <a class="logo" href="/">
-                <img src="https://media.base44.com/images/public/user_69b25eda19bae29c39e9c756/5255585c1_WhatsAppImage2026-05-05at114417AM.jpeg" alt="Proctored Test Pro" class="logo-img">
+                <img src="{{ asset('images/logo.png') }}" alt="Proctored Test Pro" class="logo-img">
             </a>
             
             <nav class="main-nav" id="mainNav">
