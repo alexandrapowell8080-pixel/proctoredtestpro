@@ -9,6 +9,8 @@
     <meta name="description" content="@yield('description', 'ProctoredTestPro')">
     <meta name="keywords" content="@yield('keywords', 'ProctoredTestPro')">
     <link rel="canonical" href="@yield('canonical', request()->url())">
+     <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
+    <link href="{{ asset('img/logo.png') }}" rel="icon" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
