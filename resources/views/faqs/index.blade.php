@@ -4,125 +4,175 @@
 @section('seo_description', 'Find answers to common questions in our comprehensive FAQ section.')
 
 @section('content')
-{{-- Fixed wrapper: added max-w-7xl, mx-auto for centering, and px-4/lg:px-8 for guaranteed side gaps --}}
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-12 min-h-screen">
-    <h1
-        class="text-3xl md:text-4xl font-extrabold text-[hsl(var(--foreground))] mb-8 border-b-2 border-[hsl(var(--accent))] pb-3 inline-block">
-        Frequently Asked Questions
-    </h1>
 
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
+{{-- Clear the fixed header spacing --}}
+<div class="pt-[4rem] md:pt-[5rem]">
+    {{-- Sticky Breadcrumb Navigation --}}
+    <div
+        class="border-b border-[hsl(var(--border))] bg-[hsl(var(--background))]/80 backdrop-blur-sm sticky top-[4rem] md:top-[5rem] z-10">
+        <div
+            class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center gap-2 text-sm text-[hsl(var(--muted-foreground))]">
+            <a class="hover:text-[hsl(var(--secondary))] transition-colors" href="{{ route('home') }}">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="w-3.5 h-3.5">
+                <path d="m9 18 6-6-6-6"></path>
+            </svg>
 
-        {{-- FAQs --}}
-        <main class="lg:col-span-3">
-            <div class="grid gap-4">
-                @forelse($faqs as $faq)
-                <a href="{{ route('faqs.show', $faq->slug) }}"
-                    class="block p-5 md:p-6 bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl hover:border-[hsl(var(--accent))] hover:-translate-y-1 hover:shadow-lg transition-all duration-300 group">
+            @if($currentCategory)
+            <a class="hover:text-[hsl(var(--secondary))] transition-colors" href="{{ route('faqs.index') }}">FAQs</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="w-3.5 h-3.5">
+                <path d="m9 18 6-6-6-6"></path>
+            </svg>
+            <span class="text-[hsl(var(--foreground))] font-medium">{{ $currentCategory->name }}</span>
+            @else
+            <span class="text-[hsl(var(--foreground))] font-medium">FAQs</span>
+            @endif
+        </div>
+    </div>
 
-                    <h2
-                        class="text-lg md:text-xl font-bold text-[hsl(var(--foreground))] group-hover:text-[hsl(var(--accent))] mb-2 transition-colors break-words">
-                        {{ $faq->title }}
-                    </h2>
+    {{-- Main Layout Wrapper --}}
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 min-h-screen">
+        <div class="flex flex-col lg:flex-row gap-8">
 
-                    <p class="text-[hsl(var(--muted-foreground))] text-sm md:text-base leading-relaxed break-words">
-                        {{ Str::limit($faq->description, 140) }}
-                    </p>
-                </a>
-                @empty
-                <div class="p-8 text-center border border-dashed border-[hsl(var(--border))] rounded-xl">
-                    <p class="text-[hsl(var(--muted-foreground))] italic">No FAQs found for this category.</p>
+            {{-- Left Sidebar: Categories --}}
+            <aside class="lg:w-64 flex-shrink-0">
+                <div class="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-2xl p-5 sticky top-32">
+                    <h3
+                        class="font-bold text-[hsl(var(--foreground))] text-sm mb-4 pb-3 border-b border-[hsl(var(--border))]">
+                        Categories</h3>
+                    <div class="space-y-1">
+                        <a href="{{ route('faqs.index') }}"
+                            class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-left {{ $currentCategory === null ? 'bg-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] shadow-sm' : 'text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--muted))] hover:text-[hsl(var(--foreground))]' }}">
+                            <span>All FAQs</span>
+                        </a>
+
+                        @foreach($categories as $cat)
+                        <a href="{{ route('faqs.category', [$cat->slug]) }}"
+                            class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-left {{ $currentCategory && $currentCategory->id === $cat->id ? 'bg-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] shadow-sm' : 'text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--muted))] hover:text-[hsl(var(--foreground))]' }}">
+                            <span class="truncate pr-2">{{ $cat->name }}</span>
+                            <span
+                                class="text-xs px-2 py-0.5 rounded-full font-semibold {{ $currentCategory && $currentCategory->id === $cat->id ? 'bg-white/20 text-white' : 'bg-[hsl(var(--muted))] text-[hsl(var(--muted-foreground))]' }}">
+                                {{ $cat->faqs_count ?? 0 }}
+                            </span>
+                        </a>
+                        @endforeach
+                    </div>
                 </div>
-                @endforelse
-            </div>
+            </aside>
 
-            {{-- Pagination --}}
-            @if ($faqs->hasPages())
-            <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+            {{-- Right Main Area: FAQ List --}}
+            <main class="flex-1 min-w-0">
 
-                {{-- Previous --}}
-                @if ($faqs->onFirstPage())
-                <span
-                    class="px-5 py-2.5 rounded-full bg-[hsl(var(--secondary))] text-[hsl(var(--muted-foreground))] text-sm font-semibold opacity-70 cursor-not-allowed">
-                    Previous
-                </span>
-                @else
-                <a href="{{ $currentCategory !== null 
-                            ? route('faqs.category', [$currentCategory->slug, $faqs->currentPage() - 1]) 
-                            : route('faqs.page', $faqs->currentPage() - 1) 
-                        }}" class="btn btn-primary text-sm">
-                    Previous
-                </a>
+                {{-- Data Counter --}}
+                @if($faqs->total() > 0)
+                <p class="text-sm text-[hsl(var(--muted-foreground))] mb-5">
+                    Showing <span class="font-medium text-[hsl(var(--foreground))]">{{ $faqs->firstItem() }}–{{
+                        $faqs->lastItem() }}</span> of <span class="font-medium text-[hsl(var(--foreground))]">{{
+                        $faqs->total() }}</span> questions
+                </p>
                 @endif
 
-                {{-- Page Numbers --}}
-                <div class="flex items-center gap-2 flex-wrap justify-center">
-                    @foreach (range(1, $faqs->lastPage()) as $page)
-                    @if ($page == $faqs->currentPage())
+                <div class="space-y-3">
+                    @forelse($faqs as $faq)
+                    <a class="group flex items-start justify-between gap-4 p-5 bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl hover:border-[hsl(var(--secondary))] hover:shadow-md transition-all duration-300"
+                        href="{{ route('faqs.show', $faq->slug) }}">
+                        <div class="flex-1 min-w-0">
+                            <h3
+                                class="font-bold text-[hsl(var(--foreground))] group-hover:text-[hsl(var(--secondary))] transition-colors text-sm md:text-base leading-snug mb-1.5 break-words">
+                                {{ $faq->title }}
+                            </h3>
+                            <p
+                                class="text-[hsl(var(--muted-foreground))] text-sm leading-relaxed overflow-hidden text-ellipsis whitespace-nowrap block">
+                                {{ Str::limit($faq->description ?? strip_tags($faq->content), 140) }}
+                            </p>
+
+                            {{-- Topic Tag --}}
+                            <div class="flex items-center gap-1.5 mt-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-3.5 h-3.5 text-[hsl(var(--secondary))] opacity-70">
+                                    <path
+                                        d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z">
+                                    </path>
+                                    <circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>
+                                </svg>
+                                <span class="text-xs text-[hsl(var(--secondary))] font-medium opacity-90">
+                                    {{ $faq->category->name ?? ($currentCategory->name ?? 'General FAQ') }}
+                                </span>
+                            </div>
+                        </div>
+
+                        {{-- Chevron Arrow --}}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-4 h-4 text-[hsl(var(--muted-foreground))] group-hover:text-[hsl(var(--secondary))] flex-shrink-0 mt-1 transform group-hover:translate-x-1 transition-all duration-300">
+                            <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                    </a>
+                    @empty
+                    <div
+                        class="p-8 text-center border border-dashed border-[hsl(var(--border))] rounded-xl bg-[hsl(var(--card))]">
+                        <p class="text-[hsl(var(--muted-foreground))] italic">No FAQs found for this category.</p>
+                    </div>
+                    @endforelse
+                </div>
+
+                {{-- Strict Preservation of Paginator --}}
+                @if ($faqs->hasPages())
+                <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+
+                    {{-- Previous --}}
+                    @if ($faqs->onFirstPage())
                     <span
-                        class="w-10 h-10 flex items-center justify-center rounded-full bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] font-bold shadow-md">
-                        {{ $page }}
+                        class="px-5 py-2.5 rounded-full bg-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] text-sm font-semibold opacity-50 cursor-not-allowed">
+                        Previous
                     </span>
                     @else
-                    <a href="{{ $currentCategory !== null 
-                                    ? route('faqs.category', [$currentCategory->slug, $page]) 
-                                    : route('faqs.page', $page) 
-                                }}"
-                        class="w-10 h-10 flex items-center justify-center rounded-full bg-transparent border border-[hsl(var(--border))] text-[hsl(var(--foreground))] hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))] transition-colors font-medium">
-                        {{ $page }}
+                    <a href="{{ $currentCategory !== null ? route('faqs.category', [$currentCategory->slug, $faqs->currentPage() - 1]) : route('faqs.page', $faqs->currentPage() - 1) }}"
+                        class="btn btn-primary text-sm">
+                        Previous
                     </a>
                     @endif
-                    @endforeach
-                </div>
 
-                {{-- Next --}}
-                @if ($faqs->hasMorePages())
-                <a href="{{ $currentCategory !== null  
-                            ? route('faqs.category', [$currentCategory->slug, $faqs->currentPage() + 1]) 
-                            : route('faqs.page', $faqs->currentPage() + 1) 
-                        }}" class="btn btn-primary text-sm">
-                    Next
-                </a>
-                @else
-                <span
-                    class="px-5 py-2.5 rounded-full bg-[hsl(var(--secondary))] text-[hsl(var(--muted-foreground))] text-sm font-semibold opacity-70 cursor-not-allowed">
-                    Next
-                </span>
+                    {{-- Page Numbers --}}
+                    <div class="flex items-center gap-2 flex-wrap justify-center">
+                        @foreach (range(1, $faqs->lastPage()) as $page)
+                        @if ($page == $faqs->currentPage())
+                        <span
+                            class="w-10 h-10 flex items-center justify-center rounded-full bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] font-bold shadow-md">
+                            {{ $page }}
+                        </span>
+                        @else
+                        <a href="{{ $currentCategory !== null ? route('faqs.category', [$currentCategory->slug, $page]) : route('faqs.page', $page) }}"
+                            class="w-10 h-10 flex items-center justify-center rounded-full bg-transparent border border-[hsl(var(--border))] text-[hsl(var(--foreground))] hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))] transition-colors font-medium">
+                            {{ $page }}
+                        </a>
+                        @endif
+                        @endforeach
+                    </div>
+
+                    {{-- Next --}}
+                    @if ($faqs->hasMorePages())
+                    <a href="{{ $currentCategory !== null ? route('faqs.category', [$currentCategory->slug, $faqs->currentPage() + 1]) : route('faqs.page', $faqs->currentPage() + 1) }}"
+                        class="btn btn-primary text-sm">
+                        Next
+                    </a>
+                    @else
+                    <span
+                        class="px-5 py-2.5 rounded-full bg-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] text-sm font-semibold opacity-50 cursor-not-allowed">
+                        Next
+                    </span>
+                    @endif
+
+                </div>
                 @endif
 
-            </div>
-            @endif
-        </main>
-
-        {{-- Sidebar (No Background Color) --}}
-        <aside class="lg:col-span-1">
-            <div class="sticky top-28 p-2">
-                <h3
-                    class="text-xl font-bold mb-4 text-[hsl(var(--foreground))] border-b border-[hsl(var(--border))] pb-2">
-                    Categories</h3>
-
-                <div class="flex flex-col gap-1">
-                    <a href="{{ route('faqs.index') }}"
-                        class="block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium transition-all
-                        {{ $currentCategory === null ? 'bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] shadow-md' : 'text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--accent)/0.1)] hover:text-[hsl(var(--accent))]' }}">
-                        All FAQs
-                    </a>
-
-                    @foreach($categories as $cat)
-                    <a href="{{ route('faqs.category', [$cat->slug]) }}"
-                        class="flex justify-between items-center w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium transition-all
-                            {{ $currentCategory && $currentCategory->id === $cat->id ? 'bg-[hsl(var(--accent))] text-[hsl(var(--accent-foreground))] shadow-md' : 'text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--accent)/0.1)] hover:text-[hsl(var(--accent))]' }}">
-                        <span class="truncate pr-2">{{ $cat->name }}</span>
-                        <span
-                            class="text-xs px-2 py-0.5 rounded-full font-bold {{ $currentCategory && $currentCategory->id === $cat->id ? 'bg-white/20 text-white' : 'bg-[hsl(var(--secondary))] text-[hsl(var(--muted-foreground))]' }}">
-                            {{ $cat->faqs_count }}
-                        </span>
-                    </a>
-                    @endforeach
-                </div>
-            </div>
-        </aside>
-
+            </main>
+        </div>
     </div>
 </div>
+
 @endsection

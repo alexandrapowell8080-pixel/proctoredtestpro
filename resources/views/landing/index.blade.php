@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
 <main class="main-content">
     <section class="hero-section" id="hero">
         <div class="hero-video-container" style="background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 50%, #d4d4d4 100%);"></div>
@@ -826,7 +824,5 @@
         </div>
     </section>
 </main>
-
-
 
 @endsection
