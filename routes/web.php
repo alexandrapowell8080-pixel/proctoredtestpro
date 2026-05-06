@@ -29,7 +29,6 @@ Route::get('/faqs/category/{categorySlug}/{page?}', [FaqController::class, 'inde
     ->name('faqs.school');
 
 Route::view('/faq', 'pages.faq')->name('faq');
-    ->name('faqs.category');
     
 
 // --- ADMIN ROUTES ---
@@ -43,12 +42,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/store', [FaqAdminController::class, 'store'])->name('store');
         Route::get('/{id}/edit', [FaqAdminController::class, 'edit'])->name('edit');
         Route::put('/{id}', [FaqAdminController::class, 'update'])->name('update');
-
-    Route::prefix('faqs')->name('faqs.')->group(function () {
-        Route::get('/', [FaqAdminController::class, 'index'])->name('index');
-        Route::post('/import', [FaqAdminController::class, 'import'])->name('import');
-        Route::post('/generate', [FaqAdminController::class, 'generate'])->name('generate');
-        Route::delete('/{id}', [FaqAdminController::class, 'destroy'])->name('destroy');
     });
 
     Route::get('/blogs', [BlogController::class, 'list'])->name('blogs');
@@ -62,10 +55,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
          Route::post('/keyword',[BlogController::class,'keyword'])->name('keyword');
          Route::post('/keywords',[BlogController::class,'keywords'])->name('keywords');
     });
-
-});
-Route::get('/', [LandingController::class, 'index'])->name('home');
+ 
     });
-});
+ 
 
 Route::get('/', [LandingController::class, 'index'])->name('home');
