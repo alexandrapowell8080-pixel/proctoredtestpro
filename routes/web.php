@@ -50,7 +50,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/blogs', [BlogController::class, 'list'])->name('index');
 
     Route::get('/blogs', [BlogController::class, 'list'])->name('index'); // Admin Blog Management
-    Route::prefix('blog')->name('blog.')->group(function () {
+
         // Admin Blog Management
         Route::get('/blogs', [BlogController::class, 'list'])->name('index');
         Route::prefix('blog')->name('blog.')->group(function () {
@@ -65,5 +65,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('/generate', [BlogController::class, 'generate'])->name('generate');
         });
 
-    });
+
 });
