@@ -12,12 +12,15 @@ use Illuminate\Support\Facades\File;
 #[Description('Command description')]
 class ImportFaqKeywords extends Command
 {
-    protected $signature = 'faqs:import {file : Path to CSV file}';
+    // Added optional category_id argument
+    protected $signature = 'faqs:import {file : Path to CSV file} {category_id? : Optional Category ID to attach to these keywords}';
     protected $description = 'Bulk import FAQ keywords from CSV';
 
     public function handle()
     {
         $file = $this->argument('file');
+        $categoryId = $this->argument('category_id');
+
         if (!File::exists($file)) {
             $this->error("File not found: {$file}");
             return Command::FAILURE;
@@ -30,12 +33,21 @@ class ImportFaqKeywords extends Command
             $keyword = trim($row[0] ?? '');
             if (empty($keyword)) continue;
 
-            if (Faq::where('keyword', $keyword)->exists()) {
+            // Check existence based on keyword and category_id
+            if (Faq::where('keyword', $keyword)->where('category_id', $categoryId)->exists()) {
                 $skipped++;
                 continue;
             }
 
-            Faq::create(['keyword' => $keyword, 'title' => null, 'slug' => null, 'description' => null, 'content' => null]);
+            Faq::create([
+                'keyword' => $keyword, 
+                'category_id' => $categoryId,
+                'title' => null, 
+                'slug' => null, 
+                'description' => null, 
+                'content' => null
+            ]);
+            
             $imported++;
         }
 

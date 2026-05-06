@@ -9,28 +9,40 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog');
 
-Route::get('/faq/{faq:slug}', [FaqController::class, 'show'])
-    ->name('faqs.show');
 
-Route::get('/faqs', [FaqController::class, 'index'])
-    ->name('faqs.index');
+Route::get('/faq/{faq:slug}', [FaqController::class, 'show'])->name('faqs.show');
 
-Route::get('/faqs/{page}', [FaqController::class, 'index'])
+Route::get('/faqs', [FaqController::class, 'index'])->name('faqs.index');
+
+Route::get('/faqs/page/{page}', [FaqController::class, 'index'])
     ->whereNumber('page')
     ->name('faqs.page');
 
-Route::get('/faqs/{school}/{page?}', [FaqController::class, 'index'])
-    ->where('school', '[A-Za-z0-9\-]+')
+Route::get('/faqs/category/{categorySlug}/{page?}', [FaqController::class, 'index'])
+    ->where('categorySlug', '[A-Za-z0-9\-]+')
     ->whereNumber('page')
     ->name('faqs.school');
 
 Route::view('/faq', 'pages.faq')->name('faq');
+    ->name('faqs.category');
+    
 
 // --- ADMIN ROUTES ---
 Route::prefix('admin')->name('admin.')->group(function () {
+    Route::prefix('faqs')->name('faqs.')->group(function () {
+        Route::get('/', [FaqAdminController::class, 'index'])->name('index');
+        Route::post('/import', [FaqAdminController::class, 'import'])->name('import');
+        Route::post('/generate', [FaqAdminController::class, 'generate'])->name('generate');
+        Route::delete('/{id}', [FaqAdminController::class, 'destroy'])->name('destroy');
+
+        Route::post('/store', [FaqAdminController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [FaqAdminController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [FaqAdminController::class, 'update'])->name('update');
 
     Route::prefix('faqs')->name('faqs.')->group(function () {
         Route::get('/', [FaqAdminController::class, 'index'])->name('index');
@@ -52,4 +64,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
 });
+Route::get('/', [LandingController::class, 'index'])->name('home');
+    });
+});
+
 Route::get('/', [LandingController::class, 'index'])->name('home');

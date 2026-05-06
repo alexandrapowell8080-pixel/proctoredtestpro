@@ -15,4 +15,12 @@ class Category extends Model
         'description',
     ];
 
+    /**
+     * Get the FAQs for the category.
+     */
+    public function faqs()
+    {
+        return $this->hasMany(Faq::class);
+    }
 }
+
