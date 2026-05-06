@@ -19,23 +19,13 @@
             </svg>
             <a class="hover:text-[hsl(var(--accent))] transition-colors" href="{{ route('faqs.index') }}">FAQs</a>
 
-            @if($faq->category)
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-chevron-right w-3.5 h-3.5">
-                <path d="m9 18 6-6-6-6"></path>
-            </svg>
-            <a class="hover:text-[hsl(var(--accent))] transition-colors whitespace-nowrap"
-                href="{{ route('faqs.category', $faq->category->slug) }}">{{ $faq->category->name }}</a>
-            @endif
 
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-chevron-right w-3.5 h-3.5">
                 <path d="m9 18 6-6-6-6"></path>
             </svg>
-            <span
-                class="text-[10px] text-[hsl(var(--primary-foreground))]/80 truncate max-w-[150px] sm:max-w-xs md:max-w-md">{{
+            <span class="text-[hsl(var(--primary-foreground))]/80 truncate max-w-[150px] sm:max-w-xs md:max-w-md">{{
                 $faq->title }}</span>
         </div>
 

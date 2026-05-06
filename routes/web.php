@@ -13,7 +13,6 @@ Route::get('/', function () {
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog');
 
-
 Route::get('/faq/{faq:slug}', [FaqController::class, 'show'])->name('faqs.show');
 
 Route::get('/faqs', [FaqController::class, 'index'])->name('faqs.index');
@@ -22,8 +21,9 @@ Route::get('/faqs/page/{page}', [FaqController::class, 'index'])
     ->whereNumber('page')
     ->name('faqs.page');
 
-Route::get('/faqs/category/{categorySlug}/{page?}', [FaqController::class, 'index'])
-    ->where('categorySlug', '[A-Za-z0-9\-]+')
+// Removed /category/ and added a regex constraint so it doesn't conflict with the /faqs/page/{page} route
+Route::get('/faqs/{categorySlug}/{page?}', [FaqController::class, 'index'])
+    ->where('categorySlug', '^(?!page$)[A-Za-z0-9\-]+')
     ->whereNumber('page')
     ->name('faqs.category');
     
@@ -39,8 +39,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/store', [FaqAdminController::class, 'store'])->name('store');
         Route::get('/{id}/edit', [FaqAdminController::class, 'edit'])->name('edit');
         Route::put('/{id}', [FaqAdminController::class, 'update'])->name('update');
-
-
     });
 });
 
