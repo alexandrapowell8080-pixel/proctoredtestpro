@@ -8,13 +8,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('seo_title', $pageData['title'] ?? config('app.name', 'ProctoredTestPro'))</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <meta name="description" content="@yield('seo_description', $pageData['metaDescription'] ?? '')">
     <meta name="keywords" content="@yield('seo_keywords', $pageData['keywords'] ?? '')">
     <meta name="robots" content="index, follow">
     <meta name="author" content="ProctoredTestPro">
 
     @php
-    // Dynamically resolve the canonical URL and strictly enforce the trailing slash
     $defaultCanonical = $pageData['canonical'] ?? url('/');
     $canonicalUrl = trim($__env->yieldContent('seo_canonical', $defaultCanonical));
     $canonicalUrl = \Illuminate\Support\Str::finish($canonicalUrl, '/');
@@ -65,7 +65,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
 
-    {{-- Custom Utility Styles --}}
     <style>
         .faq-link:hover {
             border-left-color: #06b6d4;
