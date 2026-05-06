@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\QuoteRequest;
+use Illuminate\Http\Request;
+
 class LandingController extends Controller
 {
     public function index()
@@ -15,5 +18,20 @@ class LandingController extends Controller
         ];
 
         return view('landing.index', compact('pageData'));
+    }
+
+    public function submitQuote(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'phone' => 'required',
+            'subject' => 'required',
+            'description' => 'nullable',
+            'service_type' => 'required|in:proctored,classes,assignments',
+        ]);
+
+        $quoteRequest = QuoteRequest::create($validated);
+
+        return response()->json(['success' => true, 'id' => $quoteRequest->id]);
     }
 }

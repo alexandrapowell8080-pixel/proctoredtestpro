@@ -2,16 +2,9 @@
 
 @section('content')
 
-
-
 <main class="main-content">
     <section class="hero-section" id="hero">
-        <div class="hero-video-container">
-            <video autoplay loop playsinline muted class="hero-video" poster="">
-                <source src="https://media.base44.com/videos/public/69f9b1df2c5090f8250e77fc/f67b11296_generated_video.mp4" type="video/mp4">
-            </video>
-            <div class="hero-overlay"></div>
-        </div>
+        <div class="hero-video-container" style="background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 50%, #d4d4d4 100%);"></div>
         
         <div class="container">
             <div class="hero-grid">
@@ -93,9 +86,9 @@
                         <div class="form-header-accent"></div>
                         
                         <div class="form-content">
-                            <h3 class="form-title">Expert Help to Ace Any Proctored Exam</h3>
+                            <h3 class="form-title" id="form-title">Expert Help to Ace Any Proctored Exam</h3>
                             
-                            <div class="form-badges">
+                            <div class="form-badges" id="form-badges">
                                 <span class="form-badge">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <circle cx="12" cy="12" r="10"></circle>
@@ -136,16 +129,15 @@
                             
                             <form class="quote-form" method="POST" action="/quote" noindex>
                                 <meta name="robots" content="noindex, nofollow">
+                                <input type="hidden" name="service_type" id="service_type" value="proctored">
                                 
                                 <div class="form-row">
                                     <input type="email" id="email-hero" name="email" class="form-input" placeholder="Email" required autocomplete="email">
                                     <div class="phone-input">
                                         <select class="country-select" id="country-hero" name="country_code">
-                                            <option value="ke" selected>KE(+254)</option>
                                             <option value="us">US(+1)</option>
                                             <option value="uk">UK(+44)</option>
                                             <option value="in">IN(+91)</option>
-                                            <option value="ng">NG(+234)</option>
                                         </select>
                                         <input type="tel" id="phone-hero" name="phone" class="form-input" placeholder="Phone no." required autocomplete="tel">
                                     </div>
@@ -153,7 +145,7 @@
                                 
                                 <div class="form-row">
                                     <input type="text" id="subject-hero" name="subject" class="form-input" placeholder="Subject/Course Code" required autocomplete="off">
-                                    <div class="datetime-row">
+                                    <div class="datetime-row" id="datetime-row">
                                         <input type="date" id="date-hero" name="exam_date" class="form-input" required autocomplete="off">
                                         <select class="time-select" id="time-hero" name="exam_time">
                                             <option value="12:00 AM">12:00 AM</option>
@@ -176,7 +168,7 @@
                                     </button>
                                 </div>
                                 
-                                <div class="page-counter">
+                                <div class="page-counter" id="page-counter" style="display: none;">
                                     <span class="page-label">Pages</span>
                                     <div class="page-controls">
                                         <button type="button" class="page-btn page-minus">
@@ -200,7 +192,7 @@
                                     <label for="terms">I accept the T&C, agree to receive offers & updates</label>
                                 </div>
                                 
-                                <button type="submit" class="btn-submit">Ace My Exam</button>
+                                <button type="submit" class="btn-submit" id="submit-btn">Ace My Exam</button>
                             </form>
                         </div>
                     </div>
@@ -374,7 +366,7 @@
     </section>
     
     <section class="reviews-section" id="reviews">
-        <div class="container">
+        <div class="container1">
             <div class="section-header">
                 <span class="section-label">Testimonials</span>
                 <h2 class="section-title text-white">Real Students. Real Progress.</h2>
@@ -464,135 +456,140 @@
         </div>
     </section>
     
-    <section class="coverage-section" id="coverage">
-        <div class="coverage-dot-pattern"></div>
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title text-white">We Cover <span class="text-secondary">It All</span></h2>
-            </div>
-            
-            <div class="coverage-tabs">
-                <button class="coverage-tab" data-coverage="proctoring">
+   <section id="coverage" class="coverage-section">
+    <div class="coverage-dot-pattern"></div>
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title text-white">We Cover <span class="text-secondary">It All</span></h2>
+        </div>
+        
+        <div class="coverage-tabs">
+            <button class="coverage-tab active" data-coverage="proctoring">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="14" x="2" y="3" rx="2"></rect>
+                    <line x1="8" x2="16" y1="21" y2="21"></line>
+                    <line x1="12" x2="12" y1="17" y2="21"></line>
+                </svg>
+                Every Proctoring System
+            </button>
+            <button class="coverage-tab" data-coverage="discipline">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path>
+                    <path d="M22 10v6"></path>
+                    <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>
+                </svg>
+                Every Academic Discipline
+            </button>
+            <button class="coverage-tab" data-coverage="level">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+                    <path d="M18 17V9"></path>
+                    <path d="M13 17V5"></path>
+                    <path d="M8 17v-3"></path>
+                </svg>
+                Every Level
+            </button>
+            <button class="coverage-tab" data-coverage="global">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                    <path d="M2 12h20"></path>
+                </svg>
+                Global Reach
+            </button>
+        </div>
+        
+        <div class="coverage-content">
+            <div class="coverage-panel active" data-panel="proctoring">
+                <div class="coverage-panel-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect width="20" height="14" x="2" y="3" rx="2"></rect>
                         <line x1="8" x2="16" y1="21" y2="21"></line>
                         <line x1="12" x2="12" y1="17" y2="21"></line>
                     </svg>
-                    Every Proctoring System
-                </button>
-                <button class="coverage-tab" data-coverage="discipline">
+                </div>
+                <h3 class="coverage-panel-title text-white">Every Proctoring System</h3>
+                <p class="coverage-panel-text text-white-muted">AI-based (Proctorio, Respondus), live proctors (ProctorU, Examity), lockdown browsers, and hybrid platforms.</p>
+                <div class="coverage-tags">
+                    <span class="coverage-tag-item">ProctorU</span>
+                    <span class="coverage-tag-item">Examity</span>
+                    <span class="coverage-tag-item">Proctorio</span>
+                    <span class="coverage-tag-item">Respondus</span>
+                    <span class="coverage-tag-item">Honorlock</span>
+                    <span class="coverage-tag-item">Pearson VUE</span>
+                    <span class="coverage-tag-item">Kryterion</span>
+                </div>
+            </div>
+            
+            <div class="coverage-panel" data-panel="discipline" hidden>
+                <div class="coverage-panel-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path>
                         <path d="M22 10v6"></path>
                         <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>
                     </svg>
-                    Every Academic Discipline
-                </button>
-                <button class="coverage-tab active" data-coverage="level">
+                </div>
+                <h3 class="coverage-panel-title text-white">Every Academic Discipline</h3>
+                <p class="coverage-panel-text text-white-muted">STEM (math, physics, coding, engineering), humanities (literature, history, philosophy), business (accounting, finance, economics), healthcare (nursing, medical boards), law, and more.</p>
+                <div class="coverage-tags">
+                    <span class="coverage-tag-item">Math</span>
+                    <span class="coverage-tag-item">Physics</span>
+                    <span class="coverage-tag-item">Engineering</span>
+                    <span class="coverage-tag-item">Literature</span>
+                    <span class="coverage-tag-item">Business</span>
+                    <span class="coverage-tag-item">Nursing</span>
+                    <span class="coverage-tag-item">Law</span>
+                    <span class="coverage-tag-item">Computer Science</span>
+                </div>
+            </div>
+            
+            <div class="coverage-panel" data-panel="level" hidden>
+                <div class="coverage-panel-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
                         <path d="M18 17V9"></path>
                         <path d="M13 17V5"></path>
                         <path d="M8 17v-3"></path>
                     </svg>
-                    Every Level
-                </button>
-                <button class="coverage-tab" data-coverage="global">
+                </div>
+                <h3 class="coverage-panel-title text-white">Every Level</h3>
+                <p class="coverage-panel-text text-white-muted">High school, college, graduate programs, professional certifications (CPA, CFA, Bar Exam, NCLEX, USMLE, and others).</p>
+                <div class="coverage-tags">
+                    <span class="coverage-tag-item">High School</span>
+                    <span class="coverage-tag-item">College</span>
+                    <span class="coverage-tag-item">Graduate</span>
+                    <span class="coverage-tag-item">CPA</span>
+                    <span class="coverage-tag-item">CFA</span>
+                    <span class="coverage-tag-item">Bar Exam</span>
+                    <span class="coverage-tag-item">NCLEX</span>
+                    <span class="coverage-tag-item">USMLE</span>
+                </div>
+            </div>
+            
+            <div class="coverage-panel" data-panel="global" hidden>
+                <div class="coverage-panel-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10"></circle>
                         <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
                         <path d="M2 12h20"></path>
                     </svg>
-                    Global Reach
-                </button>
-            </div>
-            
-            <div class="coverage-content">
-                <div class="coverage-panel" data-panel="proctoring" hidden>
-                    <div class="coverage-panel-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect width="20" height="14" x="2" y="3" rx="2"></rect>
-                            <line x1="8" x2="16" y1="21" y2="21"></line>
-                            <line x1="12" x2="12" y1="17" y2="21"></line>
-                        </svg>
-                    </div>
-                    <h3 class="coverage-panel-title text-white">Every Proctoring System</h3>
-                    <p class="coverage-panel-text text-white-muted">AI-based (Proctorio, Respondus), Live proctors (ProctorU, Examity), Lockdown browsers, and Hybrid platforms.</p>
-                    <div class="coverage-tags">
-                        <span class="coverage-tag-item">ProctorU</span>
-                        <span class="coverage-tag-item">Examity</span>
-                        <span class="coverage-tag-item">Proctorio</span>
-                        <span class="coverage-tag-item">Respondus</span>
-                        <span class="coverage-tag-item">Honorlock</span>
-                        <span class="coverage-tag-item">Pearson VUE</span>
-                    </div>
                 </div>
-                
-                <div class="coverage-panel" data-panel="discipline" hidden>
-                    <div class="coverage-panel-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path>
-                            <path d="M22 10v6"></path>
-                            <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="coverage-panel-title text-white">Every Academic Discipline</h3>
-                    <p class="coverage-panel-text text-white-muted">STEM, Humanities, Business, Healthcare, and beyond.</p>
-                    <div class="coverage-tags">
-                        <span class="coverage-tag-item">Math</span>
-                        <span class="coverage-tag-item">Physics</span>
-                        <span class="coverage-tag-item">Chemistry</span>
-                        <span class="coverage-tag-item">Biology</span>
-                        <span class="coverage-tag-item">Literature</span>
-                        <span class="coverage-tag-item">CS</span>
-                        <span class="coverage-tag-item">Business</span>
-                        <span class="coverage-tag-item">Law</span>
-                    </div>
-                </div>
-                
-                <div class="coverage-panel active" data-panel="level">
-                    <div class="coverage-panel-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
-                            <path d="M18 17V9"></path>
-                            <path d="M13 17V5"></path>
-                            <path d="M8 17v-3"></path>
-                        </svg>
-                    </div>
-                    <h3 class="coverage-panel-title text-white">Every Level</h3>
-                    <p class="coverage-panel-text text-white-muted">High school, college, graduate programs, professional certifications (CPA, CFA, Bar Exam, NCLEX, USMLE, and others).</p>
-                    <div class="coverage-tags">
-                        <span class="coverage-tag-item">High School</span>
-                        <span class="coverage-tag-item">College</span>
-                        <span class="coverage-tag-item">Graduate</span>
-                        <span class="coverage-tag-item">CPA</span>
-                        <span class="coverage-tag-item">CFA</span>
-                        <span class="coverage-tag-item">Bar Exam</span>
-                        <span class="coverage-tag-item">NCLEX</span>
-                        <span class="coverage-tag-item">USMLE</span>
-                    </div>
-                </div>
-                
-                <div class="coverage-panel" data-panel="global" hidden>
-                    <div class="coverage-panel-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-                            <path d="M2 12h20"></path>
-                        </svg>
-                    </div>
-                    <h3 class="coverage-panel-title text-white">Global Reach</h3>
-                    <p class="coverage-panel-text text-white-muted">Students worldwide, regional requirements, institutional compliance, and multi-language support.</p>
-                    <div class="coverage-tags">
-                        <span class="coverage-tag-item">Worldwide</span>
-                        <span class="coverage-tag-item">Regional</span>
-                        <span class="coverage-tag-item">Institutional</span>
-                        <span class="coverage-tag-item">Multi-language</span>
-                    </div>
+                <h3 class="coverage-panel-title text-white">Global Reach</h3>
+                <p class="coverage-panel-text text-white-muted">Supporting students worldwide, with solutions tailored to regional and institutional requirements.</p>
+                <div class="coverage-tags">
+                    <span class="coverage-tag-item">USA</span>
+                    <span class="coverage-tag-item">UK</span>
+                    <span class="coverage-tag-item">Canada</span>
+                    <span class="coverage-tag-item">Australia</span>
+                    <span class="coverage-tag-item">Europe</span>
+                    <span class="coverage-tag-item">Asia</span>
+                    <span class="coverage-tag-item">Middle East</span>
+                    <span class="coverage-tag-item">Africa</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
     
     <section class="faq-section" id="faq">
         <div class="container">
@@ -706,15 +703,15 @@
                     </div>
                 </div>
                 
-                <div class="quote-form-wrapper">
+                <div class="hero-form-wrapper" id="hero-form">
                     <div class="form-card">
                         <div class="form-glow"></div>
                         <div class="form-header-accent"></div>
                         
                         <div class="form-content">
-                            <h3 class="form-title">AI-Free Assignment Help from Real Experts</h3>
+                            <h3 class="form-title" id="form-title">Expert Help to Ace Any Proctored Exam</h3>
                             
-                            <div class="form-badges">
+                            <div class="form-badges" id="form-badges">
                                 <span class="form-badge">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <circle cx="12" cy="12" r="10"></circle>
@@ -727,7 +724,7 @@
                                         <circle cx="12" cy="12" r="10"></circle>
                                         <path d="m9 12 2 2 4-4"></path>
                                     </svg>
-                                    No AI
+                                    Undetectable
                                 </span>
                                 <span class="form-badge">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -739,7 +736,7 @@
                             </div>
                             
                             <div class="form-tabs">
-                                <button class="tab-btn" type="button" data-tab="proctored">
+                                <button class="tab-btn active" type="button" data-tab="proctored">
                                     <span class="tab-indicator"></span>
                                     <span class="tab-text">Proctored Tests</span>
                                 </button>
@@ -747,7 +744,7 @@
                                     <span class="tab-indicator"></span>
                                     <span class="tab-text">Online Classes</span>
                                 </button>
-                                <button class="tab-btn active" type="button" data-tab="assignments">
+                                <button class="tab-btn" type="button" data-tab="assignments">
                                     <span class="tab-indicator"></span>
                                     <span class="tab-text">Assignments</span>
                                 </button>
@@ -755,26 +752,25 @@
                             
                             <form class="quote-form" method="POST" action="/quote" noindex>
                                 <meta name="robots" content="noindex, nofollow">
+                                <input type="hidden" name="service_type" id="service_type" value="proctored">
                                 
                                 <div class="form-row">
-                                    <input type="email" id="email-quote" name="email" class="form-input" placeholder="Email" required autocomplete="email">
+                                    <input type="email" id="email-hero" name="email" class="form-input" placeholder="Email" required autocomplete="email">
                                     <div class="phone-input">
-                                        <select class="country-select" id="country-quote" name="country_code">
-                                            <option value="ke" selected>KE(+254)</option>
+                                        <select class="country-select" id="country-hero" name="country_code">
                                             <option value="us">US(+1)</option>
                                             <option value="uk">UK(+44)</option>
                                             <option value="in">IN(+91)</option>
-                                            <option value="ng">NG(+234)</option>
                                         </select>
-                                        <input type="tel" id="phone-quote" name="phone" class="form-input" placeholder="Phone no." required autocomplete="tel">
+                                        <input type="tel" id="phone-hero" name="phone" class="form-input" placeholder="Phone no." required autocomplete="tel">
                                     </div>
                                 </div>
                                 
                                 <div class="form-row">
-                                    <input type="text" id="subject-quote" name="subject" class="form-input" placeholder="Subject/Course Code" required autocomplete="off">
-                                    <div class="datetime-row">
-                                        <input type="date" id="date-quote" name="exam_date" class="form-input" required autocomplete="off">
-                                        <select class="time-select" id="time-quote" name="exam_time">
+                                    <input type="text" id="subject-hero" name="subject" class="form-input" placeholder="Subject/Course Code" required autocomplete="off">
+                                    <div class="datetime-row" id="datetime-row">
+                                        <input type="date" id="date-hero" name="exam_date" class="form-input" required autocomplete="off">
+                                        <select class="time-select" id="time-hero" name="exam_time">
                                             <option value="12:00 AM">12:00 AM</option>
                                             <option value="6:00 AM">6:00 AM</option>
                                             <option value="12:00 PM">12:00 PM</option>
@@ -785,7 +781,7 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <textarea id="description-quote" name="description" class="form-textarea" placeholder="Description (Write/Attach)" rows="4" autocomplete="off"></textarea>
+                                    <textarea id="description-hero" name="description" class="form-textarea" placeholder="Description (Write/Attach)" rows="4" autocomplete="off"></textarea>
                                     <button type="button" class="attach-btn">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="M13.234 20.252 21 12.3"></path>
@@ -795,7 +791,7 @@
                                     </button>
                                 </div>
                                 
-                                <div class="page-counter">
+                                <div class="page-counter" id="page-counter" style="display: none;">
                                     <span class="page-label">Pages</span>
                                     <div class="page-controls">
                                         <button type="button" class="page-btn page-minus">
@@ -815,11 +811,11 @@
                                 </div>
                                 
                                 <div class="form-checkbox">
-                                    <input type="checkbox" id="terms-alt" name="terms" required checked>
-                                    <label for="terms-alt">I accept the T&C, agree to receive offers & updates</label>
+                                    <input type="checkbox" id="terms" name="terms" required checked>
+                                    <label for="terms">I accept the T&C, agree to receive offers & updates</label>
                                 </div>
                                 
-                                <button type="submit" class="btn-submit">Do My Assignment</button>
+                                <button type="submit" class="btn-submit" id="submit-btn">Ace My Exam</button>
                             </form>
                         </div>
                     </div>
@@ -828,6 +824,5 @@
         </div>
     </section>
 </main>
-
 
 @endsection
