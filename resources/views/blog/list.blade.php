@@ -1,7 +1,10 @@
 <x-blog>
-
+    @section('title', 'ProctoredTestPro - Blogs')
+    @section('description', 'Get more knowlegable iwth our resourceful resources')
+    @section('keywords', 'ProctoredTestPro,Blogs')
+    @section('canonical', config('app.url') . '/blogs')
     <!-- Main Wrapper -->
-    <div class="  bg-[hsl(var(--background))] text-[hsl(var(--foreground))] font-sans p-4 md:p-8">
+    <div class=" min-h-[60vh]  bg-[hsl(var(--background))] text-[hsl(var(--foreground))] font-sans p-4 md:p-8">
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
 
             <!-- Grid Content Area -->
