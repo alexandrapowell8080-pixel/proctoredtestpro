@@ -143,6 +143,8 @@
     {{-- Optional: Footer --}}
     @includeWhen(view()->exists('partials.footer'), 'partials.footer')
 
+    {{-- Global Scripts --}}
+
     {{-- Scripts --}}
     <script src="{{ asset('js/app.js') }}"></script>
     @stack('scripts')

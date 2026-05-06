@@ -2,7 +2,7 @@
 
 @section('content')
 
-@include('partials.header')
+
 
 <main class="main-content">
     <section class="hero-section" id="hero">
@@ -829,6 +829,5 @@
     </section>
 </main>
 
-@include('partials.footer')
 
 @endsection
