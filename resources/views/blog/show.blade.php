@@ -1,4 +1,8 @@
 <x-blog>
+    @section('title', $blog->title)
+    @section('description', $blog->description)
+    @section('keywords', $blog->meta_keywords)
+    @section('canonical', config('app.url') . '/blog/' . $blog->slug)
     <div class="min-h-screen bg-[hsl(var(--background))] text-[hsl(var(--foreground))] font-sans p-4 md:p-8">
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
 
