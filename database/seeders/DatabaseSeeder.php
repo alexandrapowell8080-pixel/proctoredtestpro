@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Blog;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,6 +23,20 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+         $categories = [
+        'Technology',
+        'Business',
+        'Travel',
+        'Lifestyle',
+        'Finance',
+    ];
+
+    foreach ($categories as $category) {
+        Category::create([
+            'name' => $category,
+            'slug' => \Illuminate\Support\Str::slug($category),
+        ]);
+    }
          Blog::factory(50)->create();
     }
 }
