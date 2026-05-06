@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\FaqAdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\LandingController;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\QuoteController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,14 +47,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/import', [FaqAdminController::class, 'import'])->name('import');
         Route::post('/generate', [FaqAdminController::class, 'generate'])->name('generate');
     });
-  
+
     Route::get('/blogs', [BlogController::class, 'list'])->name('index');
 
     Route::get('/blogs', [BlogController::class, 'list'])->name('index'); // Admin Blog Management
     Route::prefix('blog')->name('blog.')->group(function () {
     // Admin Blog Management
     Route::get('/blogs', [BlogController::class, 'list'])->name('index');
-    Route::prefix('blog')->name('blog.')->group(function () {        
+    Route::prefix('blog')->name('blog.')->group(function () {
         Route::get('/create', [BlogController::class, 'create'])->name('create');
         Route::post('/create', [BlogController::class, 'store'])->name('store');
         Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('edit');
@@ -61,6 +62,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('/delete/{id}', [BlogController::class, 'destroy'])->name('destroy');
         Route::post('/keyword', [BlogController::class, 'keyword'])->name('keyword');
         Route::post('/keywords', [BlogController::class, 'keywords'])->name('keywords');
+
+        Route::post('/generate',[BlogController::class, 'generate'])->name('generate');
     });
 
 });

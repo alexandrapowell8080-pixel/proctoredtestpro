@@ -59,16 +59,12 @@
                     </div>
 
                     <!-- Article Content -->
-                    <div class="prose prose-slate max-w-none">
-                        {!! $blog->content !!}
+                     
+
+                    <div class="prose max-w-none ai-content">
+                        {!! Str::markdown( $blog->content) !!}
                     </div>
 
-                    {{-- <!-- Fallback/Placeholder lines if description is short -->
-                    <div class="mt-4 space-y-4">
-                        <div class="h-4 bg-[hsl(var(--muted))] rounded w-full"></div>
-                        <div class="h-4 bg-[hsl(var(--muted))] rounded w-full"></div>
-                        <div class="h-4 bg-[hsl(var(--muted))] rounded w-3/4"></div>
-                    </div> --}}
                 </div>
 
                 <!-- Clearfix to ensure navigation doesn't jump up into the float -->
@@ -165,4 +161,26 @@
 
         </div>
     </div>
+    <style type="text/tailwindcss">
+       .ai-content h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.ai-content h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.ai-content ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+        /* Add more tags as needed */
+    </style>
 </x-blog>

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('keywords');
             $table->string('meta_keywords');
-            $table->enum('status', ['draft', 'published']);
+            $table->enum('status', ['draft', 'published','new']);
             $table->timestamps();
         });
     }

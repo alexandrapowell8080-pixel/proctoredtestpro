@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -24,10 +25,10 @@ class BlogController extends Controller
         if ($request->filled('category')) {
             $category = Category::where('name', $request->category)->first('id');
             if (! $category) {
-               return redirect()->back()->with('category_error', 'No Blogs are associated with '.str_replace('-',' ',$request->category));
+                return redirect()->back()->with('category_error', 'No Blogs are associated with '.str_replace('-', ' ', $request->category));
             }
             $blogs = Blog::with(['category:id,name'])->where('category_id', $category->id)->where('status', Blog::PUBLISH)->paginate(10);
- 
+
             if (! $blogs) {
                 dd('hello');
             }
@@ -62,7 +63,7 @@ class BlogController extends Controller
         return view('admin.blog.list', compact('blogs', 'categories'));
     }
 
-    public function edit(Request $request,string $id): View
+    public function edit(Request $request, string $id): View
     {
         $blog = Blog::findOrFail($id);
         $categories = Category::all();
@@ -244,7 +245,7 @@ class BlogController extends Controller
             'keywords' => $request->keyword,
             'description' => $request->keyword,
             'meta_keywords' => $request->keyword,
-            'status' => Blog::DRAFT,
+            'status' => Blog::NEW,
             'content' => 'Placeholder for '.$request->keyword,
             'category_id' => $request->category_id,
             'image_url' => asset('storage/uploads/placeholder.png'),
@@ -291,7 +292,7 @@ class BlogController extends Controller
                             'keywords' => $keywordName,
                             'meta_keywords' => $keywordName,
                             'description' => $keywordName,
-                            'status' => Blog::DRAFT,
+                            'status' => Blog::NEW,
                             'content' => 'Bulk generated from CSV.',
                             'category_id' => $category->id,
                             'image_url' => asset('storage/uploads/placeholder.png'),
@@ -320,5 +321,14 @@ class BlogController extends Controller
 
             return redirect()->back()->with('CSV_error', 'Import failed: '.$e->getMessage());
         }
+    }
+
+    public function generate()
+    {
+        Artisan::call('blogs:generate');
+
+        return redirect()->back()->with('success', 'Blogs generated!');
+
+        // return 'Blogs generated!';
     }
 }
