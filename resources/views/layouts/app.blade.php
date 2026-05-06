@@ -131,9 +131,7 @@
 </head>
 
 <body class="bg-white text-gray-900 antialiased">
-    <div id="page-preloader">
-        <div class="spinner"></div>
-    </div>
+    
 
     {{-- Optional: Header/Nav --}}
     @includeWhen(view()->exists('partials.header'), 'partials.header')
@@ -149,7 +147,6 @@
     {{-- Global Scripts --}}
 
     {{-- Scripts --}}
-    <script src="{{ asset('js/page-load.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     @stack('scripts')
 
