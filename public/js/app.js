@@ -472,16 +472,16 @@
                 const message = `
 🎓 *New Exam Request*
 
-📧 *Email:* ${data.email || 'N/A'}
-📱 *Phone:* ${data.country_code || ''} ${data.phone || ''}
-📚 *Subject:* ${data.subject || 'N/A'}
-💻 *Platform:* ${data.platform || 'N/A'}
-📅 *Exam Date:* ${data.exam_date || 'N/A'}
-⏰ *Exam Time:* ${data.exam_time || 'N/A'}
-📝 *Description:* ${data.description || 'N/A'}
-📄 *Pages:* ${data.pages || '1'} (≈${parseInt(data.pages, 10) * 250 || 250} words)
-✅ *T&C Accepted:* ${data.terms}
-🔹 *Service:* ${service}${attachmentText}
+ *Email:* ${data.email || 'N/A'}
+ *Phone:* ${data.country_code || ''} ${data.phone || ''}
+ *Subject:* ${data.subject || 'N/A'}
+ *Platform:* ${data.platform || 'N/A'}
+ *Exam Date:* ${data.exam_date || 'N/A'}
+ *Exam Time:* ${data.exam_time || 'N/A'}
+ *Description:* ${data.description || 'N/A'}
+ *Pages:* ${data.pages || '1'} (≈${parseInt(data.pages, 10) * 250 || 250} words)
+ *T&C Accepted:* ${data.terms}
+*Service:* ${service}${attachmentText}
                 `.trim();
 
                 const encodedMessage = encodeURIComponent(message);
