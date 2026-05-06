@@ -64,6 +64,20 @@
             </div>
 
             <div>
+                <label class="block text-sm font-semibold text-[hsl(var(--foreground))] mb-2">Meta Description</label>
+                <textarea name="description" rows="2"
+                    class="w-full border border-[hsl(var(--border))] rounded-lg px-4 py-2.5 text-sm bg-[hsl(var(--background))] focus:ring-2 focus:ring-[hsl(var(--primary))] outline-none resize-none">{{ old('description', $faq->description) }}</textarea>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-[hsl(var(--foreground))] mb-2">Meta Keywords
+                    (Comma-separated)</label>
+                <input type="text" name="meta_keywords"
+                    value="{{ old('meta_keywords', is_array($faq->meta_keywords) ? implode(', ', $faq->meta_keywords) : $faq->meta_keywords) }}"
+                    class="w-full border border-[hsl(var(--border))] rounded-lg px-4 py-2.5 text-sm bg-[hsl(var(--background))] focus:ring-2 focus:ring-[hsl(var(--primary))] outline-none">
+            </div>
+
+            <div>
                 <label class="block text-sm font-semibold text-[hsl(var(--foreground))] mb-2">Main Content Body</label>
                 <textarea name="content" id="auto-expand-textarea" rows="6"
                     class="w-full border border-[hsl(var(--border))] rounded-lg px-4 py-3 text-sm bg-[hsl(var(--background))] focus:ring-2 focus:ring-[hsl(var(--primary))] outline-none overflow-hidden resize-none">{{ old('content', $faq->content) }}</textarea>

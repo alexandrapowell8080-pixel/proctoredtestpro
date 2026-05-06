@@ -1,7 +1,62 @@
 @extends('layouts.app')
 
-@section('seo_title', 'Frequently Asked Questions')
-@section('seo_description', 'Find answers to common questions in our comprehensive FAQ section.')
+@section('seo_title', $currentCategory ? $currentCategory->name . ' FAQs | ProctoredTestPro' : 'Frequently Asked
+Questions | ProctoredTestPro')
+@section('seo_description', $currentCategory ? 'Find answers to common questions about ' . $currentCategory->name . ' in
+our comprehensive FAQ section.' : 'Find answers to common questions in our comprehensive FAQ section.')
+@section('seo_canonical', $currentCategory ? route('faqs.category', $currentCategory->slug) : route('faqs.index'))
+
+@section('dynamic_schemas')
+<script type="application/ld+json">
+    {
+    "@@context": "https://schema.org",
+    "@@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "{{ \Illuminate\Support\Str::finish(url('/'), '/') }}"
+        },
+        {
+            "@@type": "ListItem",
+            "position": 2,
+            "name": "FAQs",
+            "item": "{{ \Illuminate\Support\Str::finish(route('faqs.index'), '/') }}"
+        }
+        @if($currentCategory)
+        ,{
+            "@@type": "ListItem",
+            "position": 3,
+            "name": {!! json_encode($currentCategory->name) !!},
+            "item": "{{ \Illuminate\Support\Str::finish(route('faqs.category', $currentCategory->slug), '/') }}"
+        }
+        @endif
+    ]
+}
+</script>
+
+@if($faqs->count() > 0)
+<script type="application/ld+json">
+    {
+    "@@context": "https://schema.org",
+    "@@type": "FAQPage",
+    "mainEntity": [
+        @foreach($faqs as $index => $faq)
+        {
+            "@@type": "Question",
+            "name": {!! json_encode($faq->title) !!},
+            "acceptedAnswer": {
+                "@@type": "Answer",
+                "text": {!! json_encode(strip_tags($faq->content)) !!}
+            }
+        }{{ !$loop->last ? ',' : '' }}
+        @endforeach
+    ]
+}
+</script>
+@endif
+@endsection
 
 @section('content')
 
