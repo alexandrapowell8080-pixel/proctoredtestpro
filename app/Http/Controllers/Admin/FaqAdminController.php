@@ -6,33 +6,32 @@ use App\Http\Controllers\Controller;
 use App\Models\Faq;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use App\Http\Controllers\LibraryController;
 
 class FaqAdminController extends Controller
 {
-    /**
-     * Show upload form
-     */
-    public function index()
+    
+    public function index(Request $request)
     {
         $stats = [
             'total' => Faq::count(),
             'pending' => Faq::pending()->count(),
             'published' => Faq::published()->count(),
-            'recent' => Faq::latest()->limit(10)->get(['id','keyword', 'title', 'content', 'created_at']),
         ];
 
-       $categories = Category::orderBy('name')->get(); 
-       
-       return view('admin.faqs.index', compact('stats', 'categories')); 
+        $categories = Category::orderBy('name')->get(); 
         
+        $query = Faq::query();
+        if ($request->filled('search')) {
+            $searchTerm = '%' . $request->search . '%';
+            $query->where('keyword', 'like', $searchTerm)
+                  ->orWhere('content', 'like', $searchTerm);
+        }
+        $faqs = $query->latest()->paginate(15)->appends($request->query());
+
+        return view('admin.faqs.index', compact('stats', 'categories', 'faqs')); 
     }
 
-    /**
-     * Handle CSV upload
-     */
     public function import(Request $request) 
     { 
         $request->validate([ 'category_id' => 'required|exists:categories,id', ]); 
@@ -93,9 +92,6 @@ class FaqAdminController extends Controller
         } 
     }
 
-    /**
-     * Manually trigger generation (optional)
-     */
     public function generate(Request $request)
     {
         $limit = (int) $request->input('limit', 5);
@@ -105,7 +101,6 @@ class FaqAdminController extends Controller
             return back()->with('info', 'No pending FAQs to generate.');
         }
 
-        //  THIS LINE ACTUALLY TRIGGERS GENERATION
         \Illuminate\Support\Facades\Artisan::call('faqs:generate', [
             '--limit' => $limit
         ]);
@@ -128,5 +123,57 @@ class FaqAdminController extends Controller
         $faq->delete();
 
         return back()->with('success_delete', "Deleted: {$faq->keyword}");
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'keyword' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        Faq::create([
+            'keyword' => $request->keyword,
+            'category_id' => $request->category_id,
+            'title' => null,
+            'slug' => null,
+            'content' => null,
+        ]);
+
+        return back()->with('success', true)->with('imported', 1)->with('skipped', 0);
+    }
+
+    public function edit($id)
+    {
+        $faq = Faq::findOrFail($id);
+        $categories = Category::orderBy('name')->get();
+        return view('admin.faqs.edit', compact('faq', 'categories'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $faq = Faq::findOrFail($id);
+
+        $request->validate([
+            'keyword' => 'required|string|max:255',
+            'title' => 'nullable|string|max:255',
+            'content' => 'nullable|string',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        $slug = $faq->slug;
+        if ($request->filled('title') && $request->title !== $faq->title) {
+            $slug = Str::slug($request->title);
+        }
+
+        $faq->update([
+            'keyword' => $request->keyword,
+            'title' => $request->title,
+            'content' => $request->input('content'), 
+            'category_id' => $request->category_id,
+            'slug' => $slug,
+        ]);
+
+        return redirect()->route('admin.faqs.index')->with('queued', 'FAQ successfully updated.');
     }
 }
