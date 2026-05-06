@@ -6,17 +6,15 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// ==================== PUBLIC ROUTES ====================
 
+// Home
+Route::get('/', [LandingController::class, 'index'])->name('home');
 
-Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
-Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog');
+// FAQ Static Page
+Route::view('/faq', 'pages.faq')->name('faq');
 
-
-Route::get('/faq/{faq:slug}', [FaqController::class, 'show'])->name('faqs.show');
-
+// FAQ Dynamic Routes
 Route::get('/faqs', [FaqController::class, 'index'])->name('faqs.index');
 
 Route::get('/faqs/page/{page}', [FaqController::class, 'index'])
@@ -26,46 +24,39 @@ Route::get('/faqs/page/{page}', [FaqController::class, 'index'])
 Route::get('/faqs/category/{categorySlug}/{page?}', [FaqController::class, 'index'])
     ->where('categorySlug', '[A-Za-z0-9\-]+')
     ->whereNumber('page')
-    ->name('faqs.school');
-
-Route::view('/faq', 'pages.faq')->name('faq');
     ->name('faqs.category');
-    
 
-// --- ADMIN ROUTES ---
+Route::get('/faq/{faq:slug}', [FaqController::class, 'show'])->name('faqs.show');
+
+// Blog Routes
+Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog');
+
+// ==================== ADMIN ROUTES ====================
+
 Route::prefix('admin')->name('admin.')->group(function () {
+
+    // Admin FAQ Management
     Route::prefix('faqs')->name('faqs.')->group(function () {
         Route::get('/', [FaqAdminController::class, 'index'])->name('index');
-        Route::post('/import', [FaqAdminController::class, 'import'])->name('import');
-        Route::post('/generate', [FaqAdminController::class, 'generate'])->name('generate');
-        Route::delete('/{id}', [FaqAdminController::class, 'destroy'])->name('destroy');
-
         Route::post('/store', [FaqAdminController::class, 'store'])->name('store');
         Route::get('/{id}/edit', [FaqAdminController::class, 'edit'])->name('edit');
         Route::put('/{id}', [FaqAdminController::class, 'update'])->name('update');
-
-    Route::prefix('faqs')->name('faqs.')->group(function () {
-        Route::get('/', [FaqAdminController::class, 'index'])->name('index');
+        Route::delete('/{id}', [FaqAdminController::class, 'destroy'])->name('destroy');
         Route::post('/import', [FaqAdminController::class, 'import'])->name('import');
         Route::post('/generate', [FaqAdminController::class, 'generate'])->name('generate');
-        Route::delete('/{id}', [FaqAdminController::class, 'destroy'])->name('destroy');
     });
 
-    Route::get('/blogs', [BlogController::class, 'list'])->name('blogs');
+    // Admin Blog Management
     Route::prefix('blog')->name('blog.')->group(function () {
+        Route::get('/', [BlogController::class, 'list'])->name('index');
         Route::get('/create', [BlogController::class, 'create'])->name('create');
         Route::post('/create', [BlogController::class, 'store'])->name('store');
-        Route::get('/edit', [BlogController::class, 'edit'])->name('edit');
+        Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('edit');
         Route::post('/update/{id}', [BlogController::class, 'update'])->name('update');
-         Route::delete('/delete/{id}', [BlogController::class, 'destroy'])->name('destroy');
-
-         Route::post('/keyword',[BlogController::class,'keyword'])->name('keyword');
-         Route::post('/keywords',[BlogController::class,'keywords'])->name('keywords');
+        Route::delete('/delete/{id}', [BlogController::class, 'destroy'])->name('destroy');
+        Route::post('/keyword', [BlogController::class, 'keyword'])->name('keyword');
+        Route::post('/keywords', [BlogController::class, 'keywords'])->name('keywords');
     });
 
 });
-Route::get('/', [LandingController::class, 'index'])->name('home');
-    });
-});
-
-Route::get('/', [LandingController::class, 'index'])->name('home');
