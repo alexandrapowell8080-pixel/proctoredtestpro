@@ -33,7 +33,6 @@ class ImportFaqKeywords extends Command
             $keyword = trim($row[0] ?? '');
             if (empty($keyword)) continue;
 
-            // Check existence based on keyword and category_id
             if (Faq::where('keyword', $keyword)->where('category_id', $categoryId)->exists()) {
                 $skipped++;
                 continue;
