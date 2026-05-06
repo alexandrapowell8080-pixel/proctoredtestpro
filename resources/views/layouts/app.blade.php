@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('seo_title', $pageData['title'] ?? config('app.name', 'ProctoredTestPro'))</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.jpeg') }}">
     <meta name="description" content="@yield('seo_description', $pageData['metaDescription'] ?? '')">
     <meta name="keywords" content="@yield('seo_keywords', $pageData['keywords'] ?? '')">
     <meta name="robots" content="index, follow">

@@ -100,6 +100,7 @@
 
             document.querySelectorAll('.form-card').forEach(card => {
                 const activeTab = card.querySelector('.tab-btn.active');
+
                 if (activeTab) {
                     updateFormContent(activeTab.getAttribute('data-tab'), card);
                 }
@@ -135,24 +136,30 @@
         const formTitle = formCard.querySelector('.form-title');
         const formBadges = formCard.querySelector('.form-badges');
         const submitBtn = formCard.querySelector('.btn-submit');
+        const datetimeWrapper = formCard.querySelector('.datetime-wrapper');
         const datetimeRow = formCard.querySelector('.datetime-row');
         const pageCounter = formCard.querySelector('.page-counter');
         const serviceType = formCard.querySelector('input[name="service_type"]');
         const dateInput = formCard.querySelector('input[name="exam_date"]');
         const timeInput = formCard.querySelector('select[name="exam_time"]');
+        const pagesInput = formCard.querySelector('.pages-input');
 
         if (!formTitle || !formBadges || !submitBtn || !serviceType) return;
 
         if (tab === 'proctored') {
-            formTitle.textContent = 'Expert Help to Ace Any Proctored Exam';
+            formTitle.textContent = 'Get Expert Exam Preparation Support';
 
             formBadges.innerHTML = buildBadges([
-                'Guaranteed Grade or Refund',
-                'Undetectable',
+                'Study Support',
+                'Practice Guidance',
                 '24/7 Support'
             ]);
 
-            submitBtn.textContent = 'Ace My Exam';
+            submitBtn.textContent = 'Request Exam Prep Quote';
+
+            if (datetimeWrapper) {
+                datetimeWrapper.style.display = '';
+            }
 
             if (datetimeRow) {
                 datetimeRow.style.display = 'flex';
@@ -171,19 +178,27 @@
                 timeInput.disabled = false;
             }
 
+            if (pagesInput) {
+                pagesInput.value = '1';
+            }
+
             serviceType.value = 'proctored';
         }
 
         if (tab === 'classes') {
-            formTitle.textContent = 'Online Class/Course Help by PhD Experts';
+            formTitle.textContent = 'Online Class/Course Support by Experts';
 
             formBadges.innerHTML = buildBadges([
-                'Guaranteed A or B Grade',
-                'Easy Installments',
+                'Weekly Support',
+                'Deadline Help',
                 'No Stress'
             ]);
 
-            submitBtn.textContent = 'Do My Online Class';
+            submitBtn.textContent = 'Request Class Support Quote';
+
+            if (datetimeWrapper) {
+                datetimeWrapper.style.display = 'none';
+            }
 
             if (datetimeRow) {
                 datetimeRow.style.display = 'none';
@@ -202,19 +217,27 @@
                 timeInput.disabled = true;
             }
 
+            if (pagesInput) {
+                pagesInput.value = '1';
+            }
+
             serviceType.value = 'classes';
         }
 
         if (tab === 'assignments') {
-            formTitle.textContent = 'AI-Free Assignment Help from Real Experts';
+            formTitle.textContent = 'Assignment Guidance from Real Experts';
 
             formBadges.innerHTML = buildBadges([
-                'Guaranteed Grade or Refund',
-                'No AI',
+                'Writing Support',
+                'Clear Guidance',
                 '24/7 Support'
             ]);
 
-            submitBtn.textContent = 'Do My Assignment';
+            submitBtn.textContent = 'Request Assignment Quote';
+
+            if (datetimeWrapper) {
+                datetimeWrapper.style.display = 'none';
+            }
 
             if (datetimeRow) {
                 datetimeRow.style.display = 'none';
@@ -277,8 +300,10 @@
                 const counter = this.closest('.page-counter');
                 if (!counter) return;
 
+                const form = this.closest('form');
                 const countEl = counter.querySelector('.page-count');
                 const wordsEl = counter.querySelector('.page-words');
+                const pagesInput = form?.querySelector('.pages-input');
 
                 if (!countEl) return;
 
@@ -290,6 +315,10 @@
 
                 if (wordsEl) {
                     wordsEl.textContent = (count * 250) + ' words';
+                }
+
+                if (pagesInput) {
+                    pagesInput.value = count;
                 }
 
                 console.log('📄 Page count:', count);
@@ -306,15 +335,15 @@
     }
 
     function initAttachButtons() {
-        document.querySelectorAll('.quote-form').forEach((form, index) => {
+        document.querySelectorAll('.quote-form').forEach(form => {
             let fileInput = form.querySelector('input[type="file"]');
 
             if (!fileInput) {
                 fileInput = document.createElement('input');
                 fileInput.type = 'file';
                 fileInput.name = 'attachment';
-                fileInput.style.display = 'none';
-                fileInput.className = 'generated-file-input';
+                fileInput.hidden = true;
+                fileInput.className = 'quote-file-input generated-file-input';
                 form.appendChild(fileInput);
             }
 
@@ -423,7 +452,7 @@
     }
 
     function initFormSubmissions() {
-        document.querySelectorAll('form[noindex]').forEach(form => {
+        document.querySelectorAll('.quote-form[noindex], form[noindex].quote-form').forEach(form => {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
 
@@ -432,55 +461,48 @@
                     return;
                 }
 
-                console.log('📤 Form submitted - sending to WhatsApp');
+                const submitBtn = this.querySelector('.btn-submit');
+                const originalBtnText = submitBtn ? submitBtn.textContent : 'Submit';
 
-                const data = {};
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Submitting...';
+                }
 
-                this.querySelectorAll('input, select, textarea').forEach(field => {
-                    if (!field.name) return;
-
-                    if (field.type === 'checkbox') {
-                        data[field.name] = field.checked ? 'Yes' : 'No';
-                        return;
-                    }
-
-                    if (field.type === 'file') {
-                        if (field.files && field.files.length > 0) {
-                            data.attachment = field.files[0].name;
-                        }
-                        return;
-                    }
-
-                    if (!field.disabled && field.value) {
-                        data[field.name] = field.value;
-                    }
-                });
-
-                const termsInput = this.querySelector('input[name="terms"]');
-                data.terms = termsInput && termsInput.checked ? 'Yes' : 'No';
+                const formCard = this.closest('.form-card');
+                const activeTab = formCard?.querySelector('.tab-btn.active');
+                const service = activeTab?.textContent?.trim() || 'Quote Request';
 
                 const pageCount = this.querySelector('.page-count')?.textContent || '1';
-                data.pages = pageCount;
+                const pagesInput = this.querySelector('.pages-input');
 
-                const activeTab = this.closest('.form-card')?.querySelector('.tab-btn.active');
-                const service = activeTab?.textContent?.trim() || 'Proctored Tests';
+                if (pagesInput) {
+                    pagesInput.value = pageCount;
+                }
 
-                const attachmentText = data.attachment
-                    ? `\n📎 *Attachment:* ${data.attachment}`
+                const formData = new FormData(this);
+                formData.set('pages', pageCount);
+                formData.set('service_label', service);
+
+                const getValue = name => formData.get(name) || '';
+
+                const attachment = this.querySelector('input[type="file"]');
+                const attachmentText = attachment && attachment.files && attachment.files.length > 0
+                    ? `\n📎 *Attachment:* ${attachment.files[0].name}`
                     : '';
 
                 const message = `
-🎓 *New Exam Request*
+🎓 *New Quote Request*
 
- *Email:* ${data.email || 'N/A'}
- *Phone:* ${data.country_code || ''} ${data.phone || ''}
- *Subject:* ${data.subject || 'N/A'}
- *Platform:* ${data.platform || 'N/A'}
- *Exam Date:* ${data.exam_date || 'N/A'}
- *Exam Time:* ${data.exam_time || 'N/A'}
- *Description:* ${data.description || 'N/A'}
- *Pages:* ${data.pages || '1'} (≈${parseInt(data.pages, 10) * 250 || 250} words)
- *T&C Accepted:* ${data.terms}
+*Email:* ${getValue('email') || 'N/A'}
+*Phone:* ${getValue('country_code') || ''} ${getValue('phone') || ''}
+*Subject/Course:* ${getValue('subject') || 'N/A'}
+*Platform:* ${getValue('platform') || 'N/A'}
+*Date:* ${getValue('exam_date') || 'N/A'}
+*Time:* ${getValue('exam_time') || 'N/A'}
+*Description:* ${getValue('description') || 'N/A'}
+*Pages:* ${pageCount} (≈${parseInt(pageCount, 10) * 250 || 250} words)
+*T&C Accepted:* ${getValue('terms') ? 'Yes' : 'No'}
 *Service:* ${service}${attachmentText}
                 `.trim();
 
@@ -491,35 +513,68 @@
                 const newWindow = window.open(whatsappURL, '_blank');
 
                 if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-                    alert('📱 Please allow popups to open WhatsApp, or click below:');
                     window.location.href = whatsappURL;
-                } else {
-                    alert('✅ Opening WhatsApp... Please send the message to complete your request.');
                 }
 
-                fetch('/quote', {
+                fetch(this.action || '/quote', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
                         'Accept': 'application/json',
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || ''
                     },
-                    body: JSON.stringify(data)
+                    body: formData
                 })
-                    .then(response => {
-                        const contentType = response.headers.get('content-type') || '';
+                    .then(async response => {
+                        const responseData = await response.json().catch(() => ({}));
 
-                        if (contentType.includes('application/json')) {
-                            return response.json();
+                        if (!response.ok) {
+                            throw responseData;
                         }
 
-                        return response.text();
-                    })
-                    .then(responseData => {
-                        console.log('✅ Data saved to database:', responseData);
+                        console.log('✅ Quote saved, email handled by backend:', responseData);
+
+                        alert('✅ Thank you. Your request has been received.');
+
+                        this.reset();
+
+                        const selectedFileName = this.querySelector('.selected-file-name');
+                        const pageCountEl = this.querySelector('.page-count');
+                        const pageWordsEl = this.querySelector('.page-words');
+
+                        if (selectedFileName) selectedFileName.textContent = '';
+                        if (pageCountEl) pageCountEl.textContent = '1';
+                        if (pageWordsEl) pageWordsEl.textContent = '250 words';
+                        if (pagesInput) pagesInput.value = '1';
+
+                        const activeTabAfterReset = formCard?.querySelector('.tab-btn.active');
+                        if (activeTabAfterReset) {
+                            updateFormContent(activeTabAfterReset.getAttribute('data-tab'), formCard);
+                        }
                     })
                     .catch(error => {
-                        console.error('❌ Error saving to database:', error);
+                        console.error('❌ Submission error:', error);
+
+                        let message = 'Something went wrong. Please try again.';
+
+                        if (error && error.message) {
+                            message = error.message;
+                        }
+
+                        if (error && error.errors) {
+                            const firstError = Object.values(error.errors)[0];
+
+                            if (Array.isArray(firstError) && firstError.length > 0) {
+                                message = firstError[0];
+                            }
+                        }
+
+                        alert('❌ ' + message);
+                    })
+                    .finally(() => {
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = originalBtnText;
+                        }
                     });
             });
         });
