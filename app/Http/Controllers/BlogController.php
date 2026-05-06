@@ -244,9 +244,10 @@ class BlogController extends Controller
 
     public function keywords(Request $request)
     {
-        $request->validate([
-            'file' => 'required|mimes:csv,txt|max:2048',
-        ]);
+        // 
+        // $request->validate([
+        //     'file' => 'required|mimes:csv,txt|max:2048',
+        // ]);
 
         $file = $request->file('file');
         $handle = fopen($file->getRealPath(), 'r');
@@ -277,6 +278,8 @@ class BlogController extends Controller
                             'title' => $keywordName,
                             'slug' => Str::slug($keywordName).'-'.rand(1000, 9999),
                             'keywords' => $keywordName,
+                            'meta_keywords' => $keywordName,
+                            'description' => $keywordName,
                             'status' => Blog::DRAFT,
                             'content' => 'Bulk generated from CSV.',
                             'category_id' => $category->id,
@@ -296,7 +299,7 @@ class BlogController extends Controller
                 $msg .= " ($skippedCount duplicates skipped).";
             }
 
-            return redirect()->back()->with('success', $msg);
+            return redirect()->back()->with('CSV_success', $msg);
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -304,7 +307,7 @@ class BlogController extends Controller
                 fclose($handle);
             }
 
-            return redirect()->back()->with('error', 'Import failed: '.$e->getMessage());
+            return redirect()->back()->with('CSV_error', 'Import failed: '.$e->getMessage());
         }
     }
 }
