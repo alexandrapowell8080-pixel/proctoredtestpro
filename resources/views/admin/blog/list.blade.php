@@ -1,5 +1,5 @@
 <x-blog>
-     @if (session('CSV_error'))
+    @if (session('CSV_error'))
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             Swal.fire({
@@ -10,7 +10,7 @@
             });
         </script>
     @endif
-     @if (session('CSV_success'))
+    @if (session('CSV_success'))
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             Swal.fire({
@@ -204,9 +204,32 @@
                     <div
                         class="bg-[hsl(var(--card))] rounded-[var(--radius)] border border-[hsl(var(--border))] overflow-hidden shadow-sm">
                         <!-- Header & Toggle -->
-                        <div class="px-5 py-3 bg-[hsl(var(--muted))] border-b border-[hsl(var(--border))]">
-                            <h3 class="text-sm font-bold text-[hsl(var(--primary))] uppercase tracking-wider">Keyword
-                                Manager</h3>
+                        <div
+                            class="px-5 py-3 bg-[hsl(var(--muted))] border-b border-[hsl(var(--border))] flex items-center justify-between">
+                            <!-- Left Side: Title with Icon -->
+                            <div class="flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[hsl(var(--primary))]"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                                </svg>
+                                <h3 class="text-xs font-bold text-[hsl(var(--primary))] uppercase tracking-widest">
+                                    Keyword Manager
+                                </h3>
+                            </div>
+
+                            <!-- Right Side: Action Button -->
+                            <form action="{{ route('admin.blog.generate') }}" method="POST">
+                                 @csrf
+                            <button type="submit"
+                                class="inline-flex items-center gap-2 px-4 py-1.5 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] rounded-md text-xs font-bold hover:opacity-90 transition-all shadow-sm active:scale-95">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                                Generate
+                            </button></form>
                         </div>
 
                         <div class="p-5">
@@ -276,7 +299,7 @@
                                     <label
                                         class="block text-xs font-semibold mb-2 text-[hsl(var(--muted-foreground))] uppercase">Upload
                                         CSV File</label>
-                                        <span class="text-xs">Two colums: category name and keyword name</span>
+                                    <span class="text-xs">Two colums: category name and keyword name</span>
                                     <div
                                         class="relative border-2 border-dashed border-[hsl(var(--border))] rounded-md p-4 text-center hover:bg-[hsl(var(--muted))] transition-colors cursor-pointer">
                                         <input type="file" name="file" accept=".csv" required

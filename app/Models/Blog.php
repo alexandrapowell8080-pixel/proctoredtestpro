@@ -24,6 +24,7 @@ class Blog extends Model
 
     const DRAFT = 'draft';
     const PUBLISH = 'published';
+    const NEW = 'new';
 
     public function category():BelongsTo
     {
