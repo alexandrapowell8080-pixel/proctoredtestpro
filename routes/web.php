@@ -6,12 +6,8 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
 
-// ==================== PUBLIC ROUTES ====================
-
-// Home
 Route::get('/', [LandingController::class, 'index'])->name('home');
 
-// FAQ Static Page
 Route::view('/faq', 'pages.faq')->name('faq');
 
 // FAQ Dynamic Routes
