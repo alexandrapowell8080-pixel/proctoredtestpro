@@ -3,6 +3,17 @@
     @section('description', 'Get more knowlegable iwth our resourceful resources')
     @section('keywords', 'ProctoredTestPro,Blogs')
     @section('canonical', config('app.url') . '/blogs')
+    @if (session('category_error'))
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Sorry!',
+                text: "{{ session('category_error') }}",
+                confirmButtonColor: '#FF8080'
+            });
+        </script>
+    @endif
     <!-- Main Wrapper -->
     <div class=" min-h-[60vh]  bg-[hsl(var(--background))] text-[hsl(var(--foreground))] font-sans p-4 md:p-8">
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
@@ -32,9 +43,40 @@
                                 <img src="{{ $blog->image_url }}" alt="">
                             </div>
                             <!-- Title Box -->
-                            <div class="p-4 bg-[hsl(var(--card))]">
-                                <p class="text-[hsl(var(--primary))] font-semibold">{{ $blog->title }}</p>
-                                <div class="h-5 bg-[hsl(var(--muted))] rounded w-3/4 mb-2">{{ $blog->category->name }}
+                            <div
+                                class="p-5 bg-[hsl(var(--card))]   border-[hsl(var(--border))] rounded-[var(--radius)] hover:shadow-md transition-shadow duration-200">
+                                <!-- Category Badge -->
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-[hsl(var(--primary)/0.1)] text-[hsl(var(--primary))] border border-[hsl(var(--primary)/0.2)]">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                                        </svg>
+                                        {{ $blog->category->name }}
+                                    </span>
+                                </div>
+
+                                <!-- Title -->
+                                <h3
+                                    class="text-lg font-bold text-[hsl(var(--foreground))] leading-tight line-clamp-2 mb-4 group-hover:text-[hsl(var(--primary))] transition-colors">
+                                    {{ $blog->title }}
+                                </h3>
+
+                                <!-- Bottom Metadata Container -->
+                                <div
+                                    class="flex items-center justify-between pt-4 border-t border-[hsl(var(--border))]">
+                                    <div class="flex items-center text-[hsl(var(--muted-foreground))] text-xs">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1.5" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        {{ $blog->created_at->format('M d, Y') }}
+                                    </div>
+
+
                                 </div>
                             </div>
                         </a>
@@ -97,12 +139,14 @@
                     <nav class="flex flex-col gap-4">
                         <!-- Category Links -->
                         @foreach ($categories as $category)
-                            <div class="group flex flex-col gap-2 cursor-pointer">
-                                <div
-                                    class="h-2 bg-[hsl(var(--secondary))] w-full rounded group-hover:bg-[hsl(var(--accent))] transition-colors">
+                            <a href="{{ route('blogs', ['category' => $category->slug]) }}">
+                                <div class="group flex flex-col gap-2 cursor-pointer">
+                                    <div
+                                        class="h-2 bg-[hsl(var(--secondary))] w-full rounded group-hover:bg-[hsl(var(--accent))] transition-colors">
+                                    </div>
+                                    <span class="text-sm font-medium">{{ $category->name }}</span>
                                 </div>
-                                <span class="text-sm font-medium">{{ $category->name }}</span>
-                            </div>
+                            </a>
                         @endforeach
 
                         {{-- <div class="group flex flex-col gap-2 cursor-pointer">

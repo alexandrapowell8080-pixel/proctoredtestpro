@@ -20,6 +20,16 @@
             });
         </script>
     @endif
+    @if (session('success'))
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: "{{ session('success') }}",
+            });
+        </script>
+    @endif
     <!-- Main Wrapper -->
     <div class="min-h-screen bg-[hsl(var(--background))] text-[hsl(var(--foreground))] font-sans p-4 md:p-8">
         <div class="max-w-7xl mx-auto">

@@ -44,8 +44,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     // Admin Blog Management
+    Route::get('/blogs', [BlogController::class, 'list'])->name('index');
     Route::prefix('blog')->name('blog.')->group(function () {
-        Route::get('/', [BlogController::class, 'list'])->name('index');
         Route::get('/create', [BlogController::class, 'create'])->name('create');
         Route::post('/create', [BlogController::class, 'store'])->name('store');
         Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('edit');
