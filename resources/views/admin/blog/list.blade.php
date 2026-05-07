@@ -109,11 +109,17 @@
                                                     <span class="w-2 h-2 rounded-full bg-[hsl(var(--primary))]"></span>
                                                     Draft
                                                 </div>
-                                            @else
-                                                <div class="flex items-center gap-1.5 text-[hsl(var(--secondary))]">
+                                            @elseif($blog->status == 'published')
+                                            <div class="flex items-center gap-1.5 text-[hsl(var(--secondary))]">
                                                     <span
                                                         class="w-2 h-2 rounded-full bg-[hsl(var(--secondary))]"></span>
                                                     Published
+                                                </div>
+                                             @elseif($blog->status == 'new')
+                                                <div class="flex items-center gap-1.5 text-amber-500">
+                                                    <span
+                                                        class="w-2 h-2 rounded-full bg-amber-500"></span>
+                                                    New
                                                 </div>
                                             @endif
 
