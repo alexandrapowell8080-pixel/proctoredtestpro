@@ -96,7 +96,7 @@
     }
     </script>
 
-    {{-- JSON-LD Dynamic Schemas (Breadcrumbs & FAQ Schema injection point) --}}
+    {{-- JSON-LD Dynamic Schemas --}}
     @hasSection('dynamic_schemas')
     @yield('dynamic_schemas')
     @else
