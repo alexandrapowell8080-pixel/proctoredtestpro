@@ -46,7 +46,6 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link href="{{ asset('css/global-header.css') }}" rel="stylesheet">
 
     @if(config('app.env') === 'local')
     <script src="https://cdn.tailwindcss.com"></script>
@@ -96,7 +95,7 @@
     }
     </script>
 
-    {{-- JSON-LD Dynamic Schemas (Breadcrumbs & FAQ Schema injection point) --}}
+    {{-- JSON-LD Dynamic Schemas --}}
     @hasSection('dynamic_schemas')
     @yield('dynamic_schemas')
     @else
