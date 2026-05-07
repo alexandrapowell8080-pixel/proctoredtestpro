@@ -1,4 +1,9 @@
-<x-blog>
+@extends('layouts.admin')
+
+@section('seo_title', 'Create Blog Post - Admin')
+
+@section('content')
+
     <div class="min-h-screen bg-[hsl(var(--background))] text-[hsl(var(--foreground))] font-sans p-4 md:p-8">
         <div class="max-w-5xl mx-auto">
 
@@ -171,4 +176,5 @@
             reader.readAsDataURL(event.target.files[0]);
         }
     </script>
-</x-blog>
+
+@endsection
