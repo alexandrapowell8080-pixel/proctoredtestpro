@@ -12,6 +12,7 @@ Schedule::command('faqs:generate --limit=2')
     ->cron('0 6,10,14,18,22 * * *')
     ->withoutOverlapping()
     ->appendOutputTo(storage_path('logs/faq-generator.log'));
+    
 Schedule::command('blogs:generate --limit=1')
     ->cron('0 4,8,12,16,20 * * *')
     ->withoutOverlapping()
