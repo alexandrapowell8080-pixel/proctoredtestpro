@@ -46,7 +46,7 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link href="{{ asset('css/global-header.css') }}" rel="stylesheet">
+   
 
     @if(config('app.env') === 'local')
     <script src="https://cdn.tailwindcss.com"></script>
