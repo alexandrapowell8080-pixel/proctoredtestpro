@@ -16,7 +16,7 @@ class AdminDashboardController extends Controller
             'total_blogs' => Blog::count(),
             'published_blogs' => Blog::where('status', 'published')->count(),
             'draft_blogs' => Blog::where('status', 'draft')->count(),
-            'scheduled_blogs' => Blog::where('status', 'scheduled')->count(),
+            'scheduled_blogs' => Blog::where('status', 'new')->count(),
         ];
 
         // Fetch recent activity

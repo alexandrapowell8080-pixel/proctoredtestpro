@@ -22,7 +22,7 @@ class GenerateBlogContent extends Command
 
     public function handle()
     {
-        $pending = Blog::where('status',Blog::NEW)->limit(5)->get();
+        $pending = Blog::where('status',Blog::NEW)->limit($this->option('limit'))->get();
         if ($pending->isEmpty()) {
             $this->info('✨ No pending Blogs to generate.');
             return Command::SUCCESS;

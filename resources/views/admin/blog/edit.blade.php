@@ -14,7 +14,7 @@
             <nav class="flex mb-4 text-sm" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-2">
                     <li>
-                        <a href="{{ route('admin.index') }}"
+                        <a href="{{ route('admin.dashboard') }}"
                             class="text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] transition-colors">Dashboard</a>
                     </li>
                     <li class="text-[hsl(var(--muted-foreground))]">/</li>

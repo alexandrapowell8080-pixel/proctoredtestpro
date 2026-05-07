@@ -95,7 +95,7 @@
                                 @if ($blog->status == 'published')
                                 <span
                                     class="inline-flex items-center px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-bold bg-green-100 text-green-800 uppercase tracking-wide">Published</span>
-                                @elseif ($blog->status == 'scheduled')
+                                @elseif ($blog->status == 'new')
                                 <span
                                     class="inline-flex items-center px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-bold bg-blue-100 text-blue-800 uppercase tracking-wide">Scheduled</span>
                                 @else
