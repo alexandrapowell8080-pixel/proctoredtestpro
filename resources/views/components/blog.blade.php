@@ -50,6 +50,20 @@
         }
     </style>
      <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+     <script type="application/ld+json">
+        {
+        "@@context": "https://schema.org",
+        "@@type": "WebSite",
+        "name": "ProctoredTestPro",
+        "url": "{{ \Illuminate\Support\Str::finish(url('/'), '/') }}",
+        "description": {!! json_encode($pageData['metaDescription'] ?? '') !!},
+        "potentialAction": {
+            "@@type": "SearchAction",
+            "target": "{{ url('/search?q={search_term_string}') }}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
 </head>
 
 <body>

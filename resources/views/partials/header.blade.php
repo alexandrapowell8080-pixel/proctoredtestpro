@@ -9,7 +9,7 @@
                 <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
                 <a class="nav-link {{ request()->is('faqs') ? 'active' : '' }}" href="/faqs">FAQs</a>
                 <a class="nav-link {{ request()->is('blogs') ? 'active' : '' }}" href="/blogs">Blogs</a>
-                <a class="btn btn-primary" href="/#hero-form">Get Started</a>
+                <a class="btn btn-primary" href="/#form">Get Started</a>
             </nav>
             
             <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">

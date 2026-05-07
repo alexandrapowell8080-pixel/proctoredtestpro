@@ -16,10 +16,10 @@
             <div class="footer-col">
                 <h4 class="footer-title">Quick Links</h4>
                 <div class="footer-links">
-                    <a href="#services" class="footer-link">Services</a>
-                    <a href="#how-it-works" class="footer-link">How It Works</a>
-                    <a href="#reviews" class="footer-link">Reviews</a>
-                    <a href="#faq" class="footer-link">FAQ</a>
+                    <a href="/#services" class="footer-link">Services</a>
+                    <a href="/#how-it-works" class="footer-link">How It Works</a>
+                    <a href="/#reviews" class="footer-link">Reviews</a>
+                    <a href="{{ route('faqs.index') }}" class="footer-link">FAQ</a>
                 </div>
             </div>
             
