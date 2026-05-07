@@ -22,6 +22,7 @@ Route::get('/faqs/{categorySlug}/{page?}', [FaqController::class, 'index'])
 Route::get('/faq/{faq:slug}', [FaqController::class, 'show'])->name('faqs.show');
 
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
+Route::get('/blogs/{category}', [BlogController::class, 'index'])->name('blogs');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog');
 
 Route::post('/quote', [QuoteController::class, 'store'])->name('quote.store');

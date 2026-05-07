@@ -83,7 +83,7 @@
                     </div>
                 </div>
 
-                <div class="hero-form-wrapper">
+                <div class="hero-form-wrapper" id="form">
                     <div class="form-card">
                         <div class="form-glow"></div>
                         <div class="form-header-accent"></div>
