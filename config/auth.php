@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\Admin;
 
 return [
 
@@ -41,6 +42,13 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+            
+        ],
+
+        // Added Admin Guard
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
         ],
     ],
 
@@ -71,6 +79,12 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        // Added Admin Provider
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => Admin::class, 
+        ],
     ],
 
     /*
