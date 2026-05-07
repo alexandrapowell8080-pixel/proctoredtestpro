@@ -20,18 +20,14 @@ class BlogController extends Controller
     /**
      * List all Blogs
      */
-    public function index(Request $request): View|RedirectResponse
+    public function index(Request $request, ?string $category = null): View|RedirectResponse
     {
-        if ($request->filled('category')) {
-            $category = Category::where('name', $request->category)->first('id');
-            if (! $category) {
-                return redirect()->back()->with('category_error', 'No Blogs are associated with '.str_replace('-', ' ', $request->category));
+        if ($category) {
+            $categoryModel = Category::where('name', str_replace('-', ' ', $category))->first();
+            if (! $categoryModel) {
+                return redirect()->back()->with('category_error', 'No Blogs are associated with '.str_replace('-', ' ', $category));
             }
-            $blogs = Blog::with(['category:id,name'])->where('category_id', $category->id)->where('status', Blog::PUBLISH)->paginate(10);
-
-            if (! $blogs) {
-                dd('hello');
-            }
+            $blogs = Blog::with(['category:id,name'])->where('category_id', $categoryModel->id)->where('status', Blog::PUBLISH)->paginate(10);
         } else {
             $blogs = Blog::with(['category:id,name'])->where('status', Blog::PUBLISH)->paginate(10);
         }
@@ -116,7 +112,7 @@ class BlogController extends Controller
             'category_id' => $request->category_id,
             'title' => $request->title,
             'image_url' => $imageUrl,
-            'description' => $request->meta_description, 
+            'description' => $request->meta_description,
             'content' => $request->input('content'),
             'slug' => $slug,
             'keywords' => $request->keywords,
