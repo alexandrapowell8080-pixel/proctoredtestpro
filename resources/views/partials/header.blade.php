@@ -6,9 +6,9 @@
             </a>
             
             <nav class="main-nav" id="mainNav">
-                <a class="nav-link active" href="/">Home</a>
-                <a class="nav-link" href="/faqs">FAQs</a>
-                <a class="nav-link" href="/blogs">Blogs</a>
+                <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
+                <a class="nav-link {{ request()->is('faqs') ? 'active' : '' }}" href="/faqs">FAQs</a>
+                <a class="nav-link {{ request()->is('blogs') ? 'active' : '' }}" href="/blogs">Blogs</a>
                 <a class="btn btn-primary" href="/#hero-form">Get Started</a>
             </nav>
             
