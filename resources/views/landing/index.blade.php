@@ -519,7 +519,14 @@
                     </div>
                     <h3 class="coverage-panel-title text-white">Every Proctoring System</h3>
                     <p class="coverage-panel-text text-white-muted"> AI-based (Proctorio, Respondus), live proctors (ProctorU, Examity), lockdown browsers, and hybrid platforms.</p>
-                     
+                     <div class="coverage-tags">
+                        <span class="coverage-tag-item">Canvas</span>
+                        <span class="coverage-tag-item">Blackboard</span>
+                        <span class="coverage-tag-item">Moodle</span>
+                        <span class="coverage-tag-item">Pearson</span>
+                        <span class="coverage-tag-item">McGraw Hill</span>
+                        <span class="coverage-tag-item">Cengage</span>
+                    </div>
                 </div>
 
                 <div class="coverage-panel" data-panel="discipline" hidden>
@@ -530,7 +537,16 @@
                     </div>
                     <h3 class="coverage-panel-title text-white">Every  Academic Disciplines</h3>
                     <p class="coverage-panel-text text-white-muted">STEM (math, physics, coding, engineering), humanities (literature, history, philosophy), business (accounting, finance, economics), healthcare (nursing, medical boards), law, and more.</p>
-                     
+                     <div class="coverage-tags">
+                        <span class="coverage-tag-item">Math</span>
+                        <span class="coverage-tag-item">Physics</span>
+                        <span class="coverage-tag-item">Engineering</span>
+                        <span class="coverage-tag-item">Literature</span>
+                        <span class="coverage-tag-item">Business</span>
+                        <span class="coverage-tag-item">Nursing</span>
+                        <span class="coverage-tag-item">Law</span>
+                        <span class="coverage-tag-item">Computer Science</span>
+                    </div>
                 </div>
 
                 <div class="coverage-panel" data-panel="level" hidden>
@@ -541,7 +557,14 @@
                     </div>
                     <h3 class="coverage-panel-title text-white">Every Level</h3>
                     <p class="coverage-panel-text text-white-muted">High school, college, graduate programs, professional certifications (CPA, CFA, Bar Exam, NCLEX, USMLE, and others).</p>
-                     
+                     <div class="coverage-tags">
+                        <span class="coverage-tag-item">High School</span>
+                        <span class="coverage-tag-item">College</span>
+                        <span class="coverage-tag-item">Graduate</span>
+                        <span class="coverage-tag-item">CPA Prep</span>
+                        <span class="coverage-tag-item">NCLEX Prep</span>
+                        <span class="coverage-tag-item">CFA Prep</span>
+                    </div>
                 </div>
 
                 <div class="coverage-panel" data-panel="global" hidden>
