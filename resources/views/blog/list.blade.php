@@ -30,6 +30,43 @@
                     <div class="mt-2 h-1 w-20 bg-[hsl(var(--accent))] rounded-full"></div>
                 </div>
 
+                @if (count($blogs) == 0)
+                    <div class="max-w-2xl mx-auto py-5 px-6 text-center">
+                        <div class="relative inline-block mb-4">
+                            <div class="absolute inset-0 bg-[hsl(var(--primary))] opacity-10 blur-2xl rounded-full">
+                            </div>
+                            <div
+                                class="relative w-24 h-24 bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-3xl shadow-sm flex items-center justify-center mx-auto rotate-3">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="w-12 h-12 text-[hsl(var(--primary))] -rotate-3" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <h2 class="text-3xl font-extrabold text-[hsl(var(--foreground))] tracking-tight mb-4">
+                            Our story is just beginning
+                        </h2>
+                        <p class="text-lg text-[hsl(var(--muted-foreground))] leading-relaxed mb-10 max-w-md mx-auto">
+                            We haven't published any articles in this section yet. Check back soon or explore our other
+                            categories!
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <a href="{{ url('/') }}"
+                                class="px-8 py-3 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] rounded-full font-bold shadow-lg shadow-[hsl(var(--primary)/0.2)] hover:translate-y-[-2px] transition-all">
+                                Return Home
+                            </a>
+                            <button onclick="window.history.back()"
+                                class="px-8 py-3 bg-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] rounded-full font-bold hover:bg-[hsl(var(--muted))] transition-all">
+                                Go Back
+                            </button>
+                        </div>
+                    </div>
+                @endempty
+
                 <!-- 3-Column Grid (Stacks on mobile, 2 cols on tablet, 3 on desktop) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-10">
                     @foreach ($blogs as $blog)
@@ -68,8 +105,8 @@
                                 <div
                                     class="flex items-center justify-between pt-4 border-t border-[hsl(var(--border))]">
                                     <div class="flex items-center text-[hsl(var(--muted-foreground))] text-xs">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1.5" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1.5"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                         </svg>
@@ -126,53 +163,48 @@
                         </a>
                     </div>
                 @endif
-            </main>
+        </main>
 
-            <!-- Categories Sidebar -->
-            <aside class="w-full lg:w-72">
-                <div
-                    class="bg-[hsl(var(--card))] rounded-[var(--radius)] border border-[hsl(var(--border))] p-6 shadow-sm sticky top-8">
-                    <h3
-                        class="text-xl font-bold text-[hsl(var(--primary))] mb-6 border-b border-[hsl(var(--border))] pb-2">
-                        Categories
-                    </h3>
-                    <nav class="flex flex-col gap-4">
-                        <!-- Category Links -->
-                        @foreach ($categories as $category)
-                            <a href="{{ route('blogs', ['category' => $category->slug]) }}">
-                                <div class="group flex flex-col gap-2 cursor-pointer">
-                                    <div
-                                        class="h-2 bg-[hsl(var(--secondary))] w-full rounded group-hover:bg-[hsl(var(--accent))] transition-colors">
-                                    </div>
-                                    <span class="text-sm font-medium">{{ $category->name }}</span>
+        <!-- Categories Sidebar -->
+        <aside class="w-full lg:w-72">
+            <div
+                class="bg-[hsl(var(--card))] rounded-[var(--radius)] border border-[hsl(var(--border))] p-6 shadow-sm sticky top-8">
+                <h3
+                    class="text-xl font-bold text-[hsl(var(--primary))] mb-6 border-b border-[hsl(var(--border))] pb-2">
+                    Categories
+                </h3>
+                <nav class="flex flex-col gap-4">
+                    @if (count($categories) == 0)
+                        <div class="flex flex-col gap-4 opacity-60">
+                            <div class="flex flex-col gap-2 italic">
+                                <div class="h-2 bg-[hsl(var(--muted))] w-full rounded animate-pulse"></div>
+                                <span class="text-xs text-[hsl(var(--muted-foreground))]">New topics coming
+                                    soon...</span>
+                            </div>
+
+                            <div class="flex flex-col gap-2 opacity-40 select-none pointer-events-none">
+                                <div class="h-2 bg-[hsl(var(--muted))] w-3/4 rounded"></div>
+                                <span class="text-xs text-[hsl(var(--muted-foreground))]">Stay tuned</span>
+                            </div>
+                        </div>
+                    @endif
+                    <!-- Category Links -->
+                    @foreach ($categories as $category)
+                        <a href="{{ url('blogs/' . $category->slug) }}">
+                            <div class="group flex flex-col gap-2 cursor-pointer">
+                                <div
+                                    class="h-2 bg-[hsl(var(--secondary))] w-full rounded group-hover:bg-[hsl(var(--accent))] transition-colors">
                                 </div>
-                            </a>
-                        @endforeach
+                                <span class="text-sm font-medium">{{ $category->name }}</span>
+                            </div>
+                        </a>
+                    @endforeach
+                </nav>
+            </div>
+        </aside>
 
-                        {{-- <div class="group flex flex-col gap-2 cursor-pointer">
-                            <div
-                                class="h-2 bg-[hsl(var(--muted))] w-3/4 rounded group-hover:bg-[hsl(var(--secondary))] transition-colors">
-                            </div>
-                            <span class="text-sm font-medium">Finance & NSE</span>
-                        </div>
-                        <div class="group flex flex-col gap-2 cursor-pointer">
-                            <div
-                                class="h-2 bg-[hsl(var(--muted))] w-5/6 rounded group-hover:bg-[hsl(var(--secondary))] transition-colors">
-                            </div>
-                            <span class="text-sm font-medium">Technical SEO</span>
-                        </div>
-                        <div class="group flex flex-col gap-2 cursor-pointer">
-                            <div
-                                class="h-2 bg-[hsl(var(--muted))] w-1/2 rounded group-hover:bg-[hsl(var(--secondary))] transition-colors">
-                            </div>
-                            <span class="text-sm font-medium">Nursing Exams</span>
-                        </div> --}}
-                    </nav>
-                </div>
-            </aside>
-
-        </div>
     </div>
+</div>
 
 
 </x-blog>
