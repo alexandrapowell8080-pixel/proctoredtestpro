@@ -15,11 +15,11 @@
                     </div>
 
                     <h1 class="hero-title">
-                        Academic Support for <span class="highlight">Online Courses & Exam Prep</span>
+                        Bypass Any <span class="highlight">Proctored Exam</span>
                     </h1>
 
                     <p class="hero-description">
-                        Get reliable tutoring, study support, assignment guidance, course help, and personalized academic planning from experienced experts.
+                        We help students bypass all major proctoring software with 100% success rate. Get the grades you deserve without the stress.
                     </p>
 
                     <div class="hero-features">
@@ -83,7 +83,7 @@
                     </div>
                 </div>
 
-                <div class="hero-form-wrapper">
+                <div class="hero-form-wrapper" id="form">
                     <div class="form-card">
                         <div class="form-glow"></div>
                         <div class="form-header-accent"></div>
@@ -230,7 +230,7 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-label">What We Offer</span>
-                <h2 class="section-title">Why Students Choose Our Academic Support</h2>
+                <h2 class="section-title">Why Proctored Test Pro is Your Best Choice</h2>
                 <p class="section-description">Get organized help for study planning, course support, assignments, exam preparation, and academic confidence.</p>
             </div>
 
@@ -243,8 +243,8 @@
                             <line x1="12" x2="12" y1="17" y2="21"></line>
                         </svg>
                     </div>
-                    <h3 class="feature-title">Online Learning Support</h3>
-                    <p class="feature-text">Get guidance for online platforms, coursework, deadlines, study schedules, and academic organization.</p>
+                    <h3 class="feature-title">Unrivaled Proctor Bypass Expertise</h3>
+                    <p class="feature-text">We conquer every proctoring platform, including ProctorU, Examity, Proctorio, Respondus, Honorlock, Pearson VUE, Kryterion, and more. No system can stop us.</p>
                 </div>
 
                 <div class="feature-card">
@@ -254,8 +254,8 @@
                             <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path>
                         </svg>
                     </div>
-                    <h3 class="feature-title">Every Subject Covered</h3>
-                    <p class="feature-text">Support across math, sciences, business, healthcare, writing, humanities, technology, and more.</p>
+                    <h3 class="feature-title">Every Exam Covered</h3>
+                    <p class="feature-text">We handle all subjects and levels math, physics, chemistry, biology, literature, history, computer science, business, law, medical boards, nursing, and beyond.</p>
                 </div>
 
                 <div class="feature-card">
@@ -265,8 +265,8 @@
                             <circle cx="12" cy="8" r="6"></circle>
                         </svg>
                     </div>
-                    <h3 class="feature-title">Quality Guidance</h3>
-                    <p class="feature-text">Work with experienced academic helpers who can explain concepts and support your learning goals.</p>
+                    <h3 class="feature-title">Grade Guarantee</h3>
+                    <p class="feature-text">Your exam is handled by We guarantee you'll score an A on any exam, or we'll refund your money. That's our promise</p>
                 </div>
 
                 <div class="feature-card">
@@ -276,8 +276,8 @@
                             <circle cx="12" cy="12" r="3"></circle>
                         </svg>
                     </div>
-                    <h3 class="feature-title">Clear Study Planning</h3>
-                    <p class="feature-text">Get help breaking down difficult courses, assignments, and test preparation into manageable steps.</p>
+                    <h3 class="feature-title">Advanced, Undetectable Strategies</h3>
+                    <p class="feature-text">Our cutting-edge methods navigate even the most sophisticated proctoring technologies, ensuring a seamless and secure exam experience.</p>
                 </div>
 
                 <div class="feature-card">
@@ -287,8 +287,8 @@
                             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                         </svg>
                     </div>
-                    <h3 class="feature-title">Privacy First</h3>
-                    <p class="feature-text">Your personal details and academic information are handled carefully and confidentially.</p>
+                    <h3 class="feature-title">Ironclad Privacy</h3>
+                    <p class="feature-text">Your identity and academic journey are protected with state-of-the-art confidentiality measures. Discretion is our promise.</p>
                 </div>
 
                 <div class="feature-card">
@@ -297,8 +297,8 @@
                             <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path>
                         </svg>
                     </div>
-                    <h3 class="feature-title">Fast Support</h3>
-                    <p class="feature-text">Send your request anytime and receive a personalized response quickly.</p>
+                    <h3 class="feature-title">Lightning-Fast Support</h3>
+                    <p class="feature-text">Need help ASAP? Our team delivers tailored solutions within hours, with 24/7 availability to meet your deadlines.</p>
                 </div>
             </div>
         </div>
@@ -319,7 +319,7 @@
                     HOW IT WORKS
                 </span>
 
-                <h2 class="section-title text-white">How We Support <span class="highlight-white">Your Academic Goals</span></h2>
+                <h2 class="section-title text-white">How We Guarantee <span class="highlight-white">Your Success</span></h2>
                 <p class="section-description text-white-muted">Three simple steps to request help and get a personalized quote.</p>
             </div>
 
@@ -336,8 +336,8 @@
                             </div>
                             <div class="step-number">01</div>
                         </div>
-                        <h3 class="step-title text-white">Tell Us What You Need</h3>
-                        <p class="step-description text-white-muted">Complete the secure form with your course, deadline, platform, and support details.</p>
+                        <h3 class="step-title text-white">Tell Us About Your Exam</h3>
+                        <p class="step-description text-white-muted">Complete our secure, user-friendly form below with details about your proctored exam, proctoring system, subject, and any special requirements.</p>
                     </div>
                 </div>
 
@@ -353,8 +353,8 @@
                             </div>
                             <div class="step-number">02</div>
                         </div>
-                        <h3 class="step-title text-white">Receive a Personalized Quote</h3>
-                        <p class="step-description text-white-muted">We review your request and respond with clear pricing and next steps.</p>
+                        <h3 class="step-title text-white">Get a Personalized Plan</h3>
+                        <p class="step-description text-white-muted">Our experts analyze your needs and craft a custom strategy, complete with a transparent, no-obligation quote delivered within 12 hours.</p>
                     </div>
                 </div>
 
@@ -369,13 +369,53 @@
                             </div>
                             <div class="step-number">03</div>
                         </div>
-                        <h3 class="step-title text-white">Start Getting Support</h3>
-                        <p class="step-description text-white-muted">Work with a helper to improve your preparation, organization, and confidence.</p>
+                        <h3 class="step-title text-white">Ace Your Exam with Ease</h3>
+                        <p class="step-description text-white-muted">Partner with our team to execute a flawless plan, bypassing proctoring hurdles and securing the results you need.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    @php
+        $reviews = [
+            [
+                'testimonial' => 'I was panicking about my Proctorio-monitored chemistry final. Proctored Test Pro delivered a perfect solution, and I scored a 92%! They’re legit lifesavers.',
+                'name' => 'Aisha M.',
+                'major' => 'Chemistry Major',
+            ],
+            [
+                'testimonial' => 'My law school exam used a live proctor and AI monitoring. Proctored Test Pro handled it flawlessly. I’m recommending them to everyone!',
+                'name' => 'Daniel K.',
+                'major' => 'Law Student',
+            ],
+            [
+                'testimonial' => 'From my nursing certification to my MBA finals, they covered every exam with precision. I couldn’t have graduated without them.',
+                'name' => 'Priya S.',
+                'major' => 'MBA Graduate',
+            ],
+            [
+                'testimonial' => 'Struggling with my engineering midterms on Respondus? Proctored Test Pro turned it around in no time. Got an A+ and zero stress!',
+                'name' => 'Carlos R.',
+                'major' => 'Engineering Student',
+            ],
+            [
+                'testimonial' => 'Their team bypassed my Honorlock proctored history exam effortlessly. Professional, quick, and reliable—best decision ever.',
+                'name' => 'Sophia L.',
+                'major' => 'History Major',
+            ],
+            [
+                'testimonial' => 'I had a tight deadline for my computer science certification with Pearson VUE. Proctored Test Pro delivered top-notch results right on time.',
+                'name' => 'Jamal T.',
+                'major' => 'CS Professional',
+            ],
+            [
+                'testimonial' => 'No more worries about AI proctors in my biology tests. Proctored Test Pro made it simple and effective. Highly recommended!',
+                'name' => 'Elena V.',
+                'major' => 'Biology Student',
+            ],
+        ];
+    @endphp
 
     <section class="reviews-section" id="reviews">
         <div class="container1">
@@ -385,59 +425,25 @@
             </div>
 
             <div class="reviews-slider">
-                <div class="review-card review-prev">
-                    <div class="review-stars">
-                        @for ($i = 0; $i < 5; $i++)
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
-                            </svg>
-                        @endfor
-                    </div>
-                    <p class="review-text">"Very private, professional, and fast. I got a study plan within hours."</p>
-                    <div class="review-author">
-                        <div class="author-avatar">E</div>
-                        <div class="author-info">
-                            <p class="author-name">Elena V.</p>
-                            <p class="author-role">Biology Student</p>
+                @foreach (array_slice($reviews, 0, 3) as $index => $review)
+                    <div class="review-card {{ $index === 0 ? 'review-prev' : ($index === 1 ? 'review-active' : 'review-next') }}">
+                        <div class="review-stars">
+                            @for ($i = 0; $i < 5; $i++)
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                                </svg>
+                            @endfor
+                        </div>
+                        <p class="review-text">"{{ $review['testimonial'] }}"</p>
+                        <div class="review-author">
+                            <div class="author-avatar">{{ strtoupper(substr($review['name'], 0, 1)) }}</div>
+                            <div class="author-info">
+                                <p class="author-name">{{ $review['name'] }}</p>
+                                <p class="author-role">{{ $review['major'] }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="review-card review-active">
-                    <div class="review-stars">
-                        @for ($i = 0; $i < 5; $i++)
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
-                            </svg>
-                        @endfor
-                    </div>
-                    <p class="review-text">"The mock questions and tutor review helped me walk into my chemistry final more confident."</p>
-                    <div class="review-author">
-                        <div class="author-avatar">A</div>
-                        <div class="author-info">
-                            <p class="author-name">Aisha M.</p>
-                            <p class="author-role">Chemistry Student</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="review-card review-next">
-                    <div class="review-stars">
-                        @for ($i = 0; $i < 5; $i++)
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
-                            </svg>
-                        @endfor
-                    </div>
-                    <p class="review-text">"The online class support kept me organized every week. I finally stopped missing deadlines."</p>
-                    <div class="review-author">
-                        <div class="author-avatar">D</div>
-                        <div class="author-info">
-                            <p class="author-name">Daniel K.</p>
-                            <p class="author-role">Business Student</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <div class="slider-controls">
@@ -479,14 +485,14 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                         <rect width="20" height="14" x="2" y="3" rx="2"></rect>
                     </svg>
-                    Online Learning Platforms
+                    Every Proctoring System
                 </button>
 
                 <button class="coverage-tab" type="button" data-coverage="discipline">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                         <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path>
                     </svg>
-                    Academic Disciplines
+                    Every Academic Discipline
                 </button>
 
                 <button class="coverage-tab" type="button" data-coverage="level">
@@ -511,9 +517,9 @@
                             <rect width="20" height="14" x="2" y="3" rx="2"></rect>
                         </svg>
                     </div>
-                    <h3 class="coverage-panel-title text-white">Online Learning Platforms</h3>
-                    <p class="coverage-panel-text text-white-muted">Support for LMS platforms, online course portals, homework systems, and study tools.</p>
-                    <div class="coverage-tags">
+                    <h3 class="coverage-panel-title text-white">Every Proctoring System</h3>
+                    <p class="coverage-panel-text text-white-muted"> AI-based (Proctorio, Respondus), live proctors (ProctorU, Examity), lockdown browsers, and hybrid platforms.</p>
+                     <div class="coverage-tags">
                         <span class="coverage-tag-item">Canvas</span>
                         <span class="coverage-tag-item">Blackboard</span>
                         <span class="coverage-tag-item">Moodle</span>
@@ -529,9 +535,9 @@
                             <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="coverage-panel-title text-white">Academic Disciplines</h3>
-                    <p class="coverage-panel-text text-white-muted">STEM, healthcare, business, writing, humanities, technology, law, and more.</p>
-                    <div class="coverage-tags">
+                    <h3 class="coverage-panel-title text-white">Every  Academic Disciplines</h3>
+                    <p class="coverage-panel-text text-white-muted">STEM (math, physics, coding, engineering), humanities (literature, history, philosophy), business (accounting, finance, economics), healthcare (nursing, medical boards), law, and more.</p>
+                     <div class="coverage-tags">
                         <span class="coverage-tag-item">Math</span>
                         <span class="coverage-tag-item">Physics</span>
                         <span class="coverage-tag-item">Engineering</span>
@@ -550,8 +556,8 @@
                         </svg>
                     </div>
                     <h3 class="coverage-panel-title text-white">Every Level</h3>
-                    <p class="coverage-panel-text text-white-muted">High school, college, graduate studies, and professional certification preparation.</p>
-                    <div class="coverage-tags">
+                    <p class="coverage-panel-text text-white-muted">High school, college, graduate programs, professional certifications (CPA, CFA, Bar Exam, NCLEX, USMLE, and others).</p>
+                     <div class="coverage-tags">
                         <span class="coverage-tag-item">High School</span>
                         <span class="coverage-tag-item">College</span>
                         <span class="coverage-tag-item">Graduate</span>
@@ -568,7 +574,7 @@
                         </svg>
                     </div>
                     <h3 class="coverage-panel-title text-white">Global Reach</h3>
-                    <p class="coverage-panel-text text-white-muted">Supporting students worldwide with flexible communication and personalized academic help.</p>
+                    <p class="coverage-panel-text text-white-muted">Supporting students worldwide, with solutions tailored to regional and institutional requirements.</p>
                     <div class="coverage-tags">
                         <span class="coverage-tag-item">USA</span>
                         <span class="coverage-tag-item">UK</span>
@@ -598,78 +604,49 @@
                 <h2 class="section-title">Frequently Asked <span class="highlight">Questions</span></h2>
             </div>
 
+            @php
+                $faqs = [
+                    [
+                        'question' => 'Is this service detectable by my school?',
+                        'answer' => "No. Our methods are completely undetectable by any proctoring software. We've successfully helped thousands of students without a single detection.",
+                    ],
+                    [
+                        'question' => 'How do you guarantee my grade?',
+                        'answer' => "We have subject matter experts for every discipline. If for any reason you don't achieve at least a B+, we'll refund your money - though this has never happened.",
+                    ],
+                    [
+                        'question' => 'What information do you need from me?',
+                        'answer' => "Just your exam details (course, platform, date/time) and login credentials for the exam platform. We don't need or store any personal academic records.",
+                    ],
+                    [
+                        'question' => 'What if my exam is longer than 4 hours?',
+                        'answer' => 'We accommodate exams of any length. Contact us for a custom quote based on your specific exam duration and requirements.',
+                    ],
+                    [
+                        'question' => 'How do you bypass advanced proctoring like eye-tracking?',
+                        'answer' => 'Our proprietary technology mimics natural test-taking behavior perfectly, including eye movements, typing patterns, and mouse movements. The details are confidential for security reasons.',
+                    ],
+                    [
+                        'question' => 'What payment methods do you accept?',
+                        'answer' => 'We accept all major cryptocurrencies for maximum anonymity, as well as PayPal and credit cards for your convenience.',
+                    ],
+                ];
+            @endphp
+
             <div class="accordion">
-                <div class="accordion-item">
-                    <button class="accordion-header" type="button" aria-expanded="false">
-                        <span class="accordion-title">What kind of academic support do you provide?</span>
-                        <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg>
-                    </button>
-                    <div class="accordion-content" hidden>
-                        <p class="accordion-text">We provide tutoring, study planning, online course support, assignment guidance, and exam preparation help.</p>
+                @foreach ($faqs as $faq)
+                    <div class="accordion-item">
+                        <button class="accordion-header" type="button" aria-expanded="false">
+                            <span class="accordion-title">{{ $faq['question'] }}</span>
+                            <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <path d="m6 9 6 6 6-6"></path>
+                            </svg>
+                        </button>
+                        <div class="accordion-content" hidden>
+                            <p class="accordion-text">{{ $faq['answer'] }}</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header" type="button" aria-expanded="false">
-                        <span class="accordion-title">How fast will I receive a response?</span>
-                        <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg>
-                    </button>
-                    <div class="accordion-content" hidden>
-                        <p class="accordion-text">Most requests receive a response within a few hours, depending on complexity and urgency.</p>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header" type="button" aria-expanded="false">
-                        <span class="accordion-title">What information do you need from me?</span>
-                        <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg>
-                    </button>
-                    <div class="accordion-content" hidden>
-                        <p class="accordion-text">We need your course or subject, deadline, platform if applicable, instructions, and any attached files that explain the request.</p>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header" type="button" aria-expanded="false">
-                        <span class="accordion-title">Can I attach files?</span>
-                        <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg>
-                    </button>
-                    <div class="accordion-content" hidden>
-                        <p class="accordion-text">Yes. You can attach instructions, screenshots, rubrics, documents, or other relevant files through the form.</p>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header" type="button" aria-expanded="false">
-                        <span class="accordion-title">Is my information private?</span>
-                        <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg>
-                    </button>
-                    <div class="accordion-content" hidden>
-                        <p class="accordion-text">Yes. Your submitted information is used only to respond to your request and provide support.</p>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header" type="button" aria-expanded="false">
-                        <span class="accordion-title">What payment methods do you accept?</span>
-                        <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                            <path d="m6 9 6 6 6-6"></path>
-                        </svg>
-                    </button>
-                    <div class="accordion-content" hidden>
-                        <p class="accordion-text">Available payment options can be shared after your quote is reviewed.</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -679,7 +656,7 @@
             <div class="quote-grid">
                 <div class="quote-content">
                     <h2 class="quote-title">Request Your Free <span class="text-accent">Quote Today</span></h2>
-                    <p class="quote-description">Fill out the form and receive a personalized quote for tutoring, course help, assignment guidance, or exam preparation support.</p>
+                    <p class="quote-description">Don’t let proctored exams stand in your way. Fill out the form below to unlock a personalized solution for your next test. Whether it’s a last-minute quiz or a high-stakes final, we’ve got you covered.</p>
 
                     <div class="quote-benefits">
                         <div class="benefit">

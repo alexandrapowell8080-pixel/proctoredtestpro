@@ -45,6 +45,11 @@
             🗑️ {{ session('success_delete') }}
         </div>
         @endif
+        @if($errors->has('upload'))
+        <div class="p-4 bg-[#fef2f2] border border-[#fecaca] rounded-xl text-sm text-[#991b1b] font-medium">
+            ⚠️ {{ $errors->first('upload') }}
+        </div>
+        @endif
     </div>
     @endif
 
@@ -119,13 +124,6 @@
                     <form action="{{ route('admin.faqs.import') }}" method="POST" enctype="multipart/form-data"
                         class="space-y-4">
                         @csrf
-                        <select name="category_id" required
-                            class="w-full border border-[hsl(var(--border))] rounded-lg px-3 py-2 text-sm bg-[hsl(var(--background))] focus:ring-2 focus:ring-[hsl(var(--primary))] outline-none">
-                            <option value="">Select Target Category...</option>
-                            @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
                         <input type="file" name="keywords_file" accept=".csv,.txt" required
                             class="w-full text-sm text-[hsl(var(--muted-foreground))] file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-[hsl(var(--secondary))] file:text-[hsl(var(--foreground))] hover:file:bg-[hsl(var(--border))]" />
                         <button type="submit"
@@ -170,9 +168,13 @@
                             class="bg-[hsl(var(--background))] px-1.5 py-0.5 rounded border border-[hsl(var(--border))] font-mono text-xs">.csv</code>
                         or <code
                             class="bg-[hsl(var(--background))] px-1.5 py-0.5 rounded border border-[hsl(var(--border))] font-mono text-xs">.txt</code>
-                        file with one keyword on each line.</li>
-                    <li class="pl-2">Select your category above and upload the file. Keywords are added to the waiting
-                        list.</li>
+                        file with <code
+                            class="bg-[hsl(var(--background))] px-1.5 py-0.5 rounded border border-[hsl(var(--border))] font-mono text-xs">category</code>
+                        and <code
+                            class="bg-[hsl(var(--background))] px-1.5 py-0.5 rounded border border-[hsl(var(--border))] font-mono text-xs">keyword</code>
+                        as column headers.</li>
+                    <li class="pl-2">Upload the file. Keywords are added to the waiting list automatically assigned to
+                        the correct category.</li>
                     <li class="pl-2">The system will generate answers automatically in the background, or you can click
                         "Force Process" to do it now.</li>
                 </ol>

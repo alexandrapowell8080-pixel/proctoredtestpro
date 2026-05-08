@@ -2,15 +2,14 @@
     <div class="container">
         <div class="header-inner">
             <a class="logo" href="/">
-                <img src="https://media.base44.com/images/public/user_69b25eda19bae29c39e9c756/5255585c1_WhatsAppImage2026-05-05at114417AM.jpeg" alt="Proctored Test Pro" class="logo-img">
+                <img src="{{ asset('images/logo.png') }}" alt="Proctored Test Pro" class="logo-img">
             </a>
             
             <nav class="main-nav" id="mainNav">
-                <a class="nav-link active" href="/">Home</a>
-                <a class="nav-link" href="/services">Services</a>
-                <a class="nav-link" href="/about">About</a>
-                <a class="nav-link" href="/contact">Contact</a>
-                <a class="btn btn-primary" href="/#hero-form">Get Started</a>
+                <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
+                <a class="nav-link {{ request()->is('faqs') ? 'active' : '' }}" href="/faqs">FAQs</a>
+                <a class="nav-link {{ request()->is('blogs') ? 'active' : '' }}" href="/blogs">Blogs</a>
+                <a class="btn btn-primary" href="/#form">Get Started</a>
             </nav>
             
             <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">

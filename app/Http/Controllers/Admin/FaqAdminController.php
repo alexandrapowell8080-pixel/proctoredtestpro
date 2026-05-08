@@ -34,33 +34,49 @@ class FaqAdminController extends Controller
 
     public function import(Request $request) 
     { 
-        $request->validate([ 'category_id' => 'required|exists:categories,id', ]); 
-        
         if (!isset($_FILES['keywords_file']) || $_FILES['keywords_file']['error'] !== UPLOAD_ERR_OK) { 
             return back()->withErrors(['upload' => 'No file uploaded or upload failed.']); 
         } 
         
-        $categoryId = $request->category_id; 
         $tmpFile = $_FILES['keywords_file']['tmp_name']; 
-        $originalName = $_FILES['keywords_file']['name']; 
         
         try { 
-            $content = file_get_contents($tmpFile); 
-            if ($content === false) {
-                return back()->withErrors(['upload' => 'Could not read uploaded file.']); 
-            } 
+            $rows = array_map('str_getcsv', file($tmpFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES));
             
-            $lines = explode("\n", $content); 
+            if (empty($rows)) {
+                return back()->withErrors(['upload' => 'Uploaded file is empty.']);
+            }
+
+            // Extract and clean headers
+            $headers = array_map('strtolower', array_map('trim', array_shift($rows)));
+            $categoryIndex = array_search('category', $headers);
+            $keywordIndex = array_search('keyword', $headers);
+
+            if ($categoryIndex === false || $keywordIndex === false) {
+                return back()->withErrors(['upload' => 'The file must include "category" and "keyword" headers.']);
+            }
+            
             $imported = 0; 
             $skipped = 0; 
             $duplicates = []; 
+            $categoryCache = [];
             
-            foreach ($lines as $line) { 
-                $keyword = trim($line); 
-                if (empty($keyword)) 
+            foreach ($rows as $row) { 
+                $categoryName = trim($row[$categoryIndex] ?? '');
+                $keyword = trim($row[$keywordIndex] ?? ''); 
+                
+                if (empty($keyword) || empty($categoryName)) 
                     continue; 
+
+                // Cache the Category ID lookup to prevent excessive queries
+                if (!isset($categoryCache[$categoryName])) {
+                    $category = Category::firstOrCreate(['name' => $categoryName]);
+                    $categoryCache[$categoryName] = $category->id;
+                }
+                
+                $categoryId = $categoryCache[$categoryName];
                     
-                if (\App\Models\Faq::where('keyword', $keyword) 
+                if (Faq::where('keyword', $keyword) 
                     ->where('category_id', $categoryId) 
                     ->exists()) { 
                         $skipped++; 
@@ -68,7 +84,7 @@ class FaqAdminController extends Controller
                         continue; 
                 } 
                 
-                \App\Models\Faq::create([
+                Faq::create([
                     'keyword' => $keyword,
                     'category_id' => $categoryId,
                     'title' => null,
@@ -157,6 +173,8 @@ class FaqAdminController extends Controller
         $request->validate([
             'keyword' => 'required|string|max:255',
             'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'meta_keywords' => 'nullable|string',
             'content' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
         ]);
@@ -165,10 +183,15 @@ class FaqAdminController extends Controller
         if ($request->filled('title') && $request->title !== $faq->title) {
             $slug = Str::slug($request->title);
         }
+        $metaKeywords = $request->filled('meta_keywords') 
+            ? array_map('trim', explode(',', $request->meta_keywords)) 
+            : null;
 
         $faq->update([
             'keyword' => $request->keyword,
             'title' => $request->title,
+            'description' => $request->description,
+            'meta_keywords' => $metaKeywords,
             'content' => $request->input('content'), 
             'category_id' => $request->category_id,
             'slug' => $slug,

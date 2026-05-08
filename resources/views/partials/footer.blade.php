@@ -5,7 +5,7 @@
                 <div class="footer-logo">
                     <div class="logo-icon">
                         <a class="logo" href="/">
-                <img src="https://media.base44.com/images/public/user_69b25eda19bae29c39e9c756/5255585c1_WhatsAppImage2026-05-05at114417AM.jpeg" alt="Proctored Test Pro" class="logo-img">
+                <img src="{{ asset('images/logo.png') }}" alt="Proctored Test Pro" class="logo-img">
             </a>
                     </div>
                     <span class="logo-text">Proctored<span class="text-accent">Test</span>Pro</span>
@@ -16,10 +16,10 @@
             <div class="footer-col">
                 <h4 class="footer-title">Quick Links</h4>
                 <div class="footer-links">
-                    <a href="#services" class="footer-link">Services</a>
-                    <a href="#how-it-works" class="footer-link">How It Works</a>
-                    <a href="#reviews" class="footer-link">Reviews</a>
-                    <a href="#faq" class="footer-link">FAQ</a>
+                    <a href="/#services" class="footer-link">Services</a>
+                    <a href="/#how-it-works" class="footer-link">How It Works</a>
+                    <a href="/#reviews" class="footer-link">Reviews</a>
+                    <a href="{{ route('faqs.index') }}" class="footer-link">FAQ</a>
                 </div>
             </div>
             

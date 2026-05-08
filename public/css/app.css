@@ -1794,8 +1794,8 @@ textarea {
         grid-template-columns: minmax(0, 1fr) minmax(20rem, 28rem);
         gap: 4rem;
         justify-items: stretch;
-          padding-left: 20%;
-    padding-right: 20%;
+          padding-left: 10%;
+    padding-right: 10%;
     }
 
     .hero-content {

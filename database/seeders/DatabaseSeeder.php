@@ -37,6 +37,6 @@ class DatabaseSeeder extends Seeder
             'slug' => \Illuminate\Support\Str::slug($category),
         ]);
     }
-         Blog::factory(50)->create();
+        //  Blog::factory(50)->create();
     }
 }

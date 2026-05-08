@@ -1,4 +1,11 @@
-<x-blog>
+@extends('layouts.admin')
+
+@section('seo_title', 'Edit Blog Post - Admin')
+
+@section('content')
+
+
+
     <!-- Main Wrapper -->
     <div class="min-h-screen bg-[hsl(var(--background))] text-[hsl(var(--foreground))] font-sans p-4 md:p-8">
         <div class="max-w-7xl mx-auto">
@@ -7,7 +14,7 @@
             <nav class="flex mb-4 text-sm" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-2">
                     <li>
-                        <a href="{{ route('admin.index') }}"
+                        <a href="{{ route('admin.dashboard') }}"
                             class="text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] transition-colors">Dashboard</a>
                     </li>
                     <li class="text-[hsl(var(--muted-foreground))]">/</li>
@@ -196,4 +203,5 @@
             reader.readAsDataURL(event.target.files[0]);
         }
     </script>
-</x-blog>
+
+@endsection
