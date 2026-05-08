@@ -118,7 +118,7 @@
                             <div class="form-tabs">
                                 <button class="tab-btn active" type="button" data-tab="proctored">
                                     <span class="tab-indicator"></span>
-                                    <span class="tab-text">Exam Prep</span>
+                                    <span class="tab-text">Proctored Tests</span>
                                 </button>
                                 <button class="tab-btn" type="button" data-tab="classes">
                                     <span class="tab-indicator"></span>
@@ -153,9 +153,8 @@
                                     </div>
                                 </div>
 
-                                <div class="form-row">
+                                <div class="form-row1">
                                     <input type="text" name="subject" class="form-input" placeholder="Subject/Course Code" required autocomplete="off">
-                                    <input type="text" name="platform" class="form-input" placeholder="Platform / Website" autocomplete="off">
                                 </div>
 
                                 <div class="form-row datetime-wrapper">
@@ -709,7 +708,7 @@
                             <div class="form-tabs">
                                 <button class="tab-btn active" type="button" data-tab="proctored">
                                     <span class="tab-indicator"></span>
-                                    <span class="tab-text">Exam Prep</span>
+                                    <span class="tab-text">Proctored Test</span>
                                 </button>
                                 <button class="tab-btn" type="button" data-tab="classes">
                                     <span class="tab-indicator"></span>
@@ -744,9 +743,8 @@
                                     </div>
                                 </div>
 
-                                <div class="form-row">
+                                <div class="form-row1">
                                     <input type="text" name="subject" class="form-input" placeholder="Subject/Course Code" required autocomplete="off">
-                                    <input type="text" name="platform" class="form-input" placeholder="Platform / Website" autocomplete="off">
                                 </div>
 
                                 <div class="form-row datetime-wrapper">
