@@ -564,6 +564,13 @@ textarea {
     gap: 0.75rem;
     width: 100%;
 }
+.form-row1 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    width: 100%;
+    padding-left:20%
+}
 
 .form-input,
 .form-select,
@@ -619,13 +626,13 @@ textarea {
 }
 
 .datetime-row .form-input {
-    min-width: 0;
+    min-width: 5;
 }
 
 .time-select {
     font-size: 0.8rem;
     cursor: pointer;
-    flex-shrink: 0;
+    flex-shrink: 2;
 }
 
 .form-textarea {
@@ -1794,8 +1801,8 @@ textarea {
         grid-template-columns: minmax(0, 1fr) minmax(20rem, 28rem);
         gap: 4rem;
         justify-items: stretch;
-          padding-left: 20%;
-    padding-right: 20%;
+          padding-left: 10%;
+    padding-right: 10%;
     }
 
     .hero-content {
