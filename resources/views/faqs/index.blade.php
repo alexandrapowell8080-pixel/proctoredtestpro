@@ -60,9 +60,9 @@ our comprehensive FAQ section.' : 'Find answers to common questions in our compr
 
 @section('content')
 
-{{-- Clear the fixed header spacing --}}
+
 <div class="pt-[4rem] md:pt-[5rem]">
-    {{-- Sticky Breadcrumb Navigation --}}
+
     <div
         class="border-b border-[hsl(var(--border))] bg-[hsl(var(--background))]/80 backdrop-blur-sm sticky top-[4rem] md:top-[5rem] z-10">
         <div
@@ -88,11 +88,11 @@ our comprehensive FAQ section.' : 'Find answers to common questions in our compr
         </div>
     </div>
 
-    {{-- Main Layout Wrapper --}}
+
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 min-h-screen">
         <div class="flex flex-col lg:flex-row gap-8">
 
-            {{-- Left Sidebar: Categories --}}
+
             <aside class="lg:w-64 flex-shrink-0">
                 <div class="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-2xl p-5 sticky top-32">
                     <h3
@@ -118,10 +118,9 @@ our comprehensive FAQ section.' : 'Find answers to common questions in our compr
                 </div>
             </aside>
 
-            {{-- Right Main Area: FAQ List --}}
-            <main class="flex-1 min-w-0">
+            <main class="flex-1 min-w-0" id="faq-wrapper">
 
-                {{-- Data Counter --}}
+
                 @if($faqs->total() > 0)
                 <p class="text-sm text-[hsl(var(--muted-foreground))] mb-5">
                     Showing <span class="font-medium text-[hsl(var(--foreground))]">{{ $faqs->firstItem() }}–{{
@@ -175,7 +174,6 @@ our comprehensive FAQ section.' : 'Find answers to common questions in our compr
                     @endforelse
                 </div>
 
-                {{-- Strict Preservation of Paginator --}}
                 @if ($faqs->hasPages())
                 <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
 
@@ -186,13 +184,14 @@ our comprehensive FAQ section.' : 'Find answers to common questions in our compr
                         Previous
                     </span>
                     @else
-                    <a href="{{ $currentCategory !== null ? route('faqs.category', [$currentCategory->slug, $faqs->currentPage() - 1]) : route('faqs.page', $faqs->currentPage() - 1) }}"
-                        class="btn btn-primary text-sm">
+                    <button type="button"
+                        data-url="{{ $currentCategory !== null ? route('faqs.category', [$currentCategory->slug, $faqs->currentPage() - 1]) : route('faqs.page', $faqs->currentPage() - 1) }}"
+                        class="js-paginate-btn btn btn-primary text-sm cursor-pointer">
                         Previous
-                    </a>
+                    </button>
                     @endif
 
-                    {{-- Page Numbers --}}
+
                     <div class="flex items-center gap-2 flex-wrap justify-center">
                         @foreach (range(1, $faqs->lastPage()) as $page)
                         @if ($page == $faqs->currentPage())
@@ -201,20 +200,22 @@ our comprehensive FAQ section.' : 'Find answers to common questions in our compr
                             {{ $page }}
                         </span>
                         @else
-                        <a href="{{ $currentCategory !== null ? route('faqs.category', [$currentCategory->slug, $page]) : route('faqs.page', $page) }}"
-                            class="w-10 h-10 flex items-center justify-center rounded-full bg-transparent border border-[hsl(var(--border))] text-[hsl(var(--foreground))] hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))] transition-colors font-medium">
+                        <button type="button"
+                            data-url="{{ $currentCategory !== null ? route('faqs.category', [$currentCategory->slug, $page]) : route('faqs.page', $page) }}"
+                            class="js-paginate-btn w-10 h-10 flex items-center justify-center rounded-full bg-transparent border border-[hsl(var(--border))] text-[hsl(var(--foreground))] hover:border-[hsl(var(--accent))] hover:text-[hsl(var(--accent))] transition-colors font-medium cursor-pointer">
                             {{ $page }}
-                        </a>
+                        </button>
                         @endif
                         @endforeach
                     </div>
 
                     {{-- Next --}}
                     @if ($faqs->hasMorePages())
-                    <a href="{{ $currentCategory !== null ? route('faqs.category', [$currentCategory->slug, $faqs->currentPage() + 1]) : route('faqs.page', $faqs->currentPage() + 1) }}"
-                        class="btn btn-primary text-sm">
+                    <button type="button"
+                        data-url="{{ $currentCategory !== null ? route('faqs.category', [$currentCategory->slug, $faqs->currentPage() + 1]) : route('faqs.page', $faqs->currentPage() + 1) }}"
+                        class="js-paginate-btn btn btn-primary text-sm cursor-pointer">
                         Next
-                    </a>
+                    </button>
                     @else
                     <span
                         class="px-5 py-2.5 rounded-full bg-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] text-sm font-semibold opacity-50 cursor-not-allowed">
@@ -230,4 +231,5 @@ our comprehensive FAQ section.' : 'Find answers to common questions in our compr
     </div>
 </div>
 
+<script src="{{ asset('js/page-load.js') }}"></script>
 @endsection
