@@ -42,11 +42,21 @@ class BlogController extends Controller
      */
     public function show(string $blog_slug): View
     {
-        $blog = Blog::where('slug', $blog_slug)->first();
+        if (auth('admin')->user()) {
+            $blog = Blog::where('slug', $blog_slug)->first();
+        } else {
+            $blog = Blog::where('slug', $blog_slug)->where('status', Blog::PUBLISH)->first();
+        }
+
         if (! $blog) {
             abort('404', 'Blog not found');
         }
-        $related_blogs = Blog::where('category_id', $blog->category_id)->whereNot('id', $blog->id)->take(5)->get();
+        if (auth('admin')->user()) {
+            $related_blogs = Blog::where('category_id', $blog->category_id)->whereNot('id', $blog->id)->take(5)->get();
+        } else {
+            $related_blogs = Blog::where('category_id', $blog->category_id)->whereNot('id', $blog->id)->where('status', Blog::PUBLISH)->take(5)->get();
+
+        }
 
         return view('blog.show', compact('blog', 'related_blogs'));
     }
