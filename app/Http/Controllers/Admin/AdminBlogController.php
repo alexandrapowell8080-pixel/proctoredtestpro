@@ -21,10 +21,11 @@ class AdminBlogController extends Controller
     {
         $blogs = Blog::paginate(10);
         $categories = Category::all();
+
         return view('admin.blog.list', compact('blogs', 'categories'));
     }
 
-    public function create()
+    public function create(): View
     {
         return view('admin.blog.create');
     }
@@ -57,7 +58,7 @@ class AdminBlogController extends Controller
                 $slug = $baseSlug.'-'.$randomNumber;
             } while (Blog::where('slug', $slug)->exists());
         }
-        
+
         $blog = Blog::create([
             'category_id' => $request->category_id,
             'title' => $request->title,
@@ -77,11 +78,13 @@ class AdminBlogController extends Controller
     {
         $blog = Blog::findOrFail($id);
         $categories = Category::all();
+
         return view('admin.blog.edit', compact('blog', 'categories'));
     }
 
     public function update(Request $request, $id): RedirectResponse
     {
+        // dd($request);
         $blog = Blog::findOrFail($id);
 
         $request->validate([
@@ -123,7 +126,7 @@ class AdminBlogController extends Controller
             'slug' => $slug,
             'keywords' => $request->keywords,
             'meta_keywords' => $request->meta_keywords ?? $request->keywords,
-            'status' => $request->status,
+            'status' => $request->status == 'scheduled' ? Blog::NEW : $request->status,
         ]);
 
         return redirect()->route('admin.blog.index')->with('success', 'Post updated successfully!');
@@ -138,6 +141,7 @@ class AdminBlogController extends Controller
                 Storage::disk('public')->delete($path);
             }
             $blog->delete();
+
             return redirect()->route('admin.blog.index')->with('success', 'Blog post and associated image deleted successfully.');
         } catch (\Exception $e) {
             return redirect()->route('admin.blog.index')->with('error', 'An error occurred while trying to delete the post.');
@@ -166,7 +170,10 @@ class AdminBlogController extends Controller
         return redirect()->back()->with('success', 'Keyword created successfully.');
     }
 
-    public function keywords(Request $request)
+    /**
+     * CSV data handling
+     */
+    public function keywords(Request $request): RedirectResponse
     {
         $file = $request->file('file');
         $handle = fopen($file->getRealPath(), 'r');
@@ -175,10 +182,14 @@ class AdminBlogController extends Controller
 
         DB::beginTransaction();
         try {
+            fgetcsv($handle, 1000, ',');
             while (($row = fgetcsv($handle, 1000, ',')) !== false) {
                 if (! empty($row[0]) && ! empty($row[1])) {
                     $categoryName = trim($row[0]);
                     $keywordName = trim($row[1]);
+
+                    logger($categoryName);
+                    logger($keywordName);
 
                     $category = Category::firstOrCreate(
                         ['name' => $categoryName],
@@ -211,20 +222,24 @@ class AdminBlogController extends Controller
             if ($skippedCount > 0) {
                 $msg .= " ($skippedCount duplicates skipped).";
             }
-            return redirect()->back()->with('CSV_success', $msg);
 
+            return redirect()->back()->with('CSV_success', $msg);
         } catch (\Exception $e) {
             DB::rollBack();
             if ($handle) {
                 fclose($handle);
             }
+
             return redirect()->back()->with('CSV_error', 'Import failed: '.$e->getMessage());
         }
     }
 
     public function generate()
     {
-        Artisan::call('blogs:generate');
+        Artisan::call('blogs:generate', [
+            '--limit' => 2,
+        ]);
+
         return redirect()->back()->with('success', 'Blogs generated!');
     }
 
@@ -233,8 +248,10 @@ class AdminBlogController extends Controller
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('uploads', 'public');
             $imageUrl = asset('storage/'.$path);
+
             return ['path' => $path, 'url' => $imageUrl];
         }
+
         return ['error' => 'No file uploaded'];
     }
 }
