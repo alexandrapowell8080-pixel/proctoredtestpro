@@ -94,6 +94,7 @@ class AdminBlogController extends Controller
             'meta_description' => 'required|string|max:160',
             'keywords' => 'required',
             'status' => 'required|in:published,draft,scheduled',
+            'image' => 'nullable',
         ]);
 
         $imageUrl = $blog->image_url;
