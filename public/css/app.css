@@ -832,8 +832,8 @@ textarea {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-      padding-left: 20%;
-    padding-right: 20%;
+      /* padding-left: 20%;
+    padding-right: 20%; */
 }
 
 .feature-card {
@@ -1472,8 +1472,8 @@ textarea {
 .quote-section {
     padding: 4rem 0;
     background: hsl(var(--muted));
-    padding-left: 20%;
-    padding-right: 20%;
+    /* padding-left: 20%;
+    padding-right: 20%; */
 }
 
 .quote-grid {
