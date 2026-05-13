@@ -59,10 +59,10 @@
                     </div>
 
                     <!-- Article Content -->
-                     
+
 
                     <div class="prose max-w-none ai-content">
-                        {!! Str::markdown( $blog->content) !!}
+                        {!! Str::markdown($blog->content) !!}
                     </div>
 
                 </div>
@@ -72,14 +72,23 @@
 
                 <!-- Navigation: Prev & Next -->
                 <div class="flex flex-col sm:flex-row justify-between gap-4 pt-6 border-t border-[hsl(var(--border))]">
-                    <a href="{{ route('blog', ['slug' => $related_blogs->last()->slug]) }}"
-                        class="px-6 py-3 rounded-md bg-[hsl(var(--muted))] text-[hsl(var(--primary))] font-medium hover:bg-[hsl(var(--accent))] hover:text-[hsl(var(--accent-foreground))] transition-colors">
-                        ← Previous
-                    </a>
-                    <a href="{{ route('blog', ['slug' => $related_blogs[1]->slug]) }}"
-                        class="px-6 py-3 rounded-md bg-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] font-medium hover:opacity-90 transition-opacity">
-                        Next →
-                    </a>
+
+                    {{-- Previous --}}
+                    @if ($related_blogs->count() > 0)
+                        <a href="{{ route('blog', ['slug' => $related_blogs->last()->slug]) }}"
+                            class="px-6 py-3 rounded-md bg-[hsl(var(--muted))] text-[hsl(var(--primary))] font-medium hover:bg-[hsl(var(--accent))] hover:text-[hsl(var(--accent-foreground))] transition-colors">
+                            ← Previous
+                        </a>
+                    @endif
+
+                    {{-- Next --}}
+                    @if (isset($related_blogs[1]))
+                        <a href="{{ route('blog', ['slug' => $related_blogs[1]->slug]) }}"
+                            class="px-6 py-3 rounded-md bg-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] font-medium hover:opacity-90 transition-opacity">
+                            Next →
+                        </a>
+                    @endif
+
                 </div>
             </main>
 
@@ -142,6 +151,7 @@
                 </div>
 
                 <!-- Random Blog/Promo Card -->
+                 @if ($related_blogs->count() > 0)
                 <a href="{{ route('blog', ['slug' => $related_blogs->first()->slug]) }}">
                     <div
                         class="bg-[hsl(var(--card))] rounded-[var(--radius)] border border-[hsl(var(--border))] p-5 shadow-sm">
@@ -157,29 +167,30 @@
                         <div class="h-4 text-sm rounded w-2/3">{{ $related_blogs->first()->category->name }}</div>
                     </div>
                 </a>
+                @endif
             </aside>
 
         </div>
     </div>
     <style type="text/tailwindcss">
-       .ai-content h2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-}
+        .ai-content h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
 
-.ai-content h3 {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-top: 1.25rem;
-    margin-bottom: 0.5rem;
-}
+        .ai-content h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
 
-.ai-content ul {
-    list-style-type: disc;
-    padding-left: 1.5rem;
-}
+        .ai-content ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
 
         /* Add more tags as needed */
     </style>
